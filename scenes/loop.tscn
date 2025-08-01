@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c23vyokedh25j"]
+
+[ext_resource type="Script" uid="uid://dc61jsp7ri5ni" path="res://scripts/loop.gd" id="1_fpe6o"]
+[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_p0t4i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3fat"]
+radius = 35.15
+
+[node name="Node2D" type="Area2D" node_paths=PackedStringArray("hit_timer")]
+script = ExtResource("1_fpe6o")
+hit_timer = NodePath("Timer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.458824)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_p0t4i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p3fat")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
