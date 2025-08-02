@@ -33,6 +33,11 @@ func add_mouse_position(v2: Vector2):
 		
 		loop_segments.append(loop)
 		add_child(loop)
+		
+
+func finish_mouse_loop():
+	pass
+
 
 func _input(event):
 	# start looping!
@@ -59,12 +64,6 @@ func _input(event):
 			loop_segment.queue_free()
 		loop_segments = []
 
-
-	# continue looping !
-	if is_held:
-		# calculate distance difference (refactor this)
-		if len(mouse_positions) == 0:
-			add_mouse_position(event.position)
-		else: 
-			if len(mouse_positions) and event.position.distance_to(mouse_positions[-1]) > LOOP_SPRITE_DISTANCE:
-				add_mouse_position(event.position)
+	# calculate distance difference
+	if is_held and (len(mouse_positions) == 0 or (len(mouse_positions) and event.position.distance_to(mouse_positions[-1]) > LOOP_SPRITE_DISTANCE)):
+		add_mouse_position(event.position)
