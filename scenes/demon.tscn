@@ -46,7 +46,6 @@ animations = [{
 script = ExtResource("1_3t42y")
 sprite = NodePath("AnimatedSprite2D")
 walk_angle = 0.2
-walk_speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3t42y")

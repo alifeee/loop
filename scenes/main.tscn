@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://cpk7kjhmokc6l" path="res://scenes/globals.tscn" id="2_tipki"]
+[ext_resource type="PackedScene" uid="uid://cm3qopymteb3r" path="res://scenes/globals.tscn" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
-[ext_resource type="Script" path="res://scripts/centre.gd" id="5_ya4ey"]
+[ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="5_ya4ey"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
 
@@ -353,7 +353,7 @@ autowrap_mode = 1
 position = Vector2(582, 322)
 texture = ExtResource("12_eb6dy")
 
-[connection signal="error" from="." to="CanvasLayer" method="display_error"]
+[connection signal="error_debug" from="." to="CanvasLayer" method="display_error"]
 [connection signal="area_entered" from="Centre" to="Centre" method="_on_area_entered"]
 [connection signal="body_entered" from="Centre" to="Centre" method="_on_body_entered"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

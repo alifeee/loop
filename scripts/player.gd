@@ -4,10 +4,12 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-signal error(msg)
+signal error_debug(msg)
+var error = ""
 
 @export var loop1: Loop
 @export var LOOP_MIN_AREA: float = 2500
+@export var LOOP_MAX_START_END_DISTANCE: float = 50
 @export var LOOP_SPRITE_DISTANCE: float = 5
 @export var LOOP_RADIUS: float = 50
 @export var DAMAGE_PERCENT: float = 50
@@ -52,8 +54,8 @@ func _input(event):
 			for pos in mouse_positions:
 				centroid = centroid + (pos / len(mouse_positions))
 			# loop checks
-			
-			#### RECTANGLE SIZING ####
+			error = ""
+			#### RECTANGLE (not used) SIZING ####
 			if false:
 				var loop_rect = Rect2(mouse_positions[0], Vector2(0,0))
 				for mouse_position in mouse_positions:
@@ -72,10 +74,16 @@ func _input(event):
 					error.emit("loop not big enough")
 			#### POLYGON SIZING ####
 			var polygon_area = Globals.calc_polygon_area(mouse_positions)
-			if polygon_area > LOOP_MIN_AREA:
+			if polygon_area < LOOP_MIN_AREA:
+				error = "loop not big enough"
+			#### START/END DISTANCE ####
+			var start_pos = mouse_positions[0]
+			var end_pos = mouse_positions[-1]
+			if start_pos.distance_to(end_pos) > LOOP_MAX_START_END_DISTANCE:
+				error = "start too far from end"
+			if error == "":
 				do_loop_damage(centroid, LOOP_RADIUS)
-			else:
-				error.emit("loop not big enough")
+			error_debug.emit(error)
 		# do this whatever the weather
 		is_held = false
 		# delete sprite segments
