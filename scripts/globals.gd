@@ -19,9 +19,11 @@ var demons: Array[Demon] = []
 @export var amicool: bool
 
 func pause():
+	gamestate = GAMESTATES.PAUSED
 	pause_game.emit()
 	print("pausing game")
 
 func resume():
+	gamestate = GAMESTATES.PLAYING
 	resume_game.emit()
 	print("resuming game")
