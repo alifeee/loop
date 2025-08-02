@@ -31,6 +31,10 @@ func _init() -> void:
 	packedloop = preload("res://scenes/loop.tscn")
 	packed_loop_segment = preload("res://scenes/loop_segment.tscn")
 
+func _ready() -> void:
+	Globals.reset()
+	Globals.reset_game.connect(reset)
+
 func _process(delta: float) -> void:
 	if len(mouse_positions) > 0:
 		is_valid = is_big_enough_area(mouse_positions) and is_close_enough_to_start(mouse_positions)
@@ -39,6 +43,9 @@ func _process(delta: float) -> void:
 	else:
 		is_valid = false
 		make_spell_invalid()
+
+func reset():
+	drop_spell()
 
 func make_spell_invalid():
 	for sparkle in loop_segments:
@@ -135,8 +142,11 @@ func check_and_add_spell_point(pos):
 		add_child(loopsprite)
 
 func _input(event):
+	# reset game
+	if event.is_action_pressed("Reset") and not is_held:
+		Globals.reset()
 	# pause game
-	if event.is_action_pressed("Pause") and not is_held:
+	elif event.is_action_pressed("Pause") and not is_held:
 		# is playing, pause
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 			Globals.pause()

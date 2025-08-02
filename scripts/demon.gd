@@ -43,9 +43,6 @@ func hit(damage: float):
 		die()
 
 func die() -> void:
-	Globals.demons.remove_at(
-		Globals.demons.find(self)
-	)
 	if hittween:
 		hittween.kill()
 	dead = true
@@ -55,6 +52,7 @@ func die() -> void:
 	var dietween = get_tree().create_tween()
 	dietween.tween_property(self, "modulate:a", 0, 2)
 	dietween.tween_callback(func(): self.queue_free())
+	Globals.demons.erase(self)
 
 func reach_middle() -> void:
 	# stop
