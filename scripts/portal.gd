@@ -1,6 +1,10 @@
 extends Node2D
 
 @export var timer: Timer
+@export var ratetimer: Timer
+@export var rate_every_s: float = 5
+@export var rate_subtract_s: float = 0
+@export var rate_multiply: float = 0.96
 var rng = RandomNumberGenerator.new()
 var packeddemon: PackedScene
 
@@ -9,6 +13,15 @@ func _ready() -> void:
 	_on_timer_timeout()
 	Globals.pause_game.connect(stop_timer)
 	Globals.resume_game.connect(start_timer)
+	# rate
+	ratetimer.wait_time = rate_every_s
+	ratetimer.stop()
+	ratetimer.start()
+	ratetimer.timeout.connect(increase_rate)
+
+func increase_rate() -> void:
+	timer.wait_time += rate_subtract_s
+	timer.wait_time *= rate_multiply
 
 func stop_timer() -> void:
 	timer.stop()

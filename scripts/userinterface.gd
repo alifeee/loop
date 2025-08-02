@@ -16,3 +16,15 @@ func _process(delta: float) -> void:
 	
 	# enemies now
 	$CurrentEnemies.text = str(len(Globals.demons))
+	
+	# current rate
+	$CurrentRate.text = str($"../Spawner/SpawnTimer".wait_time)
+	
+	# current rate timer
+	$RateIncrease.text = str(snapped($"../Spawner/RateTimer".time_left, 0.1))
+	
+	# rate subtract
+	$RateSubtract.text = str($"../Spawner".rate_subtract_s)
+	
+	# rate mult
+	$RateMult.text = str($"../Spawner".rate_multiply)
