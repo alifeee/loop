@@ -12,5 +12,4 @@ position = Vector2(48, 55)
 
 [node name="Demon" parent="." instance=ExtResource("2_bl13t")]
 position = Vector2(63, 63)
-walk_angle = -2.0
 walk_speed = 5.0

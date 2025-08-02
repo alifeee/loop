@@ -8,7 +8,7 @@ extends AnimatableBody2D
 @export var drop_amount: int = 1
 @export var drop_variance: float = 0.1
 
-@export var walk_angle: float
+@export var walk_towards: Vector2
 @export var walk_speed: float = 50
 var health: float = 100
 var dead: bool = false
@@ -29,10 +29,8 @@ func _physics_process(delta: float) -> void:
 	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
 		return
 	var distance = delta * walk_speed
-	position = position + Vector2(
-		distance * sin(walk_angle),
-		distance * cos(walk_angle)
-	)
+	var direction_unit_vec = (walk_towards - position).normalized()
+	position = position + direction_unit_vec * distance
 
 func hit(damage: float):
 	#print("got hit")
@@ -63,13 +61,13 @@ func die() -> void:
 	Globals.demons.erase(self)
 	
 func make_drop() -> void:
-	var d = self.find_parent("Spawner").find_child("DemonDrops")
+	var DemonDrops = self.find_parent("Spawner").find_child("DemonDrops")
 	
 	for __ in drop_amount:
 		if drop_chance >= randf():
 			var drop = drop_scene.instantiate()
-			drop.global_position = self.global_position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
-			d.add_child(drop)
+			drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
+			DemonDrops.add_child(drop)
 
 
 func reach_middle() -> void:

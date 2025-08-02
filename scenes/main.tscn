@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
-[ext_resource type="Script" path="res://scripts/centre.gd" id="5_ya4ey"]
+[ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="5_ya4ey"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
 [ext_resource type="Texture2D" uid="uid://bxfqa5s4dtr7e" path="res://assets/animations/wizards/wizard1.png" id="9_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="10_jkv2x"]
@@ -170,6 +170,8 @@ wait_time = 1.5
 autostart = true
 
 [node name="RateTimer" type="Timer" parent="Spawner"]
+
+[node name="DemonDrops" type="Node2D" parent="Spawner"]
 
 [node name="Loop1" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(-44, -48)
@@ -381,6 +383,7 @@ offset_right = 104.0
 offset_bottom = 24.0
 
 [node name="LoopValidLabel" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 210.0
 offset_right = 51.0
@@ -388,6 +391,7 @@ offset_bottom = 233.0
 text = "loop valid"
 
 [node name="LoopValid" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_left = 84.0
 offset_top = 210.0
 offset_right = 159.0
