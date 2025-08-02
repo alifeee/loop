@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4wihwps0lyfk"]
 
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_i64fm"]
-[ext_resource type="Script" uid="uid://bs6d5pchncevf" path="res://scripts/coin.gd" id="1_rwqht"]
+[ext_resource type="Script" uid="uid://bs6d5pchncevf" path="res://scripts/drop.gd" id="1_rwqht"]
 
 [node name="Coin" type="Sprite2D"]
 scale = Vector2(0.171875, 0.171875)
