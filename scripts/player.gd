@@ -29,7 +29,7 @@ func add_mouse_position(v2: Vector2):
 		var loop: Sprite2D = packed_loop_segment.instantiate()
 		loop.position = midpoint
 		loop.rotation = pos1.angle_to_point(pos2) + PI / 2
-		loop.apply_scale(Vector2(LOOP_THICCNESS, dist))
+		loop.apply_scale(Vector2(LOOP_THICCNESS, dist / 2))
 		
 		loop_segments.append(loop)
 		add_child(loop)
