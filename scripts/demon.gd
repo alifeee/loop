@@ -61,13 +61,13 @@ func die() -> void:
 	Globals.demons.erase(self)
 	
 func make_drop() -> void:
-	var d = self.find_parent("Spawner").find_child("DemonDrops")
+	var DemonDrops = self.find_parent("Spawner").find_child("DemonDrops")
 	
 	for __ in drop_amount:
 		if drop_chance >= randf():
 			var drop = drop_scene.instantiate()
-			drop.global_position = self.global_position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
-			d.add_child(drop)
+			drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
+			DemonDrops.add_child(drop)
 
 
 func reach_middle() -> void:
