@@ -1,7 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxikwibxofj3t"]
+[gd_scene load_steps=6 format=3 uid="uid://cxikwibxofj3t"]
 
-[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_wfudo"]
+[ext_resource type="Texture2D" uid="uid://8o8q8sw1ljg4" path="res://assets/animations/loop-effect/mouse-animation.png" id="2_msd48"]
 
-[node name="LoopSegment" type="Sprite2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfudo"]
+atlas = ExtResource("2_msd48")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msd48"]
+atlas = ExtResource("2_msd48")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hbv0"]
+atlas = ExtResource("2_msd48")
+region = Rect2(0, 34, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5s2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfudo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msd48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hbv0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="LoopSegment" type="AnimatedSprite2D"]
 scale = Vector2(0.205, 0.495)
-texture = ExtResource("1_wfudo")
+sprite_frames = SubResource("SpriteFrames_m5s2p")
+autoplay = "default"
