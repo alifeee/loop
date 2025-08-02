@@ -11,6 +11,7 @@ var _mouse_position = Vector2(0.0, 0.0)
 var mouse_position_log = []
 
 func _input(event):
+	return
 	var normalised_position = - self.get_screen_center_position() + event.position
 	
 	# Receives mouse motion
