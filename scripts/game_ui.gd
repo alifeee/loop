@@ -14,10 +14,14 @@ func _ready() -> void:
 	shop_button.disabled = true
 	shop_button.modulate.a = 0.5
 	Globals.end_game.connect(func(): $EndLabel.visible = true)
-	Globals.end_game.connect(func(): $EndLabel.text = "you s̶u̶c̶k̶ win!")
 	Globals.reset_game.connect(func(): time_elapsed = 0)
 	Globals.reset_game.connect(func(): $EndLabel.visible = false)
-	close_button.pressed.connect(Globals.endgame)
+	Globals.reset_game.connect(func(): $EndLabel.text = "you suck!")
+	close_button.pressed.connect(
+		func():
+			Globals.endgame()
+			$EndLabel.text = "you s̶u̶c̶k̶ win!"
+	)
 	
 func _process(delta: float) -> void:
 	# time
