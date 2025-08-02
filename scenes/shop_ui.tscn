@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ghswit1war77"]
+[gd_scene load_steps=11 format=3 uid="uid://ddof72eun3ikb"]
 
 [ext_resource type="Texture2D" uid="uid://bhcsca1rn8sxf" path="res://assets/Temp/Frame 22.png" id="1_fs6yy"]
 [ext_resource type="Texture2D" uid="uid://yby0vxfu113f" path="res://assets/ui-element/modal.png" id="2_epbsd"]
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="2_oixfk"]
-[ext_resource type="PackedScene" path="res://scenes/shop_button.tscn" id="3_usj2y"]
-[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="4_bidp2"]
+[ext_resource type="PackedScene" uid="uid://bdp6wh7aki3xb" path="res://scenes/shop_button.tscn" id="3_usj2y"]
+[ext_resource type="Texture2D" uid="uid://7mn7deb8je4q" path="res://assets/ui-element/Triangle.png" id="4_usj2y"]
+[ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="5_bidp2"]
 
 [sub_resource type="Theme" id="Theme_18xnp"]
 
@@ -170,8 +171,8 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 36.0
 offset_bottom = 36.0
-texture = ExtResource("4_bidp2")
-expand_mode = 1
+texture = ExtResource("4_usj2y")
+expand_mode = 5
 
 [node name="Label" type="Label" parent="Main Modal Background/Page Scroll"]
 layout_mode = 1
@@ -202,8 +203,9 @@ offset_top = -18.0
 offset_bottom = 18.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("4_bidp2")
-expand_mode = 1
+texture = ExtResource("4_usj2y")
+expand_mode = 5
+flip_h = true
 
 [node name="Mote Count" type="Panel" parent="Main Modal Background"]
 layout_mode = 0
@@ -216,7 +218,7 @@ offset_bottom = 56.0
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("4_bidp2")
+texture = ExtResource("5_bidp2")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Main Modal Background/Mote Count"]

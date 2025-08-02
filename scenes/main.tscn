@@ -54,8 +54,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_choun"]
-radius = 64.7
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muem4"]
+radius = 33.0
+height = 174.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
 atlas = ExtResource("9_a8y0u")
@@ -167,7 +168,10 @@ autoplay = "summon_portal"
 script = ExtResource("6_85g3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Centre"]
-shape = SubResource("CircleShape2D_choun")
+position = Vector2(4, 13)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_muem4")
+one_way_collision_margin = 0.0
 
 [node name="Wizard1" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
@@ -463,7 +467,7 @@ text = "no error :]"
 autowrap_mode = 1
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(582, 322)
+position = Vector2(576, 324)
 texture = ExtResource("12_eb6dy")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
@@ -471,6 +475,7 @@ texture = ExtResource("12_eb6dy")
 [node name="Control" parent="CanvasLayer2" instance=ExtResource("15_jkv2x")]
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Start" parent="CanvasLayer3" instance=ExtResource("17_muem4")]
 
