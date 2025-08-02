@@ -125,6 +125,8 @@ animations = [{
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("loop1")]
 script = ExtResource("1_jyhfs")
 loop1 = NodePath("Loop1")
+LOOP_MIN_AREA = 2250.0
+LOOP_MAX_START_END_DISTANCE = 75.0
 DAMAGE_PERCENT = 100.0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
