@@ -4,7 +4,7 @@ extends Node2D
 @export var LOOP_SPRITE_DISTANCE: float = 5
 @export var LOOP_FIRST_SEGMENT_MAGNETISM = 20
 @export var LOOP_RADIUS: float = 50
-@export var LOOP_MIN_SIZE = 60
+@export var LOOP_MIN_SIZE = 160
 @export var LOOP_THICCNESS = 2
 @export var DAMAGE_PERCENT: float = 50
 
@@ -46,20 +46,24 @@ func add_mouse_position(v2: Vector2) -> void:
 		add_loop_segment(mouse_positions[-1], mouse_positions[-2])
 		
 		# check for loop closing
-		if mouse_positions[-1].distance_to(mouse_positions[0]) < LOOP_FIRST_SEGMENT_MAGNETISM:
-			var mx = Vector2(-INF, -INF) # we calculate the max and min xy
-			var mi = Vector2(INF, INF)
-			for pos in mouse_positions:
-				mx = mx.max(pos)
-				mi = mi.min(pos)
-				
-			var dist = mi.distance_to(mx)
+		var i = 0
+		for previous_point in mouse_positions:
+			if mouse_positions[-1].distance_to(previous_point) < LOOP_FIRST_SEGMENT_MAGNETISM:
+				var mx = Vector2(-INF, -INF) # we calculate the max and min xy
+				var mi = Vector2(INF, INF)
+				for pos in mouse_positions:
+					mx = mx.max(pos)
+					mi = mi.min(pos)
+					
+				var dist = mi.distance_to(mx)
 
-			print(mx, mi, dist)
-			
-			if dist > LOOP_MIN_SIZE:
-				add_loop_segment(mouse_positions[-1], mouse_positions[0])
-				finish_mouse_loop()
+				print(mx, mi, dist)
+				
+				if dist > LOOP_MIN_SIZE:
+					add_loop_segment(mouse_positions[-1], previous_point)
+					mouse_positions = mouse_positions.slice(i)
+					finish_mouse_loop()
+					break
 
 
 func finish_mouse_loop():
