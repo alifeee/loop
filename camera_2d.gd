@@ -1,12 +1,14 @@
 extends Camera2D
 
-# trimmed down version of https://github.com/adamviola/simple-free-look-camera
-signal spawnThing(v2: Vector2, mob: PackedScene)
-
+signal spawnThing(v2: Vector2, mob: Node)
+signal damageEnemy(pos: Vector2, radius: int)
 
 # Mouse state
 var _mouse_position = Vector2(0.0, 0.0)
 @export var mob_scene: PackedScene
+
+
+var mouse_position_log = []
 
 func _input(event):
 	var normalised_position = - self.get_screen_center_position() + event.position
@@ -23,4 +25,4 @@ func _input(event):
 			MOUSE_BUTTON_RIGHT: # Only allows rotation if right click down
 				if event.pressed:
 					var m = mob_scene.instantiate()
-					
+					spawnThing.emit(normalised_position, m)
