@@ -1,14 +1,9 @@
 extends CanvasLayer
 
-var time_elapsed: float
 var errortween: Tween
 
 func _ready() -> void:
-	#start_time = Time.get_unix_time_from_system()
-	$EndLabel.visible = false
-	Globals.end_game.connect(func(): $EndLabel.visible = true)
-	Globals.reset_game.connect(func(): time_elapsed = 0)
-	Globals.reset_game.connect(func(): $EndLabel.visible = false)
+	pass
 
 func _process(delta: float) -> void:
 	# health
@@ -39,6 +34,9 @@ func _process(delta: float) -> void:
 	
 	# loop validity
 	$stats/LoopValid.text = str($"..".is_valid)
+	
+	# game state
+	$stats/GameState.text = str(Globals.gamestate)
 
 func display_error(errortext: String) -> void:
 	var errorlabel = $errors/Error
