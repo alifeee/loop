@@ -52,12 +52,13 @@ func _process(delta: float) -> void:
 	#   loop end must be close to start
 	#   once loop is valid, it stays valid
 	#   ...and the centroid calculation uses only the first loop
+	##### THIS IS A MESS - DO NOT CHANGE WITHOUT GOOD TESTING #####
 	if len(mouse_positions) > 0:
 		var is_big_enough = is_big_enough_area(mouse_positions)
 		var is_close_enough = is_close_enough_to_start(mouse_positions)
 		if (is_valid) or (is_big_enough and is_close_enough):
 			make_spell_valid_level2()
-			if not is_valid:
+			if not is_valid: # only set mouse positions once for final loop
 				loop_mouse_positions = mouse_positions.duplicate()
 			is_valid = true
 		elif (not is_valid) and is_big_enough:
