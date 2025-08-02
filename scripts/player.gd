@@ -40,6 +40,8 @@ func _process(delta: float) -> void:
 		is_valid = is_big_enough_area(mouse_positions) and is_close_enough_to_start(mouse_positions)
 		if is_valid:
 			make_spell_valid()
+		else:
+			make_spell_invalid()
 	else:
 		is_valid = false
 		make_spell_invalid()
