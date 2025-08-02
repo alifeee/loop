@@ -2,7 +2,7 @@ class_name Demon
 extends AnimatableBody2D
 
 @export var sprite: AnimatedSprite2D
-@export var walk_angle: float
+@export var walk_towards: Vector2
 @export var walk_speed: float = 50
 var health: float = 100
 var dead: bool = false
@@ -23,10 +23,8 @@ func _physics_process(delta: float) -> void:
 	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
 		return
 	var distance = delta * walk_speed
-	position = position + Vector2(
-		distance * sin(walk_angle),
-		distance * cos(walk_angle)
-	)
+	var direction_unit_vec = (walk_towards - position).normalized()
+	position = position + direction_unit_vec * distance
 
 func hit(damage: float):
 	#print("got hit")

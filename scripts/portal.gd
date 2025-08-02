@@ -1,12 +1,17 @@
 extends Node2D
 
+# timer
 @export var timer: Timer
 var timer_initial_wait: float
 @export var ratetimer: Timer
+# rate increases
 @export var rate_every_s: float = 5
 @export var rate_subtract_s: float = 0
 @export var rate_multiply: float = 0.96
 @export var rate_minimum_s: float = 0.4
+# spawn radiuses
+@export var ELLIPSE_X_RADIUS: float = 500
+@export var ELLIPSE_Y_RADIUS: float = 300
 var rng = RandomNumberGenerator.new()
 var packeddemon: PackedScene
 
@@ -52,10 +57,10 @@ func _on_timer_timeout() -> void:
 	var spawning_angle = rng.randf_range(0.0, 2*PI)
 	var spawning_distance = 320 # px
 	newdemon.position = Vector2(
-		spawning_distance * sin(spawning_angle),
-		spawning_distance * cos(spawning_angle)
+		ELLIPSE_X_RADIUS * sin(spawning_angle),
+		ELLIPSE_Y_RADIUS  * cos(spawning_angle)
 	)
-	newdemon.walk_angle = spawning_angle - PI
+	newdemon.walk_towards = Vector2(0,0)
 	Globals.demons.append(newdemon)
 	Globals.total_demons += 1
 	add_child(newdemon)

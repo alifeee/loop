@@ -45,7 +45,6 @@ animations = [{
 [node name="Demon" type="AnimatableBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_3t42y")
 sprite = NodePath("AnimatedSprite2D")
-walk_angle = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3t42y")
