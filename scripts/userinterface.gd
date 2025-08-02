@@ -39,6 +39,9 @@ func _process(delta: float) -> void:
 	
 	# loop validity
 	$stats/LoopValid.text = str($"..".is_valid)
+	
+	# game state
+	$stats/GameState.text = str(Globals.gamestate)
 
 func display_error(errortext: String) -> void:
 	var errorlabel = $errors/Error
