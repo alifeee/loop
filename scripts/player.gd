@@ -4,6 +4,7 @@ extends Node2D
 @export var LOOP_SPRITE_DISTANCE: float = 5
 @export var LOOP_RADIUS: float = 50
 @export var LOOP_THICCNESS = 2
+@export var DAMAGE_PERCENT: float = 50
 
 var mouse_positions: Array[Vector2] = []
 var loop_segments: Array[Sprite2D] = []
@@ -15,7 +16,12 @@ func _init() -> void:
 
 func do_loop_damage(position: Vector2, radius: float) -> void:
 	loop1.position = position
-	loop1.do_punch_and_disappear()
+	print(Globals.demons)
+	for demon in Globals.demons:
+		#print("distance: ", demon.global_position.distance_to(position))
+		if demon.global_position.distance_to(position) < radius:
+			#print("demon is hit !", demon)
+			demon.hit(DAMAGE_PERCENT)
 
 func add_mouse_position(v2: Vector2):
 	mouse_positions.append(v2)

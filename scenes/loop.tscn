@@ -3,25 +3,20 @@
 [ext_resource type="Script" uid="uid://dc61jsp7ri5ni" path="res://scripts/loop.gd" id="1_fpe6o"]
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_p0t4i"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p3fat"]
-radius = 35.15
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpe6o"]
+radius = 50.0
 
-[node name="Node2D" type="Area2D" node_paths=PackedStringArray("hit_timer")]
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_fpe6o")
-hit_timer = NodePath("HitTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.458824)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_p0t4i")
 
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.266667, 1, 1, 0.482353)
+polygon = PackedVector2Array(-1, -51, 14, -48, 30, -42, 39, -31, 46, -21, 49, -9, 51, 8, 46, 25, 37, 32, 21, 42, 3, 47, -15, 48, -31, 43, -42, 32, -44, 21, -44, 4, -45, -10, -45, -26, -37, -36, -23, -41, -7, -48)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_p3fat")
-
-[node name="HitTimer" type="Timer" parent="."]
-wait_time = 0.4
-autostart = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="timeout" from="HitTimer" to="." method="_on_timer_timeout"]
+shape = SubResource("CircleShape2D_fpe6o")

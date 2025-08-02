@@ -20,17 +20,23 @@ func _physics_process(delta: float) -> void:
 	)
 
 func hit(damage: float):
-	print("got hit")
+	#print("got hit")
 	if hittween:
 		hittween.kill()
 	hittween = get_tree().create_tween()
 	scale = Vector2(1.2,1.2)
+	
 	hittween.tween_property(self, "scale", Vector2(1,1,), 0.1)
+	self.modulate = Color("#f0ff")
+	hittween.parallel().tween_property(self, "modulate", Color("#ffff"), 0.1)
 	health -= damage
 	if health <= 0:
 		die()
 
 func die() -> void:
+	Globals.demons.remove_at(
+		Globals.demons.find(self)
+	)
 	if hittween:
 		hittween.kill()
 	dead = true
