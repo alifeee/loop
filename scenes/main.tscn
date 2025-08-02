@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=27 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
 [ext_resource type="Script" path="res://scripts/centre.gd" id="5_ya4ey"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
+[ext_resource type="Texture2D" uid="uid://bxfqa5s4dtr7e" path="res://assets/animations/wizards/wizard1.png" id="9_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="10_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
@@ -51,6 +53,50 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_choun"]
 radius = 64.7
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
+atlas = ExtResource("9_a8y0u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
+atlas = ExtResource("9_a8y0u")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dp3eg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muem4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
+atlas = ExtResource("10_jkv2x")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqmmt"]
+atlas = ExtResource("10_jkv2x")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yc10j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ld40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqmmt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}]
 
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("loop1")]
 script = ExtResource("1_jyhfs")
@@ -99,6 +145,16 @@ script = ExtResource("6_85g3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Centre"]
 shape = SubResource("CircleShape2D_choun")
+
+[node name="Wizard1" type="AnimatedSprite2D" parent="Centre"]
+position = Vector2(50, 78)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+autoplay = "default"
+
+[node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
+position = Vector2(-121, -13)
+sprite_frames = SubResource("SpriteFrames_yc10j")
+autoplay = "default"
 
 [node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("timer", "ratetimer")]
 position = Vector2(576, 324)
