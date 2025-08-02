@@ -55,8 +55,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muem4"]
-radius = 50.56
-height = 172.07
+radius = 33.0
+height = 174.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
 atlas = ExtResource("9_a8y0u")
@@ -464,7 +464,7 @@ text = "no error :]"
 autowrap_mode = 1
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(582, 322)
+position = Vector2(576, 324)
 texture = ExtResource("12_eb6dy")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
@@ -472,6 +472,7 @@ texture = ExtResource("12_eb6dy")
 [node name="Control" parent="CanvasLayer2" instance=ExtResource("15_jkv2x")]
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Start" parent="CanvasLayer3" instance=ExtResource("17_muem4")]
 
