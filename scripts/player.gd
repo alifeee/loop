@@ -88,13 +88,11 @@ func _input(event):
 	if event.is_action_pressed("Pause"):
 		# is playing, pause
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
-			Globals.gamestate = Globals.GAMESTATES.PAUSED
 			Globals.pause()
 			finish_mouse_loop()
 
 		# if paused, play
 		elif Globals.gamestate == Globals.GAMESTATES.PAUSED:
-			Globals.gamestate = Globals.GAMESTATES.PLAYING
 			Globals.resume()
 
 	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
