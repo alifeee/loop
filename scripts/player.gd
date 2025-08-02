@@ -17,10 +17,13 @@ var error = ""
 @export_group("Loop Damage")
 @export var LOOP_RADIUS: float = 50
 @export var DAMAGE_PERCENT: float = 50
+@export_group("Loop Visuals")
+@export var DISPEL_DISTANCE: float = 25
+@export var DISPEL_TIME: float = 0.15
 
 var loop_distance: float = 0
 var mouse_positions: Array[Vector2] = []
-var loop_segments: Array[Node2D] = []
+var loop_segments: Array[AnimatedSprite2D] = []
 var is_held = false
 var is_valid = false
 
@@ -37,11 +40,20 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if len(mouse_positions) > 0:
-		is_valid = is_big_enough_area(mouse_positions) and is_close_enough_to_start(mouse_positions)
-		if is_valid:
-			make_spell_valid()
+		var is_big_enough = is_big_enough_area(mouse_positions)
+		var is_close_enough = is_close_enough_to_start(mouse_positions)
+		if is_big_enough and is_close_enough:
+			print("v2!")
+			make_spell_valid_level2()
+			is_valid = true
+		elif is_big_enough:
+			print("v1!")
+			make_spell_valid_level1()
+			is_valid = false
 		else:
+			print("i!")
 			make_spell_invalid()
+			is_valid = false
 	else:
 		is_valid = false
 		make_spell_invalid()
@@ -52,9 +64,33 @@ func reset():
 func make_spell_invalid():
 	for sparkle in loop_segments:
 		sparkle.modulate = Color("#fff")
-func make_spell_valid():
+		sparkle.speed_scale = 1
+func make_spell_valid_level1():
+	for sparkle in loop_segments:
+		sparkle.modulate = Color("#fee")
+		sparkle.speed_scale = 5
+func make_spell_valid_level2():
 	for sparkle in loop_segments:
 		sparkle.modulate = Color("#f66")
+		sparkle.speed_scale = 10
+func dispel():
+	for sparkle in loop_segments:
+		var tween = get_tree().create_tween()
+		var angle = rng.randf_range(0,2*PI)
+		var new_position = sparkle.position + Vector2(
+			DISPEL_DISTANCE * cos(angle),
+			DISPEL_DISTANCE * sin(angle)
+		)
+		var dispel_time =  DISPEL_TIME if is_valid else DISPEL_TIME * 5
+		tween.tween_property(
+			sparkle, "position", new_position, dispel_time
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(
+			sparkle, "modulate:a", 0, dispel_time
+		)
+		tween.tween_callback(
+			sparkle.queue_free
+		)
 
 func do_loop_damage(pos: Vector2, radius: float) -> void:
 	# check if each demon is in range and hit if it is
@@ -73,6 +109,13 @@ func do_loop_damage(pos: Vector2, radius: float) -> void:
 	add_child(loop)
 
 # checks
+#func is_too_long(mouse_history) -> bool:
+	#var distance = 0
+	#for i in range(1,len(mouse_history)):
+		#var v_from = mouse_history[i-1]
+		#var v_to = mouse_history[i]
+		#distance += v_from.distance_to(v_to)
+	#return distance > LOOP_MAX_LENGTH
 func is_big_enough_area(mouse_history) -> bool:
 	var polygon_area = abs(Globals.calc_polygon_area(mouse_history))
 	return polygon_area > LOOP_MIN_AREA
@@ -92,8 +135,7 @@ func drop_spell():
 	# mouse up or start menu/etc: drop all sprites
 	is_held = false
 	# delete sprite segments
-	for loop_segment in loop_segments:
-		loop_segment.queue_free()
+	dispel()
 	mouse_positions = []
 	loop_segments = []
 
