@@ -24,7 +24,7 @@ func do_loop_damage(position: Vector2, radius: float) -> void:
 
 func add_mouse_position(v2: Vector2):
 	mouse_positions.append(v2)
-	var loop: Sprite2D = packed_loop_segment.instantiate()
+	var loop: AnimatedSprite2D = packed_loop_segment.instantiate()
 	loop.position = v2
 	loop_segments.append(loop)
 	add_child(loop)
