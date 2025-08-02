@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4wihwps0lyfk"]
+
+[ext_resource type="Script" uid="uid://bs6d5pchncevf" path="res://scripts/drop.gd" id="1_rwqht"]
+[ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="2_n3sop"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8i0xm"]
+
+[node name="Coin" type="AnimatableBody2D"]
+script = ExtResource("1_rwqht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.595, 1.595)
+shape = SubResource("CircleShape2D_8i0xm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_n3sop")
+
+[connection signal="ready" from="." to="." method="_on_ready"]
