@@ -378,6 +378,19 @@ offset_top = 1.0
 offset_right = 104.0
 offset_bottom = 24.0
 
+[node name="LoopValidLabel" type="Label" parent="CanvasLayer/stats"]
+offset_left = 1.0
+offset_top = 210.0
+offset_right = 51.0
+offset_bottom = 233.0
+text = "loop valid"
+
+[node name="LoopValid" type="Label" parent="CanvasLayer/stats"]
+offset_left = 84.0
+offset_top = 210.0
+offset_right = 159.0
+offset_bottom = 233.0
+
 [node name="EndLabel" type="Label" parent="CanvasLayer"]
 visible = false
 offset_left = 478.0
