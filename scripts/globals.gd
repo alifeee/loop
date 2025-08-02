@@ -53,6 +53,12 @@ func reset():
 func start():
 	gamestate = GAMESTATES.START_SCREEN
 	start_game.emit()
+	player_health = INITIAL_PLAYER_HEALTH
+	## kill mobs
+	total_demons = 0
+	motes = 0
+	delete_reset_array(demons)
+	delete_reset_array(drops)
 	print("starting game")
 
 func pause():
