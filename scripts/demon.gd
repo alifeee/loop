@@ -70,7 +70,7 @@ func make_drop() -> void:
 	for __ in drop_amount:
 		if drop_chance >= randf():
 			var drop = drop_scene.instantiate()
-			drop.global_position = self.global_position # + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
+			drop.global_position = self.global_position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
 			d.add_child(drop)
 
 

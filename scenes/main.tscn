@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cm3qopymteb3r" path="res://scenes/globals.tscn" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://ck2h376ut281v" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
 [ext_resource type="Script" path="res://scripts/centre.gd" id="5_ya4ey"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
@@ -55,6 +55,8 @@ radius = 64.7
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("loop1")]
 script = ExtResource("1_jyhfs")
 loop1 = NodePath("Loop1")
+LOOP_MIN_AREA = 1.0
+LOOP_MAX_START_END_DISTANCE = 2.22222e+11
 DAMAGE_PERCENT = 100.0
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -112,7 +114,6 @@ autostart = true
 
 [node name="DemonDrops" type="Node2D" parent="Spawner"]
 position = Vector2(-576, -324)
-script = ExtResource("12_eb6dy")
 
 [node name="Loop1" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(-44, -48)
