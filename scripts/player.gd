@@ -46,9 +46,22 @@ func _init() -> void:
 	packed_loop_segment = preload("res://scenes/loop_segment.tscn")
 
 func _ready() -> void:
+	Globals.start_game.connect(start)
+	Globals.pause_game.connect(pause)
+	Globals.resume_game.connect(resume)
+	Globals.end_game.connect(pause)
 	Globals.reset_game.connect(reset)
+	Globals.start()
+
+func start():
 	if CONTINUOUS_CASTING:
 		pick_up_spell(get_viewport().get_mouse_position())
+func pause():
+	drop_spell()
+func resume():
+	pass
+func reset():
+	drop_spell()
 
 func _process(delta: float) -> void:
 	# check for validity every frame
@@ -57,6 +70,8 @@ func _process(delta: float) -> void:
 	#   once loop is valid, it stays valid
 	#   ...and the centroid calculation uses only the first loop
 	##### THIS IS A MESS - DO NOT CHANGE WITHOUT GOOD TESTING #####
+	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
+		return
 	if CONTINUOUS_CASTING:
 		check_and_spawn_spell()
 	if len(mouse_positions) > 0:
@@ -73,9 +88,6 @@ func _process(delta: float) -> void:
 			make_spell_invalid()
 	else:
 		make_spell_invalid()
-
-func reset():
-	drop_spell()
 
 func make_spell_invalid():
 	for sparkle in loop_segments:
@@ -200,18 +212,23 @@ func check_and_add_spell_point(pos):
 
 func _input(event):
 	# reset game
-	if event.is_action_pressed("Reset") and not is_held:
+	if event.is_action_pressed("Reset"):
+		print("press reset!")
 		Globals.reset()
+		Globals.start()
 	# pause game
-	elif event.is_action_pressed("Pause") and not is_held:
+	if event.is_action_pressed("Pause"):
 		# is playing, pause
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 			Globals.pause()
 		# if paused, play
-		elif Globals.gamestate == Globals.GAMESTATES.PAUSED:
+		elif Globals.gamestate == Globals.GAMESTATES.SHOPPING:
 			Globals.resume()
+	# no looping unless playing ! >:(
+	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
+		return
 	# start looping!  
-	elif event is InputEventMouseButton and event.is_pressed() and event.is_action_pressed("Magic"):
+	if event is InputEventMouseButton and event.is_pressed() and event.is_action_pressed("Magic"):
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 			pick_up_spell(event.position)
 	# stop looping!
