@@ -21,14 +21,17 @@ position = Vector2(576, 324)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_o5qli")
 
-[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("timer")]
+[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("timer", "ratetimer")]
 position = Vector2(576, 324)
 script = ExtResource("1_0wfyh")
 timer = NodePath("SpawnTimer")
+ratetimer = NodePath("RateTimer")
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 wait_time = 1.5
 autostart = true
+
+[node name="RateTimer" type="Timer" parent="Spawner"]
 
 [node name="Loop1" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(-44, -48)
@@ -72,5 +75,57 @@ offset_top = 46.0
 offset_right = 44.0
 offset_bottom = 69.0
 text = "current"
+
+[node name="CurrentRate" type="Label" parent="CanvasLayer"]
+offset_left = 123.0
+offset_top = 68.0
+offset_right = 163.0
+offset_bottom = 91.0
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 67.0
+offset_right = 111.0
+offset_bottom = 90.0
+text = "spawn every s"
+
+[node name="RateIncrease" type="Label" parent="CanvasLayer"]
+offset_left = 130.0
+offset_top = 94.0
+offset_right = 170.0
+offset_bottom = 117.0
+
+[node name="Label5" type="Label" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 93.0
+offset_right = 113.0
+offset_bottom = 116.0
+text = "rate increase in"
+
+[node name="RateSubtractLabel" type="Label" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 114.0
+offset_right = 122.0
+offset_bottom = 137.0
+text = "subtract"
+
+[node name="RateSubtract" type="Label" parent="CanvasLayer"]
+offset_left = 73.0
+offset_top = 115.0
+offset_right = 113.0
+offset_bottom = 138.0
+
+[node name="RateMult" type="Label" parent="CanvasLayer"]
+offset_left = 73.0
+offset_top = 137.0
+offset_right = 113.0
+offset_bottom = 160.0
+
+[node name="RateMultLabel" type="Label" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 135.0
+offset_right = 122.0
+offset_bottom = 158.0
+text = "multiply"
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
