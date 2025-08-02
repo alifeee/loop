@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=5 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://ck2h376ut281v" path="res://scenes/loop.tscn" id="5_tbgi4"]
-[ext_resource type="Script" uid="uid://cxanaah6bibsi" path="res://scripts/camera_2d.gd" id="5_tefeu"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("loop1")]
 script = ExtResource("1_jyhfs")
@@ -31,9 +30,5 @@ autostart = true
 position = Vector2(-44, -48)
 attack_type = 1
 DAMAGE_PERCENT = 50.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(575, 324)
-script = ExtResource("5_tefeu")
 
 [connection signal="timeout" from="InsidePortal/SpawnTimer" to="InsidePortal" method="_on_timer_timeout"]
