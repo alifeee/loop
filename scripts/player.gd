@@ -13,15 +13,24 @@ func _init() -> void:
 
 func add_mouse_position(v2: Vector2):
 	mouse_positions.append(v2)
-	var loop: Sprite2D = packed_loop_segment.instantiate()
-	loop.position = v2
-	loop_segments.append(loop)
-	add_child(loop)
+	
+	if len(mouse_positions) > 2:
+		var pos1 = mouse_positions[-1]
+		var pos2 = mouse_positions[-2]
+		var dist = pos1.distance_to(pos2)
+		var midpoint = pos1.move_toward(pos2, dist / 2)
+		
+		var loop: Sprite2D = packed_loop_segment.instantiate()
+		loop.position = midpoint
+		loop_segments.append(loop)
+		add_child(loop)
 
 func _input(event):
 	# start looping!
 	if event is InputEventMouseButton and event.is_pressed():
 		is_held = true
+
+
 	# stop looping!
 	if event is InputEventMouseButton and event.is_released():
 		is_held = false
@@ -29,18 +38,20 @@ func _input(event):
 		var tot_vector = Vector2(0,0)
 		for pos in mouse_positions:
 			tot_vector = tot_vector + pos
-		var avg_vector = Vector2(
-			tot_vector.x / len(mouse_positions),
-			tot_vector.y / len(mouse_positions)
-		)
+
+		var avg_vector = tot_vector / len(mouse_positions)
 		mouse_positions = []
+
 		# move loop and trigger actions
 		loop1.position = avg_vector
 		loop1.do_punch_and_disappear()
+
 		# delete sprite segments
 		for loop_segment in loop_segments:
 			loop_segment.queue_free()
 		loop_segments = []
+
+
 	# continue looping !
 	if is_held:
 		# calculate distance difference (refactor this)
