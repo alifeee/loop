@@ -7,12 +7,13 @@ enum GAMESTATES {
 	PAUSED,
 	WIN_SCREEN
 }
-var gamestate = GAMESTATES.PLAYING
+var gamestate = GAMESTATES.START_SCREEN
 
 # signals
 signal reset_game
 signal pause_game
 signal resume_game
+signal start_game
 signal end_game
 signal player_hit
 
@@ -34,7 +35,7 @@ func delete_reset_array(ar: Array):
 
 func reset():
 	# normal stuff
-	gamestate = GAMESTATES.PLAYING
+	gamestate = GAMESTATES.START_SCREEN
 	reset_game.emit()
 	print("resetting game")
 	# game stuff
@@ -48,6 +49,11 @@ func reset():
 	## reset timers (in signal)
 	## drop spell (in signal)
 	resume()
+	
+func start():
+	gamestate = GAMESTATES.START_SCREEN
+	start_game.emit()
+	print("starting game")
 
 func pause():
 	gamestate = GAMESTATES.PAUSED
