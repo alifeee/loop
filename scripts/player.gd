@@ -4,7 +4,7 @@ extends Node2D
 
 
 var mouse_positions = []
-var is_held = true
+var is_held = false
 
 var packed_loop_segment: PackedScene
 func _ready() -> void:
