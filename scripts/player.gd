@@ -41,8 +41,23 @@ func add_mouse_position(v2: Vector2):
 		add_child(loop)
 		
 
-func finish_mouse_loop():
-	pass
+func finish_mouse_loop(last_mouse_pos: Vector2):
+	# work out centroid of loop
+	# There needs to be some kind of weighting by distance
+	var tot_vector = Vector2(0,0)
+	for pos in mouse_positions:
+		tot_vector = tot_vector + pos
+
+	var avg_vector = tot_vector / len(mouse_positions)
+	mouse_positions = []
+
+	# move loop and trigger actions
+	do_loop_damage(avg_vector, LOOP_RADIUS)
+
+	# delete sprite segments
+	for loop_segment in loop_segments:
+		loop_segment.queue_free()
+	loop_segments = []
 
 
 func _input(event):
@@ -50,25 +65,10 @@ func _input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		is_held = true
 
-
 	# stop looping!
 	if event is InputEventMouseButton and event.is_released():
 		is_held = false
-		# work out centroid of loop
-		var tot_vector = Vector2(0,0)
-		for pos in mouse_positions:
-			tot_vector = tot_vector + pos
-
-		var avg_vector = tot_vector / len(mouse_positions)
-		mouse_positions = []
-
-		# move loop and trigger actions
-		do_loop_damage(avg_vector, LOOP_RADIUS)
-
-		# delete sprite segments
-		for loop_segment in loop_segments:
-			loop_segment.queue_free()
-		loop_segments = []
+		finish_mouse_loop(event.position)
 
 	# calculate distance difference
 	if is_held and (len(mouse_positions) == 0 or (len(mouse_positions) and event.position.distance_to(mouse_positions[-1]) > LOOP_SPRITE_DISTANCE)):
