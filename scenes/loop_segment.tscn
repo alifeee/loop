@@ -37,6 +37,6 @@ animations = [{
 }]
 
 [node name="LoopSegment" type="AnimatedSprite2D"]
-scale = Vector2(0.205, 0.495)
 sprite_frames = SubResource("SpriteFrames_m5s2p")
 autoplay = "default"
+frame_progress = 0.369868

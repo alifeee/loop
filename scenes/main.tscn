@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=16 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cm3qopymteb3r" path="res://scenes/globals.tscn" id="2_tipki"]
@@ -51,12 +52,22 @@ script = ExtResource("1_jyhfs")
 loop1 = NodePath("Loop1")
 DAMAGE_PERCENT = 100.0
 
-[node name="Globals" parent="." instance=ExtResource("2_tipki")]
-
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-18, 2)
 texture = ExtResource("2_o6xl0")
 polygon = PackedVector2Array(566, 3, 705, 22, 771, 88, 879, 175, 890, 252, 901, 383, 860, 491, 783, 560, 685, 626, 571, 645, 446, 633, 380, 588, 308, 519, 272, 429, 267, 343, 254, 254, 306, 167, 330, 88, 443, 47, 484, 15)
+
+[node name="position" type="Sprite2D" parent="."]
+position = Vector2(113.5, 24.5)
+scale = Vector2(0.257812, 0.257812)
+texture = ExtResource("1_o5qli")
+
+[node name="end" type="Sprite2D" parent="."]
+position = Vector2(157.5, 25.5)
+scale = Vector2(0.273438, 0.273438)
+texture = ExtResource("1_o5qli")
+
+[node name="Globals" parent="." instance=ExtResource("2_tipki")]
 
 [node name="Centre" type="Node2D" parent="."]
 
@@ -91,106 +102,134 @@ position = Vector2(-44, -48)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("5_tefeu")
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer"]
+[node name="stats" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/stats"]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "12.5"
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer/stats"]
 offset_left = 48.0
 offset_right = 88.0
 offset_bottom = 23.0
 text = "s"
 
-[node name="TotalEnemies" type="Label" parent="CanvasLayer"]
+[node name="TotalEnemies" type="Label" parent="CanvasLayer/stats"]
 offset_left = 50.0
 offset_top = 24.0
 offset_right = 90.0
 offset_bottom = 47.0
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
+[node name="Label2" type="Label" parent="CanvasLayer/stats"]
 offset_left = 2.0
 offset_top = 23.0
 offset_right = 42.0
 offset_bottom = 46.0
 text = "total"
 
-[node name="CurrentEnemies" type="Label" parent="CanvasLayer"]
+[node name="CurrentEnemies" type="Label" parent="CanvasLayer/stats"]
 offset_left = 72.0
 offset_top = 48.0
 offset_right = 112.0
 offset_bottom = 71.0
 
-[node name="Label3" type="Label" parent="CanvasLayer"]
+[node name="Label3" type="Label" parent="CanvasLayer/stats"]
 offset_left = 4.0
 offset_top = 46.0
-offset_right = 44.0
+offset_right = 62.0
 offset_bottom = 69.0
 text = "current"
 
-[node name="CurrentRate" type="Label" parent="CanvasLayer"]
+[node name="CurrentRate" type="Label" parent="CanvasLayer/stats"]
 offset_left = 123.0
 offset_top = 68.0
 offset_right = 163.0
 offset_bottom = 91.0
 
-[node name="Label4" type="Label" parent="CanvasLayer"]
+[node name="Label4" type="Label" parent="CanvasLayer/stats"]
 offset_left = 4.0
 offset_top = 67.0
-offset_right = 111.0
+offset_right = 113.0
 offset_bottom = 90.0
 text = "spawn every s"
 
-[node name="NextSpawnLabel" type="Label" parent="CanvasLayer"]
+[node name="NextSpawnLabel" type="Label" parent="CanvasLayer/stats"]
 offset_left = 4.0
 offset_top = 90.0
 offset_right = 113.0
 offset_bottom = 113.0
 text = "next spawn"
 
-[node name="NextSpawn" type="Label" parent="CanvasLayer"]
+[node name="NextSpawn" type="Label" parent="CanvasLayer/stats"]
 offset_left = 98.0
 offset_top = 91.0
 offset_right = 138.0
 offset_bottom = 114.0
 
-[node name="RateIncrease" type="Label" parent="CanvasLayer"]
+[node name="RateIncrease" type="Label" parent="CanvasLayer/stats"]
 offset_left = 130.0
 offset_top = 113.0
 offset_right = 170.0
 offset_bottom = 136.0
 
-[node name="Label5" type="Label" parent="CanvasLayer"]
+[node name="Label5" type="Label" parent="CanvasLayer/stats"]
 offset_left = 4.0
 offset_top = 112.0
 offset_right = 124.0
 offset_bottom = 135.0
 text = "rate increase in"
 
-[node name="RateSubtractLabel" type="Label" parent="CanvasLayer"]
+[node name="RateSubtractLabel" type="Label" parent="CanvasLayer/stats"]
 offset_left = 2.0
 offset_top = 133.0
 offset_right = 122.0
 offset_bottom = 156.0
 text = "subtract"
 
-[node name="RateSubtract" type="Label" parent="CanvasLayer"]
+[node name="RateSubtract" type="Label" parent="CanvasLayer/stats"]
 offset_left = 73.0
 offset_top = 134.0
 offset_right = 113.0
 offset_bottom = 157.0
 
-[node name="RateMult" type="Label" parent="CanvasLayer"]
+[node name="RateMult" type="Label" parent="CanvasLayer/stats"]
 offset_left = 73.0
 offset_top = 156.0
 offset_right = 113.0
 offset_bottom = 179.0
 
-[node name="RateMultLabel" type="Label" parent="CanvasLayer"]
+[node name="RateMultLabel" type="Label" parent="CanvasLayer/stats"]
 offset_left = 2.0
 offset_top = 154.0
 offset_right = 122.0
 offset_bottom = 177.0
 text = "multiply"
 
+[node name="errors" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ErrorLabel" type="Label" parent="CanvasLayer/errors"]
+layout_mode = 0
+offset_top = 374.0
+offset_right = 72.0
+offset_bottom = 397.0
+text = "last error"
+
+[node name="Error" type="Label" parent="CanvasLayer/errors"]
+layout_mode = 0
+offset_top = 400.0
+offset_right = 168.0
+offset_bottom = 423.0
+text = "no error :]"
+autowrap_mode = 1
+
+[connection signal="error" from="." to="CanvasLayer" method="display_error"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var time_elapsed: float
+var errortween: Tween
 
 #func _ready() -> void:
 	#start_time = Time.get_unix_time_from_system()
@@ -9,25 +10,34 @@ func _process(delta: float) -> void:
 	# time
 	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 		time_elapsed += delta
-	$TimeLabel.text = str(snapped(time_elapsed, 0.1))
+	$stats/TimeLabel.text = str(snapped(time_elapsed, 0.1))
 
 	# enemies total
-	$TotalEnemies.text = str(Globals.total_demons)
+	$stats/TotalEnemies.text = str(Globals.total_demons)
 	
 	# enemies now
-	$CurrentEnemies.text = str(len(Globals.demons))
+	$stats/CurrentEnemies.text = str(len(Globals.demons))
 	
 	# current rate
-	$CurrentRate.text = str($"../Spawner/SpawnTimer".wait_time)
+	$stats/CurrentRate.text = str($"../Spawner/SpawnTimer".wait_time)
 	
 	# next spawn
-	$NextSpawn.text = str(snapped($"../Spawner/SpawnTimer".time_left, 0.1))
+	$stats/NextSpawn.text = str(snapped($"../Spawner/SpawnTimer".time_left, 0.1))
 	
 	# current rate timer
-	$RateIncrease.text = str(snapped($"../Spawner/RateTimer".time_left, 0.1))
+	$stats/RateIncrease.text = str(snapped($"../Spawner/RateTimer".time_left, 0.1))
 	
 	# rate subtract
-	$RateSubtract.text = str($"../Spawner".rate_subtract_s)
+	$stats/RateSubtract.text = str($"../Spawner".rate_subtract_s)
 	
 	# rate mult
-	$RateMult.text = str($"../Spawner".rate_multiply)
+	$stats/RateMult.text = str($"../Spawner".rate_multiply)
+
+func display_error(errortext: String) -> void:
+	var errorlabel = $errors/Error
+	errorlabel.text = errortext
+	if errortween:
+		errortween.kill()
+	errortween = get_tree().create_tween()
+	errorlabel.modulate = Color("#f00")
+	errortween.tween_property(errorlabel, "modulate", Color("#fff"), 0.1)
