@@ -21,11 +21,16 @@ func _physics_process(delta: float) -> void:
 func hit(damage: float):
 	health -= damage
 	if health <= 0:
-		# die
-		dead = true
-		self.walk_speed = 0
-		self.modulate = Color("#f0ff")
-		self.collision_layer = 2
+		die()
 	var tween = get_tree().create_tween()
 	scale = Vector2(1.1,1.1)
 	tween.tween_property(self, "scale", Vector2(1,1), 0.1)
+
+func die() -> void:
+	dead = true
+	self.walk_speed = 0
+	self.modulate = Color("#f0ff")
+	self.collision_layer = 2
+	var dietween = get_tree().create_tween()
+	dietween.tween_property(self, "modulate:a", 0, 2)
+	dietween.tween_callback(func(): self.queue_free())
