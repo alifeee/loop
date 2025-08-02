@@ -44,7 +44,7 @@ func _input(event):
 			is_held = true
 			mouse_positions.append(event.position)
 	# stop looping!
-	elif event is InputEventMouseButton and event.is_released():
+	elif event is InputEventMouseButton and event.is_released() and is_held:
 		is_held = false
 		# work out centroid of loop
 		var centroid = Vector2(0,0)
