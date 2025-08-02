@@ -22,6 +22,8 @@ func _ready() -> void:
 			Globals.endgame()
 			$EndLabel.text = "you s̶u̶c̶k̶ win!"
 	)
+	Globals.start_game.connect(func(): time_elapsed = 0)
+	Globals.start_game.connect(func(): $EndLabel.visible = false)
 	
 func _process(delta: float) -> void:
 	# time

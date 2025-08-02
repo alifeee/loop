@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=33 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
@@ -10,12 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="5_ya4ey"]
-[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
+[ext_resource type="Script" uid="uid://byc17nc8ui05a" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
 [ext_resource type="Texture2D" uid="uid://bxfqa5s4dtr7e" path="res://assets/animations/wizards/wizard1.png" id="9_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="10_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://ctkk1fc8jkvjl" path="res://assets/animations/wizards/wizard3.png" id="11_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://by8cyvtvv8mie" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://cwi3qoa8555st" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -468,6 +469,10 @@ texture = ExtResource("12_eb6dy")
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer2" instance=ExtResource("15_jkv2x")]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="Start" parent="CanvasLayer3" instance=ExtResource("17_muem4")]
 
 [connection signal="error_debug" from="." to="CanvasLayer" method="display_error"]
 [connection signal="area_entered" from="Centre" to="Centre" method="_on_area_entered"]
