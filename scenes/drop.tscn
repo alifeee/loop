@@ -93,8 +93,9 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Coin" type="AnimatableBody2D"]
+[node name="Coin" type="AnimatableBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_rwqht")
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.595, 1.595)

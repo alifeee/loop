@@ -15,7 +15,20 @@ extends AnimatableBody2D
 @export var walk_speed: float = 50
 var health: float = 100
 var dead: bool = false
+
+## Tweens
 var hittween: Tween
+var spawn_tween: Tween
+var dietween: Tween 
+
+
+func pause_tween(tw):
+	if tw != null:
+		tw.pause()
+
+func play_tween(tw):
+	if tw != null:
+		tw.play()
 
 func _ready() -> void:
 	Globals.pause_game.connect(pause)
@@ -24,9 +37,12 @@ func _ready() -> void:
 	assert(moat_spawn_delay < death_duration)
 
 func pause() -> void:
-	sprite.pause()
+	for x in [sprite, hittween, spawn_tween, dietween]:
+		pause_tween(x)
+
 func play() -> void:
-	sprite.play()   
+	for x in [sprite, hittween, spawn_tween, dietween]:
+		play_tween(x)
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -45,9 +61,9 @@ func hit(damage: float):
 	#print("got hit")
 	if hittween:
 		hittween.kill()
+
 	hittween = get_tree().create_tween()
 	scale = Vector2(1.2,1.2)
-	
 	hittween.tween_property(self, "scale", Vector2(1,1,), 0.1)
 	self.modulate = Color("#f0ff")
 	hittween.parallel().tween_property(self, "modulate", Color("#ffff"), 0.1)
@@ -63,11 +79,11 @@ func die() -> void:
 	self.modulate = Color("#f0ff")
 	self.collision_layer = 2
 
-	var spawn_tween = get_tree().create_tween()
+	spawn_tween = get_tree().create_tween()
 	spawn_tween.tween_interval(moat_spawn_delay)
 	spawn_tween.tween_callback(make_drop)
 	
-	var dietween = get_tree().create_tween()
+	dietween = get_tree().create_tween()
 	dietween.tween_property(self, "modulate:a", 0, death_duration)
 	dietween.tween_callback(func(): self.queue_free())
 	
