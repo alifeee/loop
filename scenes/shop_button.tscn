@@ -1,0 +1,221 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdp6wh7aki3xb"]
+
+[ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="1_1oc1l"]
+[ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="1_g7nvd"]
+[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="2_1oc1l"]
+[ext_resource type="Texture2D" uid="uid://yby0vxfu113f" path="res://assets/ui-element/modal.png" id="4_ujh1x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a34ft"]
+texture = ExtResource("4_ujh1x")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 112, 112)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -706.0
+offset_bottom = -522.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+custom_minimum_size = Vector2(90, 84)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1oc1l")
+
+[node name="Button" type="Button" parent="Background"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -18.5
+offset_right = 92.0
+offset_bottom = 18.5
+grow_vertical = 2
+theme = ExtResource("1_1oc1l")
+text = "Name"
+
+[node name="Price" type="Label" parent="Background"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -18.5
+offset_right = -24.0
+offset_bottom = 18.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_1oc1l")
+theme_override_fonts/font = ExtResource("1_g7nvd")
+theme_override_font_sizes/font_size = 36
+text = "10"
+horizontal_alignment = 2
+
+[node name="Mote icon" type="TextureRect" parent="Background/Price"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -16.0
+offset_right = -38.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_1oc1l")
+expand_mode = 1
+
+[node name="Background2" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1oc1l")
+
+[node name="Button" type="Button" parent="Background2"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="Background2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -18.5
+offset_right = 92.0
+offset_bottom = 18.5
+grow_vertical = 2
+theme = ExtResource("1_1oc1l")
+text = "Name"
+
+[node name="Price" type="Label" parent="Background2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -18.5
+offset_right = -24.0
+offset_bottom = 18.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_1oc1l")
+theme_override_fonts/font = ExtResource("1_g7nvd")
+theme_override_font_sizes/font_size = 36
+text = "10"
+horizontal_alignment = 2
+
+[node name="Mote icon" type="TextureRect" parent="Background2/Price"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -16.0
+offset_right = -38.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_1oc1l")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_a34ft")
+
+[node name="Gap" type="Panel" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_a34ft")
+
+[node name="Gap2" type="Panel" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_a34ft")
+
+[node name="Gap3" type="Panel" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="Panel4" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_a34ft")
+
+[node name="Gap4" type="Panel" parent="HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="Panel5" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_a34ft")
