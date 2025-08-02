@@ -26,6 +26,7 @@ var error = ""
 var loop_distance: float = 0
 # loop mouse positions tracker
 var mouse_positions: Array[Vector2] = []
+var loop_mouse_positions: Array[Vector2] = []
 # loop sprites
 var loop_segments: Array[AnimatedSprite2D] = []
 # true while mouse is down (hopefully) but can force drop
@@ -33,7 +34,9 @@ var is_held = false
 # true while is valid
 var is_valid = false
 
+# sprite loops for magic
 var packed_loop_segment: PackedScene
+# sprite loop for hit animation
 var packedloop: PackedScene
 
 func _init() -> void:
@@ -41,15 +44,21 @@ func _init() -> void:
 	packed_loop_segment = preload("res://scenes/loop_segment.tscn")
 
 func _ready() -> void:
-	Globals.reset()
 	Globals.reset_game.connect(reset)
 
 func _process(delta: float) -> void:
+	# check for validity every frame
+	#   loop must be big enough
+	#   loop end must be close to start
+	#   once loop is valid, it stays valid
+	#   ...and the centroid calculation uses only the first loop
 	if len(mouse_positions) > 0:
 		var is_big_enough = is_big_enough_area(mouse_positions)
 		var is_close_enough = is_close_enough_to_start(mouse_positions)
 		if (is_valid) or (is_big_enough and is_close_enough):
 			make_spell_valid_level2()
+			if not is_valid:
+				loop_mouse_positions = mouse_positions.duplicate()
 			is_valid = true
 		elif (not is_valid) and is_big_enough:
 			make_spell_valid_level1()
@@ -148,8 +157,8 @@ func check_and_spawn_spell():
 	if is_valid:
 		# centroid is "centre" of mouse movements
 		var centroid = Vector2(0,0)
-		for pos in mouse_positions:
-			centroid = centroid + (pos / len(mouse_positions))
+		for pos in loop_mouse_positions:
+			centroid = centroid + (pos / len(loop_mouse_positions))
 		do_loop_damage(centroid, LOOP_RADIUS)
 
 func check_and_add_spell_point(pos):

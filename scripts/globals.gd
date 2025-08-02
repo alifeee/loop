@@ -26,6 +26,8 @@ var drops: Array[Drop] = []
 var kill_count = 0
 var motes = 0
 
+func _ready() -> void:
+	reset()
 
 func delete_reset_array(ar: Array):
 	for i in ar:
