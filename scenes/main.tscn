@@ -464,7 +464,7 @@ text = "no error :]"
 autowrap_mode = 1
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(582, 322)
+position = Vector2(576, 324)
 texture = ExtResource("12_eb6dy")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
