@@ -45,6 +45,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	Globals.reset_game.connect(reset)
+	pick_up_spell(get_viewport().get_mouse_position())
 
 func _process(delta: float) -> void:
 	# check for validity every frame
@@ -53,6 +54,7 @@ func _process(delta: float) -> void:
 	#   once loop is valid, it stays valid
 	#   ...and the centroid calculation uses only the first loop
 	##### THIS IS A MESS - DO NOT CHANGE WITHOUT GOOD TESTING #####
+	check_and_spawn_spell()
 	if len(mouse_positions) > 0:
 		var is_big_enough = is_big_enough_area(mouse_positions)
 		var is_close_enough = is_close_enough_to_start(mouse_positions)
@@ -145,12 +147,14 @@ func pick_up_spell(pos):
 	loop_distance = 0
 
 func drop_spell():
+	var last_held_pos = mouse_positions[-1]
 	# mouse up or start menu/etc: drop all sprites
 	is_held = false
 	# delete sprite segments
 	dispel()
 	mouse_positions = []
 	loop_segments = []
+	pick_up_spell(last_held_pos)
 
 func check_and_spawn_spell():
 	# check if loop can spawn (if loop was drawn well or badly)
@@ -161,6 +165,7 @@ func check_and_spawn_spell():
 		for pos in loop_mouse_positions:
 			centroid = centroid + (pos / len(loop_mouse_positions))
 		do_loop_damage(centroid, LOOP_RADIUS)
+		drop_spell()
 
 func check_and_add_spell_point(pos):
 	# if point far from previous point, and if line not too long
