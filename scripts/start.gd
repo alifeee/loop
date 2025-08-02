@@ -8,6 +8,7 @@ func _ready():
 	Globals.start_game.connect(start)
 	Globals.reset_game.connect(reset)
 	$Button.pressed.connect(_start_game)
+	hide_canvas.visible = true
 
 func start():
 	hide_canvas.visible = true
