@@ -1,5 +1,7 @@
 extends Node2D
 
+# player !
+
 var rng = RandomNumberGenerator.new()
 
 signal error(msg)

@@ -7,6 +7,9 @@ var errortween: Tween
 	#start_time = Time.get_unix_time_from_system()
 
 func _process(delta: float) -> void:
+	# health
+	$stats/Health.text = str(Globals.player_health)
+	
 	# time
 	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 		time_elapsed += delta
