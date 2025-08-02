@@ -174,6 +174,7 @@ position = Vector2(54, 70)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 autoplay = "default"
+script = ExtResource("6_85g3d")
 
 [node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
@@ -181,6 +182,7 @@ position = Vector2(-139, -30)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yc10j")
 autoplay = "default"
+script = ExtResource("6_85g3d")
 
 [node name="Wizard3" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
@@ -188,6 +190,7 @@ position = Vector2(101, -80)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jscy8")
 autoplay = "default"
+script = ExtResource("6_85g3d")
 
 [node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("timer", "ratetimer")]
 position = Vector2(576, 324)
