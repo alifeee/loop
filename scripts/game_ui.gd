@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 		time_elapsed += delta
 	$TopLeftUI/Timer/Text.text = str(snapped(time_elapsed, 0.1))
 	$TopLeftUI/Health/Text.text = str(Globals.player_health)
-	$TopLeftUI/KillCounter/Text.text = str(Globals.kill_count)
+	$TopLeftUI/KillCounter/Text.text = str(Globals.total_demons - len(Globals.demons))
 	$Panel/ProgressBar/KillCounter/Text.text = str(Globals.motes)
 
 
