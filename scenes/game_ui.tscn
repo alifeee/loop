@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://by8cyvtvv8mie"]
+[gd_scene load_steps=7 format=3 uid="uid://by8cyvtvv8mie"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
 [ext_resource type="FontFile" uid="uid://x8elntfmqlmu" path="res://assets/font/Pixeled.ttf" id="2_u2dgd"]
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="3_bt76a"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="5_bt76a"]
+[ext_resource type="Texture2D" uid="uid://dqq53perjcbym" path="res://assets/non-animations/heart.png" id="5_djwj0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -95,10 +96,11 @@ offset_top = -12.0
 offset_right = 24.0
 offset_bottom = 12.0
 grow_vertical = 2
-texture = ExtResource("3_bt76a")
+texture = ExtResource("5_djwj0")
 expand_mode = 1
 
 [node name="Text" type="Label" parent="TopLeftUI/Health"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = -20.0
 offset_right = 92.0
@@ -278,6 +280,7 @@ text = "Upgrades (s)"
 
 [node name="EndLabel" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 478.0
 offset_top = 188.0
 offset_right = 689.0
