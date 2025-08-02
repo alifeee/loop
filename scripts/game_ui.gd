@@ -14,7 +14,8 @@ func _process(delta: float) -> void:
 	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 		time_elapsed += delta
 	$TopLeftUI/Timer/Text.text = str(snapped(time_elapsed, 0.1))
-	$TopLeftUI/Timer.text = str(Globals.player_health)
+	$TopLeftUI/Health/Text.text = str(Globals.player_health)
+	$TopLeftUI/KillCounter/Text.text = str(len(Globals.demons))
 
 
 func display_error(errortext: String) -> void:

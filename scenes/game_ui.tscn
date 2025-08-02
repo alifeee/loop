@@ -56,22 +56,6 @@ offset_top = 34.0
 offset_right = 154.0
 offset_bottom = 58.0
 
-[node name="Timer" type="Panel" parent="TopLeftUI/KillCounter"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 34.0
-offset_right = 34.0
-offset_bottom = 24.0
-
-[node name="Text" type="Label" parent="TopLeftUI/KillCounter/Timer"]
-layout_mode = 1
-offset_top = -20.0
-offset_right = 60.0
-offset_bottom = 36.0
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
-text = "999"
-
 [node name="Icon" type="TextureRect" parent="TopLeftUI/KillCounter"]
 layout_mode = 1
 anchors_preset = 4
@@ -83,6 +67,16 @@ offset_bottom = 12.0
 grow_vertical = 2
 texture = ExtResource("3_bt76a")
 expand_mode = 1
+
+[node name="Text" type="Label" parent="TopLeftUI/KillCounter"]
+layout_mode = 1
+offset_left = 34.0
+offset_top = -20.0
+offset_right = 94.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_u2dgd")
+theme_override_font_sizes/font_size = 20
+text = "999"
 
 [node name="Health" type="Panel" parent="TopLeftUI"]
 self_modulate = Color(1, 1, 1, 0)
@@ -103,31 +97,14 @@ grow_vertical = 2
 texture = ExtResource("3_bt76a")
 expand_mode = 1
 
-[node name="Icon2" type="TextureRect" parent="TopLeftUI/Health"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 34.0
-offset_top = -12.0
-offset_right = 58.0
-offset_bottom = 12.0
-grow_vertical = 2
-texture = ExtResource("3_bt76a")
-expand_mode = 1
-
-[node name="Icon3" type="TextureRect" parent="TopLeftUI/Health"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 68.0
-offset_top = -12.0
+[node name="Text" type="Label" parent="TopLeftUI/Health"]
+offset_left = 32.0
+offset_top = -20.0
 offset_right = 92.0
-offset_bottom = 12.0
-grow_vertical = 2
-texture = ExtResource("3_bt76a")
-expand_mode = 1
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_u2dgd")
+theme_override_font_sizes/font_size = 20
+text = "999"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
