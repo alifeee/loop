@@ -21,8 +21,16 @@ signal player_hit
 var player_health: int = 3
 var total_demons = 0
 var demons: Array[Demon] = []
+var drops: Array[Drop] = []
 var kill_count = 0
 var motes = 0
+
+
+func delete_reset_array(ar: Array):
+	for i in ar:
+		i.queue_free()
+	
+	ar.clear()
 
 func reset():
 	# normal stuff
@@ -33,9 +41,9 @@ func reset():
 	player_health = INITIAL_PLAYER_HEALTH
 	## kill mobs
 	total_demons = 0
-	for demon in demons:
-		demon.queue_free()
-	demons = []
+	delete_reset_array(demons)
+	delete_reset_array(drops)
+	
 	## reset timers (in signal)
 	## drop spell (in signal)
 	resume()

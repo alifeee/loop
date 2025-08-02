@@ -1,3 +1,4 @@
+class_name Drop
 extends AnimatableBody2D
 
 @export var initial_varience: float = 50
@@ -5,15 +6,12 @@ extends AnimatableBody2D
 @export var left_alone_duration: float = 2
 @export var fade_away_duration: float = 5
 
-
-# var target_loc: Vector2
-
-# func _physics_process(delta: float) -> void:
-
+var colleted = false
 var drop_tween: Tween
 
 func _on_ready() -> void:
-	print("Ready!!")
+	Globals.drops.append(self)
+	
 	drop_tween = get_tree().create_tween()
 	
 	var angle = randf() * 2 * PI
@@ -40,3 +38,14 @@ func _on_ready() -> void:
 		.tween_property(self, "modulate", Color(1, 1, 1, 0), fade_away_duration) \
 		.set_trans(Tween.TRANS_BOUNCE) \
 		.set_ease(Tween.EASE_IN_OUT)
+	
+	# i  Ii
+	# II i¬
+	drop_tween.tween_callback(self.die)
+
+func die():
+	Globals.drops.erase(self)
+	
+func collect():
+	Globals.motes+= 1
+	self.die()
