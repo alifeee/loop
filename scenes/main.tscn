@@ -415,7 +415,9 @@ autowrap_mode = 1
 position = Vector2(582, 322)
 texture = ExtResource("12_eb6dy")
 
-[node name="Control" parent="." instance=ExtResource("15_jkv2x")]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer2" instance=ExtResource("15_jkv2x")]
 
 [connection signal="error_debug" from="." to="CanvasLayer" method="display_error"]
 [connection signal="area_entered" from="Centre" to="Centre" method="_on_area_entered"]
