@@ -7,7 +7,7 @@ enum GAMESTATES {
 	PAUSED,
 	WIN_SCREEN
 }
-var gamestate = GAMESTATES.PLAYING
+var gamestate = GAMESTATES.START_SCREEN
 
 # signals
 signal reset_game

@@ -27,6 +27,10 @@ func _physics_process(delta: float) -> void:
 		distance * sin(walk_angle),
 		distance * cos(walk_angle)
 	)
+	if position.x > 0:
+		$AnimatedSprite2D.flip_h = true 
+	elif position.x < 0:
+		$AnimatedSprite2D.flip_h = false
 
 func hit(damage: float):
 	#print("got hit")
