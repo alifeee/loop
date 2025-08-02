@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_wfudo"]
 
 [node name="LoopSegment" type="Sprite2D"]
-scale = Vector2(0.205, 0.495)
+position = Vector2(-3.57628e-07, 0)
+scale = Vector2(0.015625, 0.015625)
 texture = ExtResource("1_wfudo")
