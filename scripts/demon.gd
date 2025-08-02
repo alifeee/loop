@@ -55,3 +55,18 @@ func die() -> void:
 	var dietween = get_tree().create_tween()
 	dietween.tween_property(self, "modulate:a", 0, 2)
 	dietween.tween_callback(func(): self.queue_free())
+
+func reach_middle() -> void:
+	# stop
+	self.walk_speed = 0
+	self.collision_layer = 2
+	# grow
+	var growtween = get_tree().create_tween()
+	growtween.tween_property(self, "scale", Vector2(1.5,1.5), 3)
+	growtween.parallel().tween_property(
+		self, "modulate:a", 0, 3
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	# subtract health
+	Globals.hit_player(1)
+	# die
+	die()

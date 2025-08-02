@@ -1,5 +1,7 @@
 extends Node2D
 
+# player !
+
 var rng = RandomNumberGenerator.new()
 
 signal error(msg)
@@ -42,7 +44,7 @@ func _input(event):
 			is_held = true
 			mouse_positions.append(event.position)
 	# stop looping!
-	elif event is InputEventMouseButton and event.is_released():
+	elif event is InputEventMouseButton and event.is_released() and event.is_action_pressed("Magic"):
 		is_held = false
 		# work out centroid of loop
 		var centroid = Vector2(0,0)
