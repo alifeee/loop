@@ -4,6 +4,9 @@ extends Area2D
 @export var hit_timer: Timer
 enum ATTACK_TYPES {DamageOverTime, Instant}
 @export var attack_type: ATTACK_TYPES = ATTACK_TYPES.DamageOverTime
+@export var DAMAGE_PERCENT: float = 20
+
+var fadetween: Tween
 
 func _process(delta: float) -> void:
 	#var attack_targets = get_overlapping_bodies()
@@ -23,7 +26,7 @@ func _on_timer_timeout() -> void:
 	var attack_targets: Array[Node2D] = get_overlapping_bodies()
 	for target in attack_targets:
 		if target is Demon:
-			target.hit(20)
+			target.hit(DAMAGE_PERCENT)
 	var tween = get_tree().create_tween()
 	scale = Vector2(1.1,1.1)
 	tween.tween_property(self, "scale", Vector2(1,1), 0.1)
@@ -35,7 +38,9 @@ func do_punch_and_disappear() -> void:
 	var attack_targets: Array[Node2D] = get_overlapping_bodies()
 	for target in attack_targets:
 		if target is Demon:
-			target.hit(20)
+			target.hit(DAMAGE_PERCENT)
 	modulate.a = 1
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate:a", 0, 0.25)
+	if fadetween:
+		fadetween.kill()
+	fadetween = get_tree().create_tween()
+	fadetween.tween_property(self, "modulate:a", 0, 0.25)

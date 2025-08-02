@@ -9,7 +9,7 @@ var dead: bool = false
 func _ready() -> void:
 	pass
 	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if dead:
 		return
 	var distance = delta * walk_speed
