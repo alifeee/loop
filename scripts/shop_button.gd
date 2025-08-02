@@ -2,6 +2,8 @@ extends Control
 
 @export var button: Button
 
+signal button_pressed
+
 #No Upgrade Bar UI components
 @export var no_upgrade_container: Panel
 @export var name_label_no_upgrade: Label
@@ -27,8 +29,14 @@ extends Control
 @export var empty_texture_style : StyleBoxTexture
 @export var full_texture_style : StyleBoxTexture
 
+
+
 func _ready() -> void:
 	initialise_button()
+
+func _process(delta: float) -> void:
+	if Globals and Globals.motes:
+		$"../../Mote Count/Wallet".text = str(Globals.motes)
 	
 func initialise_button() -> void:
 	if max_level == 1: # No upgrade bar at the bottom
@@ -53,11 +61,11 @@ func update_price(number: int) -> void:
 func initialise_max_level(max_level_to_set_to: int) -> void:
 	# Turn everything off
 	for label in level_3_bar_and_gap:
-		label.show()
+		label.hide()
 	for label in level_4_bar_and_gap:
-		label.show()
+		label.hide()
 	for label in level_5_bar_and_gap:
-		label.show()
+		label.hide()
 	# Turn on the correct ones
 	if max_level_to_set_to >= 3:
 		for label in level_3_bar_and_gap:
@@ -84,5 +92,10 @@ func update_current_level(number) -> void:
 			texture_style, 
 		)
 
-func _on_button_button_down() -> void:
+#func _on_button_button_down() -> void:
+	 # Replace with function body.
+
+
+func _on_button_pressed() -> void:
 	print(text + " button pressed") # Replace with function body.
+	button_pressed.emit()

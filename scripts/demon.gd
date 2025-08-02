@@ -75,6 +75,9 @@ func hit(damage: float):
 func die() -> void:
 	if hittween:
 		hittween.kill()
+		
+	sprite.stop()
+	
 	dead = true
 	self.walk_speed = 0
 	self.modulate = Color("#f0ff")

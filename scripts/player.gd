@@ -217,12 +217,13 @@ func _input(event):
 		Globals.start()
 	# pause game
 	if event.is_action_pressed("Pause"):
-		# is playing, pause
-		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
-			Globals.pause()
-		# if paused, play
-		elif Globals.gamestate == Globals.GAMESTATES.SHOPPING:
-			Globals.resume()
+		## is playing, pause
+		#if Globals.gamestate == Globals.GAMESTATES.PLAYING:
+			#Globals.pause()
+		## if paused, play
+		#elif Globals.gamestate == Globals.GAMESTATES.SHOPPING:
+			#Globals.resume()
+		pass
 	# no looping unless playing ! >:(
 	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
 		return

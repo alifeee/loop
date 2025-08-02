@@ -13,11 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://bxfqa5s4dtr7e" path="res://assets/animations/wizards/wizard1.png" id="9_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="10_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://ctkk1fc8jkvjl" path="res://assets/animations/wizards/wizard3.png" id="11_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://dw1scdsid0xn" path="res://assets/non-animations/hat1.png" id="12_0ld40"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
-[ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scenes/shadow.gd" id="14_muem4"]
-[ext_resource type="PackedScene" uid="uid://bvthrn5164h04" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
-[ext_resource type="PackedScene" uid="uid://ddof72eun3ikb" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
-[ext_resource type="PackedScene" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="Texture2D" uid="uid://6wvdq4v632nu" path="res://assets/non-animations/hat 2.png" id="13_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="14_gqmmt"]
+[ext_resource type="Script" path="res://scenes/shadow.gd" id="14_muem4"]
+[ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://46rk0std7vf4" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -158,10 +161,11 @@ wait_time = 1.5
 
 [node name="RateTimer" type="Timer" parent="Spawner"]
 
-[node name="Centre" type="Area2D" parent="." node_paths=PackedStringArray("wizards_array")]
+[node name="Centre" type="Area2D" parent="." node_paths=PackedStringArray("wizards_array", "hats_array")]
 position = Vector2(576, 324)
 script = ExtResource("5_ya4ey")
 wizards_array = [NodePath("Wizard1"), NodePath("Wizard2"), NodePath("Wizard3")]
+hats_array = [NodePath("Hat3"), NodePath("Hat2"), NodePath("Hat1")]
 
 [node name="PortalGlowOuter" type="Sprite2D" parent="Centre"]
 self_modulate = Color(0.372549, 0.282353, 0.45098, 0.490196)
@@ -231,6 +235,24 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jscy8")
 autoplay = "default"
 script = ExtResource("6_85g3d")
+
+[node name="Hat1" type="Sprite2D" parent="Centre"]
+visible = false
+position = Vector2(103, -136)
+scale = Vector2(1.61111, 1.61111)
+texture = ExtResource("12_0ld40")
+
+[node name="Hat2" type="Sprite2D" parent="Centre"]
+visible = false
+position = Vector2(-138.889, -90.9445)
+scale = Vector2(1.49383, 1.49383)
+texture = ExtResource("13_gqmmt")
+
+[node name="Hat3" type="Sprite2D" parent="Centre"]
+visible = false
+position = Vector2(52.9445, 23.8889)
+scale = Vector2(2.59568, 2.59568)
+texture = ExtResource("14_gqmmt")
 
 [node name="DebugStats" type="CanvasLayer" parent="."]
 script = ExtResource("5_tefeu")
@@ -513,7 +535,8 @@ texture = SubResource("GradientTexture1D_0ld40")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="GameUI" instance=ExtResource("15_jkv2x")]
+[node name="Control" parent="GameUI" node_paths=PackedStringArray("shop_canvas") instance=ExtResource("15_jkv2x")]
+shop_canvas = NodePath("../../ShopUI")
 
 [node name="ShopUI" type="CanvasLayer" parent="."]
 visible = false
@@ -521,9 +544,12 @@ visible = false
 [node name="Control2" parent="ShopUI" instance=ExtResource("17_dp3eg")]
 
 [node name="StartScreen" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="Start" parent="StartScreen" node_paths=PackedStringArray("hide_canvas") instance=ExtResource("17_muem4")]
+[node name="Start" parent="StartScreen" node_paths=PackedStringArray("hide_canvas", "hide_gameui", "hide_shopui") instance=ExtResource("17_muem4")]
 hide_canvas = NodePath("..")
+hide_gameui = NodePath("../../GameUI")
+hide_shopui = NodePath("../../ShopUI")
 
 [node name="Shadow2" type="Sprite2D" parent="StartScreen"]
 position = Vector2(576, 324)
