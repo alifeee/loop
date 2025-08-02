@@ -184,7 +184,7 @@ autoplay = "default"
 
 [node name="Wizard3" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
-position = Vector2(100, -80)
+position = Vector2(101, -80)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jscy8")
 autoplay = "default"
