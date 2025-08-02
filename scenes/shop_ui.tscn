@@ -104,9 +104,11 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -276.0
 offset_top = -42.0
-offset_right = -24.0
+offset_right = -20.4
 offset_bottom = 42.0
 grow_horizontal = 0
+text = "Buy for"
+price = 10
 
 [node name="GridContainer" type="GridContainer" parent="Main Modal Background"]
 custom_minimum_size = Vector2(446, 126)
@@ -124,18 +126,31 @@ columns = 2
 [node name="Control" parent="Main Modal Background/GridContainer" instance=ExtResource("3_usj2y")]
 custom_minimum_size = Vector2(446, 126)
 layout_mode = 2
+text = "Close Portal"
+price = 200
 
 [node name="Control2" parent="Main Modal Background/GridContainer" instance=ExtResource("3_usj2y")]
 custom_minimum_size = Vector2(446, 126)
 layout_mode = 2
+text = "Health"
+price = 20
+max_level = 3
 
 [node name="Control3" parent="Main Modal Background/GridContainer" instance=ExtResource("3_usj2y")]
 custom_minimum_size = Vector2(446, 126)
 layout_mode = 2
+text = "Power"
+price = 10
+current_level = 2
+max_level = 5
 
 [node name="Control4" parent="Main Modal Background/GridContainer" instance=ExtResource("3_usj2y")]
 custom_minimum_size = Vector2(446, 126)
 layout_mode = 2
+text = "Lenght"
+price = 10
+current_level = 3
+max_level = 4
 
 [node name="Page Scroll" type="Panel" parent="Main Modal Background"]
 layout_mode = 1
