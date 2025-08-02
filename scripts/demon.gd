@@ -49,9 +49,6 @@ func hit(damage: float):
 		die()
 
 func die() -> void:
-	Globals.demons.remove_at(
-		Globals.demons.find(self)
-	)
 	if hittween:
 		hittween.kill()
 	dead = true
@@ -63,6 +60,7 @@ func die() -> void:
 	dietween.tween_property(self, "modulate:a", 0, 2)
 	# dietween.tween_callback(make_drop)
 	dietween.tween_callback(func(): self.queue_free())
+	Globals.demons.erase(self)
 	
 func make_drop() -> void:
 	var d = self.find_parent("Spawner").find_child("DemonDrops")
