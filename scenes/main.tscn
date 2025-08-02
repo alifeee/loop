@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="10_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://ctkk1fc8jkvjl" path="res://assets/animations/wizards/wizard3.png" id="11_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
-[ext_resource type="PackedScene" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
