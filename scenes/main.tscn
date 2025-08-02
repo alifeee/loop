@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ck2h376ut281v" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
-[ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="5_ya4ey"]
+[ext_resource type="Script" path="res://scripts/centre.gd" id="5_ya4ey"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
@@ -299,11 +299,13 @@ text = "multiply"
 metadata/_edit_use_anchors_ = true
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "health"
 
 [node name="Health" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 1.0
 offset_right = 104.0
