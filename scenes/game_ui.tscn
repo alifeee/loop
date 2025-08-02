@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
 [ext_resource type="FontFile" uid="uid://x8elntfmqlmu" path="res://assets/font/Pixeled.ttf" id="2_u2dgd"]
-[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="3_bt76a"]
+[ext_resource type="Texture2D" uid="uid://dk7duasgqy0rh" path="res://assets/non-animations/skill.png" id="4_djwj0"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="5_bt76a"]
 [ext_resource type="Texture2D" uid="uid://dqq53perjcbym" path="res://assets/non-animations/heart.png" id="5_djwj0"]
 
@@ -63,11 +63,12 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -12.0
-offset_right = 24.0
-offset_bottom = 12.0
+offset_left = -2.0
+offset_top = -13.0
+offset_right = 27.0
+offset_bottom = 15.0
 grow_vertical = 2
-texture = ExtResource("3_bt76a")
+texture = ExtResource("4_djwj0")
 expand_mode = 1
 
 [node name="Text" type="Label" parent="TopLeftUI/KillCounter"]

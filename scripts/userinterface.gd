@@ -8,6 +8,7 @@ func _ready() -> void:
 	$EndLabel.visible = false
 	Globals.end_game.connect(func(): $EndLabel.visible = true)
 	Globals.reset_game.connect(func(): time_elapsed = 0)
+	Globals.reset_game.connect(func(): $EndLabel.visible = false)
 
 func _process(delta: float) -> void:
 	# health
