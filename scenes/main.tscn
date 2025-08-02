@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
-[ext_resource type="Script" uid="uid://d0a2a3yjlaco4" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
+[ext_resource type="Script" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
@@ -421,6 +421,7 @@ offset_right = 159.0
 offset_bottom = 233.0
 
 [node name="GameStateLabel" type="Label" parent="DebugStats/stats"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 230.0
 offset_right = 76.0
@@ -428,6 +429,7 @@ offset_bottom = 253.0
 text = "game state"
 
 [node name="GameState" type="Label" parent="DebugStats/stats"]
+layout_mode = 0
 offset_left = 95.0
 offset_top = 231.0
 offset_right = 170.0
