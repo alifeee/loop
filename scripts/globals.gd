@@ -17,6 +17,8 @@ signal end_game
 signal reset_game
 # other signals
 signal player_hit(lives_left: int)
+# purchases
+signal purchase_hat
 
 # global variables
 var demons: Array[Demon] = []

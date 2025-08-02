@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://ctkk1fc8jkvjl" path="res://assets/animations/wizards/wizard3.png" id="11_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
-[ext_resource type="PackedScene" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://46rk0std7vf4" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
@@ -463,17 +463,19 @@ texture = ExtResource("12_eb6dy")
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="GameUI" instance=ExtResource("15_jkv2x")]
+[node name="Control" parent="GameUI" node_paths=PackedStringArray("shop_canvas") instance=ExtResource("15_jkv2x")]
+shop_canvas = NodePath("../../ShopUI")
 
 [node name="ShopUI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control2" parent="ShopUI" instance=ExtResource("17_dp3eg")]
 
 [node name="StartScreen" type="CanvasLayer" parent="."]
 
-[node name="Start" parent="StartScreen" node_paths=PackedStringArray("hide_canvas") instance=ExtResource("17_muem4")]
+[node name="Start" parent="StartScreen" node_paths=PackedStringArray("hide_canvas", "hide_gameui", "hide_shopui") instance=ExtResource("17_muem4")]
 hide_canvas = NodePath("..")
+hide_gameui = NodePath("../../GameUI")
+hide_shopui = NodePath("../../ShopUI")
 
 [node name="Shadow" type="Sprite2D" parent="StartScreen"]
 position = Vector2(576, 324)
