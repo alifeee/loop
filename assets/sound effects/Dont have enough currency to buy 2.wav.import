@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://r2ljnr0yd6g6"
+path="res://.godot/imported/Dont have enough currency to buy 2.wav-3f6856021e04c67bb20420089fafc430.sample"
+
+[deps]
+
+source_file="res://assets/sound effects/Dont have enough currency to buy 2.wav"
+dest_files=["res://.godot/imported/Dont have enough currency to buy 2.wav-3f6856021e04c67bb20420089fafc430.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
