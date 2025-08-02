@@ -10,7 +10,6 @@ var fadetween: Tween
 var current_bodies: Array[Node2D] = []
 
 func _process(delta: float) -> void:
-	#var attack_targets = get_overlapping_bodies()
 	pass
 
 func _on_body_entered(body: Node2D) -> void:

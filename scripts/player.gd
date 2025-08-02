@@ -2,6 +2,7 @@ extends Node2D
 
 @export var loop1: Loop
 @export var LOOP_SPRITE_DISTANCE: float = 5
+@export var LOOP_RADIUS: float = 50
 @export var LOOP_THICCNESS = 2
 
 var mouse_positions: Array[Vector2] = []
@@ -11,6 +12,10 @@ var packed_loop_segment: PackedScene
 
 func _init() -> void:
 	packed_loop_segment = preload("res://scenes/loop_segment.tscn")
+
+func do_loop_damage(position: Vector2, radius: float) -> void:
+	loop1.position = position
+	loop1.do_punch_and_disappear()
 
 func add_mouse_position(v2: Vector2):
 	mouse_positions.append(v2)
@@ -47,8 +52,7 @@ func _input(event):
 		mouse_positions = []
 
 		# move loop and trigger actions
-		loop1.position = avg_vector
-		loop1.do_punch_and_disappear()
+		do_loop_damage(avg_vector, LOOP_RADIUS)
 
 		# delete sprite segments
 		for loop_segment in loop_segments:
