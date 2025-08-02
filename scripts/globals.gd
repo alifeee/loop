@@ -60,8 +60,13 @@ func resume():
 	print("resuming game")
 
 func endgame():
-	gamestate = GAMESTATES.WIN_SCREEN
+	pause()
 	end_game.emit()
+	gamestate = GAMESTATES.WIN_SCREEN
+	var hittables = []
+	hittables.append_array(Globals.demons)
+	for hittable in hittables:
+		hittable.hit(100)
 	print("ending game")
 
 func hit_player(damage: int):
