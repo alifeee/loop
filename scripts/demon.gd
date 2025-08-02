@@ -9,9 +9,7 @@ extends AnimatableBody2D
 @export var drop_variance: float = 0.1
 
 @export var walk_angle: float
-@export var walk_speed: float
-
-
+@export var walk_speed: float = 50
 var health: float = 100
 var dead: bool = false
 var hittween: Tween

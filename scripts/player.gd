@@ -4,10 +4,12 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-signal error(msg)
+signal error_debug(msg)
+var error = ""
 
 @export var loop1: Loop
 @export var LOOP_MIN_AREA: float = 2500
+@export var LOOP_MAX_START_END_DISTANCE: float = 50
 @export var LOOP_SPRITE_DISTANCE: float = 5
 @export var LOOP_RADIUS: float = 50
 @export var DAMAGE_PERCENT: float = 50
@@ -52,21 +54,36 @@ func _input(event):
 			for pos in mouse_positions:
 				centroid = centroid + (pos / len(mouse_positions))
 			# loop checks
-			print(mouse_positions)
-			var loop_rect = Rect2(mouse_positions[0], Vector2(0,0))
-			for mouse_position in mouse_positions:
-				loop_rect = loop_rect.expand(mouse_position)
-			var rect_area = loop_rect.get_area()
-			print("position:", loop_rect.position)
-			print("end:", loop_rect.end)
-			print("area:", rect_area)
-			$position.position = loop_rect.position
-			$end.position = loop_rect.end
-			if rect_area > LOOP_MIN_AREA:
-				# move loop and trigger actions
+			error = ""
+			#### RECTANGLE (not used) SIZING ####
+			if false:
+				var loop_rect = Rect2(mouse_positions[0], Vector2(0,0))
+				for mouse_position in mouse_positions:
+					loop_rect = loop_rect.expand(mouse_position)
+				var rect_area = loop_rect.get_area()
+				print("position:", loop_rect.position)
+				print("end:", loop_rect.end)
+				print("area:", rect_area)
+				print("polgon area!")
+				$position.position = loop_rect.position
+				$end.position = loop_rect.end
+				if rect_area > LOOP_MIN_AREA:
+					# move loop and trigger actions
+					do_loop_damage(centroid, LOOP_RADIUS)
+				else:
+					error.emit("loop not big enough")
+			#### POLYGON SIZING ####
+			var polygon_area = Globals.calc_polygon_area(mouse_positions)
+			if polygon_area < LOOP_MIN_AREA:
+				error = "loop not big enough"
+			#### START/END DISTANCE ####
+			var start_pos = mouse_positions[0]
+			var end_pos = mouse_positions[-1]
+			if start_pos.distance_to(end_pos) > LOOP_MAX_START_END_DISTANCE:
+				error = "start too far from end"
+			if error == "":
 				do_loop_damage(centroid, LOOP_RADIUS)
-			else:
-				error.emit("loop not big enough")
+			error_debug.emit(error)
 		# do this whatever the weather
 		is_held = false
 		# delete sprite segments
@@ -76,7 +93,7 @@ func _input(event):
 		loop_segments = []
 	# continue looping !
 	elif event is InputEventMouseMotion and is_held:
-		print(event)
+		#print(event)
 		var last_position = mouse_positions[-1]
 		var this_position = event.position
 		if this_position.distance_to(last_position) > LOOP_SPRITE_DISTANCE:

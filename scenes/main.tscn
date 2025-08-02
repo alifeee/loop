@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cm3qopymteb3r" path="res://scenes/globals.tscn" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://ck2h376ut281v" path="res://scenes/loop.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
 [ext_resource type="Script" path="res://scripts/centre.gd" id="5_ya4ey"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
-[ext_resource type="Script" uid="uid://8f55v1a3pmfg" path="res://scripts/drops.gd" id="12_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -62,6 +62,10 @@ position = Vector2(-18, 2)
 texture = ExtResource("2_o6xl0")
 polygon = PackedVector2Array(566, 3, 705, 22, 771, 88, 879, 175, 890, 252, 901, 383, 860, 491, 783, 560, 685, 626, 571, 645, 446, 633, 380, 588, 308, 519, 272, 429, 267, 343, 254, 254, 306, 167, 330, 88, 443, 47, 484, 15)
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578, 324)
+texture = ExtResource("2_o6xl0")
+
 [node name="position" type="Sprite2D" parent="."]
 position = Vector2(113.5, 24.5)
 scale = Vector2(0.257812, 0.257812)
@@ -79,11 +83,13 @@ position = Vector2(576, 324)
 script = ExtResource("5_ya4ey")
 
 [node name="Sprite2D" type="Sprite2D" parent="Centre"]
+position = Vector2(-10, 93)
 scale = Vector2(1.17969, 1.26172)
 texture = ExtResource("2_tbgi4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Centre"]
-scale = Vector2(0.84375, 0.804687)
+position = Vector2(4, -19.625)
+scale = Vector2(1.15625, 1.10547)
 sprite_frames = SubResource("SpriteFrames_eb6dy")
 animation = &"summon_portal"
 autoplay = "summon_portal"
@@ -347,7 +353,11 @@ offset_bottom = 423.0
 text = "no error :]"
 autowrap_mode = 1
 
-[connection signal="error" from="." to="CanvasLayer" method="display_error"]
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(582, 322)
+texture = ExtResource("12_eb6dy")
+
+[connection signal="error_debug" from="." to="CanvasLayer" method="display_error"]
 [connection signal="area_entered" from="Centre" to="Centre" method="_on_area_entered"]
 [connection signal="body_entered" from="Centre" to="Centre" method="_on_body_entered"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

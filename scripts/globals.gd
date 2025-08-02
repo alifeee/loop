@@ -40,3 +40,29 @@ func hit_player(damage: int):
 	if player_health <= 0:
 		endgame()
 	player_hit.emit()
+
+func calc_polygon_area(coords) -> float:
+	# coords is Array[Vector2]
+	# from https://www.wikihow.com/Calculate-the-Area-of-a-Polygon
+	#print(coords)
+	var sum1 = 0
+	var sum2 = 0
+	for i in range(len(coords)):
+		#print("loop ", i)
+		var mod = len(coords)
+		var i1 = (i) % mod
+		var i2 = (i + 1) % mod
+		#print("grab 1 xi ", i1, "  yi ", i2)
+		#print("  (", coords[i1].x, " and ", coords[i2].y, ")")
+		#print("  mult ", coords[i1].x * coords[i2].y)
+		sum1 += (coords[i1].x * coords[i2].y)
+		var j1 = (i + 1) % mod
+		var j2 = (i) % mod
+		#print("grab 2 xi ", j1, "  yi ", j2)
+		#print("  (", coords[j1].x, " and ", coords[j2].y, ")")
+		#print("  mult ", coords[j1].x * coords[j2].y)
+		sum2 += (coords[j1].x * coords[j2].y)
+	#print("sum1: ", sum1)
+	#print("sum2: ", sum2)
+	#print((sum1 - sum2) / 2)
+	return (sum1 - sum2) / 2
