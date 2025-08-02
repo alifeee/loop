@@ -16,8 +16,8 @@ func _on_body_entered(body: Node2D) -> void:
 	body.modulate = Color("#f8ff")
 
 func _on_body_exited(body: Node2D) -> void:
-	body.modulate = Color("#ffff")
-
+	if body is Demon and not body.dead:
+		body.modulate = Color("#ffff")
 
 # damage over time
 func _on_timer_timeout() -> void:
