@@ -1,6 +1,7 @@
 class_name Demon
 extends AnimatableBody2D
 
+@export var sprite: AnimatedSprite2D
 @export var walk_angle: float
 @export var walk_speed: float
 var health: float = 100
@@ -8,8 +9,14 @@ var dead: bool = false
 var hittween: Tween
 
 func _ready() -> void:
-	pass
-	
+	Globals.pause_game.connect(pause)
+	Globals.resume_game.connect(play)
+
+func pause() -> void:
+	sprite.pause()
+func play() -> void:
+	sprite.play()   
+
 func _physics_process(delta: float) -> void:
 	if dead:
 		return

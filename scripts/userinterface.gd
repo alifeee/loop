@@ -20,6 +20,9 @@ func _process(delta: float) -> void:
 	# current rate
 	$CurrentRate.text = str($"../Spawner/SpawnTimer".wait_time)
 	
+	# next spawn
+	$NextSpawn.text = str(snapped($"../Spawner/SpawnTimer".time_left, 0.1))
+	
 	# current rate timer
 	$RateIncrease.text = str(snapped($"../Spawner/RateTimer".time_left, 0.1))
 	

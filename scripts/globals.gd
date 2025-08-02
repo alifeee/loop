@@ -16,7 +16,6 @@ signal resume_game
 # global variables
 var total_demons = 0
 var demons: Array[Demon] = []
-@export var amicool: bool
 
 func pause():
 	gamestate = GAMESTATES.PAUSED

@@ -5,6 +5,7 @@ extends Node2D
 @export var rate_every_s: float = 5
 @export var rate_subtract_s: float = 0
 @export var rate_multiply: float = 0.96
+@export var rate_minimum_s: float = 0.4
 var rng = RandomNumberGenerator.new()
 var packeddemon: PackedScene
 
@@ -20,13 +21,15 @@ func _ready() -> void:
 	ratetimer.timeout.connect(increase_rate)
 
 func increase_rate() -> void:
-	timer.wait_time += rate_subtract_s
-	timer.wait_time *= rate_multiply
+	var new_time = (timer.wait_time - rate_subtract_s) * rate_multiply
+	timer.wait_time = max(new_time, rate_minimum_s)
 
 func stop_timer() -> void:
-	timer.stop()
+	timer.paused = true
+	ratetimer.paused = true
 func start_timer() -> void:
-	timer.start()
+	timer.paused = false
+	ratetimer.paused = false   
 
 func _on_timer_timeout() -> void:
 	var newdemon: Demon = packeddemon.instantiate()
