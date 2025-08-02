@@ -31,7 +31,7 @@ func do_loop_damage(position: Vector2, radius: float) -> void:
 
 func _input(event):
 	# pause game
-	if event.is_action_pressed("Pause"):
+	if event.is_action_pressed("Pause") and not is_held:
 		# is playing, pause
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 			Globals.pause()
@@ -39,12 +39,12 @@ func _input(event):
 		elif Globals.gamestate == Globals.GAMESTATES.PAUSED:
 			Globals.resume()
 	# start looping!  
-	if event is InputEventMouseButton and event.is_pressed() and event.is_action_pressed("Magic"):
+	elif event is InputEventMouseButton and event.is_pressed() and event.is_action_pressed("Magic"):
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 			is_held = true
 			mouse_positions.append(event.position)
 	# stop looping!
-	elif event is InputEventMouseButton and event.is_released() and event.is_action_pressed("Magic"):
+	elif event is InputEventMouseButton and event.is_released():
 		is_held = false
 		# work out centroid of loop
 		var centroid = Vector2(0,0)
@@ -72,7 +72,8 @@ func _input(event):
 		mouse_positions = []
 		loop_segments = []
 	# continue looping !
-	elif is_held:
+	elif event is InputEventMouseMotion and is_held:
+		print(event)
 		var last_position = mouse_positions[-1]
 		var this_position = event.position
 		if this_position.distance_to(last_position) > LOOP_SPRITE_DISTANCE:
