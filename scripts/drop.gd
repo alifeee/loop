@@ -3,14 +3,37 @@ extends AnimatableBody2D
 
 @export var initial_varience: float = 50
 @export var pickup_distance: float = 10
+@export var target_opacity: float = 0.8
 
 @export var fade_in_duration: float = 2
 @export var left_alone_duration: float = 2
 @export var fade_away_duration: float = 5
 @export var pickup_duration: float = 1
 
+@export var sprite: AnimatedSprite2D = self.find_child("Sprite2D")
+
 var colleted = false
 var drop_tween: Tween
+var post_death_tween: Tween
+
+func _ready() -> void:
+	Globals.pause_game.connect(pause)
+	Globals.resume_game.connect(play)
+	
+	assert(sprite, "you need to assign the sprite object")
+
+func pause() -> void:
+	sprite.pause()
+	drop_tween.pause()
+	
+	if post_death_tween != null:
+		post_death_tween.pause()
+
+func play() -> void:
+	sprite.play()
+	drop_tween.play()
+	if post_death_tween != null:
+		post_death_tween.play()
 
 func _on_ready() -> void:
 	Globals.drops.append(self)
@@ -31,7 +54,7 @@ func _on_ready() -> void:
 		.set_ease(Tween.EASE_IN_OUT)
 	
 	drop_tween.parallel() \
-		.tween_property(self, "modulate", Color(1, 1, 1, 1), fade_in_duration) \
+		.tween_property(self, "modulate", Color(1, 1, 1, target_opacity), fade_in_duration) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN_OUT)
 		
@@ -57,9 +80,9 @@ func hit(__):
 	colleted = true
 	drop_tween.stop()
 	
-	var post_death_tween: Tween = get_tree().create_tween()
+	post_death_tween = get_tree().create_tween()
 
-	Globals.motes+= 1	
+	Globals.motes+= 1
 	
 	post_death_tween \
 		.tween_property(self, "global_position", Vector2(0, -pickup_distance) + self.global_position, pickup_duration) \

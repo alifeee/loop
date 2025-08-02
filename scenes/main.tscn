@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="5_ya4ey"]
-[ext_resource type="Script" uid="uid://byc17nc8ui05a" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
 [ext_resource type="Texture2D" uid="uid://bxfqa5s4dtr7e" path="res://assets/animations/wizards/wizard1.png" id="9_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="10_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://ctkk1fc8jkvjl" path="res://assets/animations/wizards/wizard3.png" id="11_jbj1t"]
@@ -175,6 +175,7 @@ position = Vector2(51, 56)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 autoplay = "default"
+script = ExtResource("6_85g3d")
 
 [node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
@@ -182,6 +183,7 @@ position = Vector2(-142, -44)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yc10j")
 autoplay = "default"
+script = ExtResource("6_85g3d")
 
 [node name="Wizard3" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
@@ -189,6 +191,7 @@ position = Vector2(98, -94)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jscy8")
 autoplay = "default"
+script = ExtResource("6_85g3d")
 
 [node name="DebugStats" type="CanvasLayer" parent="."]
 visible = false
