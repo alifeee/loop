@@ -90,18 +90,22 @@ func _input(event):
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
 			Globals.gamestate = Globals.GAMESTATES.PAUSED
 			Globals.pause()
+			finish_mouse_loop()
+
 		# if paused, play
 		elif Globals.gamestate == Globals.GAMESTATES.PAUSED:
 			Globals.gamestate = Globals.GAMESTATES.PLAYING
 			Globals.resume()
-	# start looping!  
-	if event is InputEventMouseButton and event.is_pressed():
-		is_held = true
 
-	# stop looping!
-	if event is InputEventMouseButton and event.is_released():
-		finish_mouse_loop()
+	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
+		# start looping!  
+		if event is InputEventMouseButton and event.is_pressed():
+			is_held = true
 
-	# calculate distance difference
-	if is_held and (len(mouse_positions) == 0 or (len(mouse_positions) and event.position.distance_to(mouse_positions[-1]) > LOOP_SPRITE_DISTANCE)):
-		add_mouse_position(event.position)
+		# stop looping!
+		if event is InputEventMouseButton and event.is_released():
+			finish_mouse_loop()
+
+		# calculate distance difference
+		if is_held and (len(mouse_positions) == 0 or (len(mouse_positions) and event.position.distance_to(mouse_positions[-1]) > LOOP_SPRITE_DISTANCE)):
+			add_mouse_position(event.position)
