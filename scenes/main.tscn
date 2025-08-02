@@ -1,13 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=31 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://cpk7kjhmokc6l" path="res://scenes/globals.tscn" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="5_ya4ey"]
 [ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
@@ -16,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://ctkk1fc8jkvjl" path="res://assets/animations/wizards/wizard3.png" id="11_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
-[ext_resource type="PackedScene" uid="uid://cwi3qoa8555st" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
+[ext_resource type="PackedScene" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -124,78 +122,16 @@ animations = [{
 "speed": 2.5
 }]
 
-[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("loop1")]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_jyhfs")
-loop1 = NodePath("Loop1")
 DAMAGE_PERCENT = 100.0
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-18, 2)
-texture = ExtResource("2_o6xl0")
-polygon = PackedVector2Array(566, 3, 705, 22, 771, 88, 879, 175, 890, 252, 901, 383, 860, 491, 783, 560, 685, 626, 571, 645, 446, 633, 380, 588, 308, 519, 272, 429, 267, 343, 254, 254, 306, 167, 330, 88, 443, 47, 484, 15)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(578, 324)
 texture = ExtResource("2_o6xl0")
 
-[node name="position" type="Sprite2D" parent="."]
-position = Vector2(113.5, 24.5)
-scale = Vector2(0.257812, 0.257812)
-texture = ExtResource("1_o5qli")
-
-[node name="end" type="Sprite2D" parent="."]
-position = Vector2(157.5, 25.5)
-scale = Vector2(0.273438, 0.273438)
-texture = ExtResource("1_o5qli")
-
-[node name="Globals" parent="." instance=ExtResource("2_tipki")]
-
-[node name="Centre" type="Area2D" parent="."]
+[node name="DemonDrops" type="Node2D" parent="."]
 position = Vector2(576, 324)
-script = ExtResource("5_ya4ey")
-
-[node name="Sprite2D" type="Sprite2D" parent="Centre"]
-position = Vector2(-10, 93)
-scale = Vector2(1.17969, 1.26172)
-texture = ExtResource("2_tbgi4")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Centre"]
-position = Vector2(4, -19.625)
-scale = Vector2(1.15625, 1.10547)
-sprite_frames = SubResource("SpriteFrames_eb6dy")
-animation = &"summon_portal"
-autoplay = "summon_portal"
-script = ExtResource("6_85g3d")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Centre"]
-position = Vector2(4, 13)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_muem4")
-one_way_collision_margin = 0.0
-
-[node name="Wizard1" type="AnimatedSprite2D" parent="Centre"]
-texture_filter = 1
-position = Vector2(54, 70)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_dp3eg")
-autoplay = "default"
-script = ExtResource("6_85g3d")
-
-[node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
-texture_filter = 1
-position = Vector2(-139, -30)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_yc10j")
-autoplay = "default"
-script = ExtResource("6_85g3d")
-
-[node name="Wizard3" type="AnimatedSprite2D" parent="Centre"]
-texture_filter = 1
-position = Vector2(101, -80)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_jscy8")
-autoplay = "default"
-script = ExtResource("6_85g3d")
 
 [node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("timer", "ratetimer")]
 position = Vector2(576, 324)
@@ -209,23 +145,65 @@ autostart = true
 
 [node name="RateTimer" type="Timer" parent="Spawner"]
 
-[node name="DemonDrops" type="Node2D" parent="Spawner"]
+[node name="Centre" type="Area2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("5_ya4ey")
 
-[node name="Loop1" parent="." instance=ExtResource("5_tbgi4")]
-position = Vector2(-44, -48)
+[node name="Sprite2D" type="Sprite2D" parent="Centre"]
+position = Vector2(-13, 79)
+scale = Vector2(1.17969, 1.26172)
+texture = ExtResource("2_tbgi4")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Centre"]
+position = Vector2(1, -33.625)
+scale = Vector2(1.15625, 1.10547)
+sprite_frames = SubResource("SpriteFrames_eb6dy")
+animation = &"summon_portal"
+autoplay = "summon_portal"
+script = ExtResource("6_85g3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Centre"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_muem4")
+one_way_collision_margin = 0.0
+
+[node name="Wizard1" type="AnimatedSprite2D" parent="Centre"]
+texture_filter = 1
+position = Vector2(51, 56)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_dp3eg")
+autoplay = "default"
+script = ExtResource("6_85g3d")
+
+[node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
+texture_filter = 1
+position = Vector2(-142, -44)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_yc10j")
+autoplay = "default"
+script = ExtResource("6_85g3d")
+
+[node name="Wizard3" type="AnimatedSprite2D" parent="Centre"]
+texture_filter = 1
+position = Vector2(98, -94)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_jscy8")
+autoplay = "default"
+script = ExtResource("6_85g3d")
+
+[node name="DebugStats" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("5_tefeu")
 
-[node name="stats" type="Control" parent="CanvasLayer"]
+[node name="stats" type="Control" parent="DebugStats"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer/stats"]
+[node name="TimeLabel" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -235,7 +213,7 @@ offset_bottom = 23.0
 text = "12.5"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/stats"]
+[node name="Label" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -246,7 +224,7 @@ offset_bottom = 23.0
 text = "s"
 metadata/_edit_use_anchors_ = true
 
-[node name="TotalEnemies" type="Label" parent="CanvasLayer/stats"]
+[node name="TotalEnemies" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -257,7 +235,7 @@ offset_right = 90.0
 offset_bottom = 47.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label2" type="Label" parent="CanvasLayer/stats"]
+[node name="Label2" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -269,7 +247,7 @@ offset_bottom = 46.0
 text = "total"
 metadata/_edit_use_anchors_ = true
 
-[node name="CurrentEnemies" type="Label" parent="CanvasLayer/stats"]
+[node name="CurrentEnemies" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -280,7 +258,7 @@ offset_right = 112.0
 offset_bottom = 71.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label3" type="Label" parent="CanvasLayer/stats"]
+[node name="Label3" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -292,7 +270,7 @@ offset_bottom = 69.0
 text = "current"
 metadata/_edit_use_anchors_ = true
 
-[node name="CurrentRate" type="Label" parent="CanvasLayer/stats"]
+[node name="CurrentRate" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -303,7 +281,7 @@ offset_right = 163.0
 offset_bottom = 91.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label4" type="Label" parent="CanvasLayer/stats"]
+[node name="Label4" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -315,7 +293,7 @@ offset_bottom = 90.0
 text = "spawn every s"
 metadata/_edit_use_anchors_ = true
 
-[node name="NextSpawnLabel" type="Label" parent="CanvasLayer/stats"]
+[node name="NextSpawnLabel" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -327,7 +305,7 @@ offset_bottom = 113.0
 text = "next spawn"
 metadata/_edit_use_anchors_ = true
 
-[node name="NextSpawn" type="Label" parent="CanvasLayer/stats"]
+[node name="NextSpawn" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -338,7 +316,7 @@ offset_right = 138.0
 offset_bottom = 114.0
 metadata/_edit_use_anchors_ = true
 
-[node name="RateIncrease" type="Label" parent="CanvasLayer/stats"]
+[node name="RateIncrease" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -349,7 +327,7 @@ offset_right = 170.0
 offset_bottom = 136.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label5" type="Label" parent="CanvasLayer/stats"]
+[node name="Label5" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -361,7 +339,7 @@ offset_bottom = 135.0
 text = "rate increase in"
 metadata/_edit_use_anchors_ = true
 
-[node name="RateSubtractLabel" type="Label" parent="CanvasLayer/stats"]
+[node name="RateSubtractLabel" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -373,7 +351,7 @@ offset_bottom = 156.0
 text = "subtract"
 metadata/_edit_use_anchors_ = true
 
-[node name="RateSubtract" type="Label" parent="CanvasLayer/stats"]
+[node name="RateSubtract" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -384,7 +362,7 @@ offset_right = 113.0
 offset_bottom = 157.0
 metadata/_edit_use_anchors_ = true
 
-[node name="RateMult" type="Label" parent="CanvasLayer/stats"]
+[node name="RateMult" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -395,7 +373,7 @@ offset_right = 113.0
 offset_bottom = 179.0
 metadata/_edit_use_anchors_ = true
 
-[node name="RateMultLabel" type="Label" parent="CanvasLayer/stats"]
+[node name="RateMultLabel" type="Label" parent="DebugStats/stats"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.8
@@ -407,20 +385,20 @@ offset_bottom = 177.0
 text = "multiply"
 metadata/_edit_use_anchors_ = true
 
-[node name="HealthLabel" type="Label" parent="CanvasLayer/stats"]
+[node name="HealthLabel" type="Label" parent="DebugStats/stats"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "health"
 
-[node name="Health" type="Label" parent="CanvasLayer/stats"]
+[node name="Health" type="Label" parent="DebugStats/stats"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 1.0
 offset_right = 104.0
 offset_bottom = 24.0
 
-[node name="LoopValidLabel" type="Label" parent="CanvasLayer/stats"]
+[node name="LoopValidLabel" type="Label" parent="DebugStats/stats"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 210.0
@@ -428,14 +406,14 @@ offset_right = 51.0
 offset_bottom = 233.0
 text = "loop valid"
 
-[node name="LoopValid" type="Label" parent="CanvasLayer/stats"]
+[node name="LoopValid" type="Label" parent="DebugStats/stats"]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 210.0
 offset_right = 159.0
 offset_bottom = 233.0
 
-[node name="EndLabel" type="Label" parent="CanvasLayer"]
+[node name="EndLabel" type="Label" parent="DebugStats"]
 visible = false
 offset_left = 478.0
 offset_top = 188.0
@@ -444,21 +422,21 @@ offset_bottom = 257.0
 theme_override_font_sizes/font_size = 50
 text = "you suck"
 
-[node name="errors" type="Control" parent="CanvasLayer"]
+[node name="errors" type="Control" parent="DebugStats"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="ErrorLabel" type="Label" parent="CanvasLayer/errors"]
+[node name="ErrorLabel" type="Label" parent="DebugStats/errors"]
 layout_mode = 0
 offset_top = 374.0
 offset_right = 72.0
 offset_bottom = 397.0
 text = "last error"
 
-[node name="Error" type="Label" parent="CanvasLayer/errors"]
+[node name="Error" type="Label" parent="DebugStats/errors"]
 layout_mode = 0
 offset_top = 400.0
 offset_right = 168.0
@@ -470,16 +448,21 @@ autowrap_mode = 1
 position = Vector2(576, 324)
 texture = ExtResource("12_eb6dy")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="CanvasLayer2" instance=ExtResource("15_jkv2x")]
+[node name="Control" parent="GameUI" instance=ExtResource("15_jkv2x")]
 
-[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+[node name="ShopUI" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Start" parent="CanvasLayer3" instance=ExtResource("17_muem4")]
+[node name="Control2" parent="ShopUI" instance=ExtResource("17_dp3eg")]
 
-[connection signal="error_debug" from="." to="CanvasLayer" method="display_error"]
+[node name="StartScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Start" parent="StartScreen" instance=ExtResource("17_muem4")]
+
+[connection signal="error_debug" from="." to="DebugStats" method="display_error"]
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Centre" to="Centre" method="_on_area_entered"]
 [connection signal="body_entered" from="Centre" to="Centre" method="_on_body_entered"]
-[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
