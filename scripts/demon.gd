@@ -2,6 +2,7 @@ class_name Demon
 extends AnimatableBody2D
 
 @export var sprite: AnimatedSprite2D
+@export var DemonDrops: Node2D
 
 @export var drop_scene: PackedScene
 @export var drop_chance: float = 1
@@ -74,8 +75,6 @@ func die() -> void:
 	Globals.demons.erase(self)
 	
 func make_drop() -> void:
-	var DemonDrops = self.find_parent("Spawner").find_child("DemonDrops")
-	
 	for __ in drop_amount:
 		if drop_chance >= randf():
 			var drop = drop_scene.instantiate()

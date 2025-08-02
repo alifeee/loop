@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
 [ext_resource type="PackedScene" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
-[ext_resource type="PackedScene" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -133,9 +133,10 @@ texture = ExtResource("2_o6xl0")
 [node name="DemonDrops" type="Node2D" parent="."]
 position = Vector2(576, 324)
 
-[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("timer", "ratetimer")]
+[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("DemonDrops", "timer", "ratetimer")]
 position = Vector2(576, 324)
 script = ExtResource("1_0wfyh")
+DemonDrops = NodePath("../DemonDrops")
 timer = NodePath("SpawnTimer")
 ratetimer = NodePath("RateTimer")
 

@@ -1,5 +1,7 @@
 extends Node2D
 
+# drop spawner
+@export var DemonDrops: Node2D
 # timer
 @export var timer: Timer
 var timer_initial_wait: float
@@ -61,6 +63,7 @@ func _on_timer_timeout() -> void:
 		ELLIPSE_Y_RADIUS  * cos(spawning_angle)
 	)
 	newdemon.walk_towards = Vector2(0,0)
+	newdemon.DemonDrops = DemonDrops
 	Globals.demons.append(newdemon)
 	Globals.total_demons += 1
 	add_child(newdemon)

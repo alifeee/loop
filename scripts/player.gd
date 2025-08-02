@@ -4,9 +4,6 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-signal error_debug(msg)
-var error = ""
-
 @export_group("assets")
 @export var loop1: Loop
 @export_group("Loop Drawing")
@@ -21,10 +18,19 @@ var error = ""
 @export var DISPEL_DISTANCE: float = 25
 @export var DISPEL_TIME: float = 0.15
 
+# for bad loop
+signal error_debug(msg)
+var error = ""
+
+# loop distance tracker
 var loop_distance: float = 0
+# loop mouse positions tracker
 var mouse_positions: Array[Vector2] = []
+# loop sprites
 var loop_segments: Array[AnimatedSprite2D] = []
+# true while mouse is down (hopefully) but can force drop
 var is_held = false
+# true while is valid
 var is_valid = false
 
 var packed_loop_segment: PackedScene
@@ -42,20 +48,14 @@ func _process(delta: float) -> void:
 	if len(mouse_positions) > 0:
 		var is_big_enough = is_big_enough_area(mouse_positions)
 		var is_close_enough = is_close_enough_to_start(mouse_positions)
-		if is_big_enough and is_close_enough:
-			print("v2!")
+		if (is_valid) or (is_big_enough and is_close_enough):
 			make_spell_valid_level2()
 			is_valid = true
-		elif is_big_enough:
-			print("v1!")
+		elif (not is_valid) and is_big_enough:
 			make_spell_valid_level1()
-			is_valid = false
-		else:
-			print("i!")
+		elif not is_valid:
 			make_spell_invalid()
-			is_valid = false
 	else:
-		is_valid = false
 		make_spell_invalid()
 
 func reset():
@@ -145,23 +145,12 @@ func drop_spell():
 func check_and_spawn_spell():
 	# check if loop can spawn (if loop was drawn well or badly)
 	#   and spawn if so
-	error = ""
-	#### POLYGON AREA CHECK ####
-	if not is_big_enough_area(mouse_positions):
-		error = "loop not big enough"
-	#### START/END DISTANCE CHECK ####
-	if not is_close_enough_to_start(mouse_positions):
-		error = "start too far from end"
-	#### SUCCESS ####
-	if error == "":
+	if is_valid:
 		# centroid is "centre" of mouse movements
 		var centroid = Vector2(0,0)
 		for pos in mouse_positions:
 			centroid = centroid + (pos / len(mouse_positions))
 		do_loop_damage(centroid, LOOP_RADIUS)
-	#### FAIL ####
-	else:
-		error_debug.emit(error)
 
 func check_and_add_spell_point(pos):
 	# if point far from previous point, and if line not too long
