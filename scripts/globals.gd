@@ -41,6 +41,7 @@ func reset():
 	player_health = INITIAL_PLAYER_HEALTH
 	## kill mobs
 	total_demons = 0
+	motes = 0
 	delete_reset_array(demons)
 	delete_reset_array(drops)
 	
