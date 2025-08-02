@@ -52,18 +52,27 @@ func _input(event):
 			for pos in mouse_positions:
 				centroid = centroid + (pos / len(mouse_positions))
 			# loop checks
-			print(mouse_positions)
-			var loop_rect = Rect2(mouse_positions[0], Vector2(0,0))
-			for mouse_position in mouse_positions:
-				loop_rect = loop_rect.expand(mouse_position)
-			var rect_area = loop_rect.get_area()
-			print("position:", loop_rect.position)
-			print("end:", loop_rect.end)
-			print("area:", rect_area)
-			$position.position = loop_rect.position
-			$end.position = loop_rect.end
-			if rect_area > LOOP_MIN_AREA:
-				# move loop and trigger actions
+			
+			#### RECTANGLE SIZING ####
+			if false:
+				var loop_rect = Rect2(mouse_positions[0], Vector2(0,0))
+				for mouse_position in mouse_positions:
+					loop_rect = loop_rect.expand(mouse_position)
+				var rect_area = loop_rect.get_area()
+				print("position:", loop_rect.position)
+				print("end:", loop_rect.end)
+				print("area:", rect_area)
+				print("polgon area!")
+				$position.position = loop_rect.position
+				$end.position = loop_rect.end
+				if rect_area > LOOP_MIN_AREA:
+					# move loop and trigger actions
+					do_loop_damage(centroid, LOOP_RADIUS)
+				else:
+					error.emit("loop not big enough")
+			#### POLYGON SIZING ####
+			var polygon_area = Globals.calc_polygon_area(mouse_positions)
+			if polygon_area > LOOP_MIN_AREA:
 				do_loop_damage(centroid, LOOP_RADIUS)
 			else:
 				error.emit("loop not big enough")
@@ -76,7 +85,7 @@ func _input(event):
 		loop_segments = []
 	# continue looping !
 	elif event is InputEventMouseMotion and is_held:
-		print(event)
+		#print(event)
 		var last_position = mouse_positions[-1]
 		var this_position = event.position
 		if this_position.distance_to(last_position) > LOOP_SPRITE_DISTANCE:

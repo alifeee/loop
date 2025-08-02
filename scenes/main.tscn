@@ -299,11 +299,13 @@ text = "multiply"
 metadata/_edit_use_anchors_ = true
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "health"
 
 [node name="Health" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 1.0
 offset_right = 104.0

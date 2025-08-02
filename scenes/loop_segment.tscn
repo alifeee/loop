@@ -39,4 +39,4 @@ animations = [{
 [node name="LoopSegment" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_m5s2p")
 autoplay = "default"
-frame_progress = 0.369868
+frame_progress = 0.748191
