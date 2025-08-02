@@ -4,89 +4,84 @@ extends Node2D
 enum GAMESTATES {
 	START_SCREEN,
 	PLAYING,
-	PAUSED,
+	SHOPPING,
 	WIN_SCREEN
 }
 var gamestate = GAMESTATES.START_SCREEN
 
-# signals
-signal reset_game
+# game state signals
+signal start_game
 signal pause_game
 signal resume_game
-signal start_game
 signal end_game
+signal reset_game
+# other signals
 signal player_hit(lives_left: int)
 
 # global variables
-@export var INITIAL_PLAYER_HEALTH: int = 3
-var player_health: int = 3
-var total_demons = 0
 var demons: Array[Demon] = []
 var drops: Array[Drop] = []
-var kill_count = 0
-var motes = 0
+# counters
+var player_health: int = 3
+var total_demons: int = 0
+var kill_count: int = 0
+var motes: int = 0
+var time_elapsed: float = 0
 
 func _ready() -> void:
-	reset()
+	pass
+
+func _process(delta: float) -> void:
+	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
+		time_elapsed += delta
 
 func delete_reset_array(ar: Array):
 	for i in ar:
 		i.queue_free()
-	
 	ar.clear()
 
-func reset():
-	# normal stuff
-	gamestate = GAMESTATES.START_SCREEN
-	reset_game.emit()
-	print("resetting game")
-	# game stuff
-	player_health = INITIAL_PLAYER_HEALTH
-	## kill mobs
-	total_demons = 0
-	motes = 0
-	delete_reset_array(demons)
-	delete_reset_array(drops)
-	
-	## reset timers (in signal)
-	## drop spell (in signal)
-	resume()
-	
 func start():
-	gamestate = GAMESTATES.START_SCREEN
+	gamestate = GAMESTATES.PLAYING
 	start_game.emit()
-	player_health = INITIAL_PLAYER_HEALTH
 	## kill mobs
-	total_demons = 0
-	motes = 0
 	delete_reset_array(demons)
 	delete_reset_array(drops)
 	print("starting game")
-
 func pause():
-	gamestate = GAMESTATES.PAUSED
+	gamestate = GAMESTATES.SHOPPING
 	pause_game.emit()
 	print("pausing game")
-
 func resume():
 	gamestate = GAMESTATES.PLAYING
 	resume_game.emit()
 	print("resuming game")
-
-func endgame():
-	pause()
-	end_game.emit()
+func endgame(is_win: bool):
 	gamestate = GAMESTATES.WIN_SCREEN
-	var hittables = []
-	hittables.append_array(Globals.demons)
-	for hittable in hittables:
-		hittable.hit(100)
-	print("ending game")
+	end_game.emit()
+	if is_win:
+		for hittable in Globals.demons.duplicate():
+			hittable.hit(100)
+func reset():
+	gamestate = GAMESTATES.START_SCREEN
+	# normal stuff
+	reset_game.emit()
+	print("resetting game")
+	# game stuff
+	player_health = 3
+	total_demons = 0
+	motes = 0
+	time_elapsed = 0
+	## kill mobs
+	delete_reset_array(demons)
+	delete_reset_array(drops)
+	## reset timers (in player script)
+	## drop spell (in portal script)
+	resume()
 
 func hit_player(damage: int):
 	player_health -= 1
 	if player_health <= 0:
-		endgame()
+		endgame(false)
 	player_hit.emit(player_health)
 
 func calc_polygon_area(coords) -> float:

@@ -18,41 +18,41 @@ var rng = RandomNumberGenerator.new()
 var packeddemon: PackedScene
 
 func _ready() -> void:
-	# save vars
-	timer_initial_wait = timer.wait_time
-	# packed
 	packeddemon = preload("res://scenes/demon.tscn")
+	# save vars
 	# spawn demon immediately
-	_on_timer_timeout()
+	#_on_timer_timeout()
+	
+	# rate
+	timer_initial_wait = timer.wait_time
+	ratetimer.wait_time = rate_every_s
+	ratetimer.timeout.connect(increase_rate)
 	
 	# signals
+	Globals.start_game.connect(start)
+	Globals.pause_game.connect(pause)
+	Globals.resume_game.connect(resume)
+	Globals.end_game.connect(pause)
 	Globals.reset_game.connect(reset)
-	Globals.pause_game.connect(pause_timer)
-	Globals.resume_game.connect(resume_timer)
-	Globals.end_game.connect(pause_timer)
-	# rate
-	ratetimer.wait_time = rate_every_s
-	ratetimer.stop()
-	ratetimer.start()
-	ratetimer.timeout.connect(increase_rate)
 
+func start() -> void:
+	print("starting!")
+	timer.start()
+	ratetimer.start()
+func pause() -> void:
+	timer.paused = true
+	ratetimer.paused = true
+func resume() -> void:
+	timer.paused = false
+	ratetimer.paused = false
 func reset() -> void:
 	timer.wait_time = timer_initial_wait
 	timer.stop()
-	timer.start()
 	ratetimer.stop()
-	ratetimer.start()
 
 func increase_rate() -> void:
 	var new_time = (timer.wait_time - rate_subtract_s) * rate_multiply
 	timer.wait_time = max(new_time, rate_minimum_s)
-
-func pause_timer() -> void:
-	timer.paused = true
-	ratetimer.paused = true
-func resume_timer() -> void:
-	timer.paused = false
-	ratetimer.paused = false   
 
 func _on_timer_timeout() -> void:
 	var newdemon: Demon = packeddemon.instantiate()

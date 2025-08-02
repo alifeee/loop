@@ -4,6 +4,11 @@ extends Area2D
 
 func _ready() -> void:
 	Globals.player_hit.connect(animate_wizard_death)
+	Globals.reset_game.connect(reset)
+
+func reset() -> void:
+	for wizard in wizards_array:
+		wizard.modulate.a = 1
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Demon:
