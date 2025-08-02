@@ -23,7 +23,6 @@ texture = ExtResource("1_o5qli")
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("1_0wfyh")
-spawn_from = 1
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 wait_time = 1.5
@@ -31,7 +30,5 @@ autostart = true
 
 [node name="Loop1" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(-44, -48)
-attack_type = 1
-DAMAGE_PERCENT = 50.0
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

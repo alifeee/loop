@@ -9,8 +9,6 @@ script = ExtResource("1_iyx0m")
 
 [node name="Loop1" parent="." instance=ExtResource("1_errlg")]
 position = Vector2(48, 55)
-attack_type = 1
-DAMAGE_PERCENT = 50.0
 
 [node name="Demon" parent="." instance=ExtResource("2_bl13t")]
 position = Vector2(63, 63)
