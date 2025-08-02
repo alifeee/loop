@@ -15,7 +15,7 @@ signal pause_game
 signal resume_game
 signal start_game
 signal end_game
-signal player_hit
+signal player_hit(lives_left: int)
 
 # global variables
 @export var INITIAL_PLAYER_HEALTH: int = 3
@@ -87,7 +87,7 @@ func hit_player(damage: int):
 	player_health -= 1
 	if player_health <= 0:
 		endgame()
-	player_hit.emit()
+	player_hit.emit(player_health)
 
 func calc_polygon_area(coords) -> float:
 	# coords is Array[Vector2]
