@@ -2,6 +2,12 @@ class_name Demon
 extends AnimatableBody2D
 
 @export var sprite: AnimatedSprite2D
+
+@export var drop_scene: PackedScene
+@export var drop_chance: float = 1
+@export var drop_amount: int = 1
+@export var drop_variance: float = 0.1
+
 @export var walk_angle: float
 @export var walk_speed: float = 50
 var health: float = 100
@@ -46,13 +52,25 @@ func die() -> void:
 	if hittween:
 		hittween.kill()
 	dead = true
+	make_drop()
 	self.walk_speed = 0
 	self.modulate = Color("#f0ff")
 	self.collision_layer = 2
 	var dietween = get_tree().create_tween()
 	dietween.tween_property(self, "modulate:a", 0, 2)
+	# dietween.tween_callback(make_drop)
 	dietween.tween_callback(func(): self.queue_free())
 	Globals.demons.erase(self)
+	
+func make_drop() -> void:
+	var d = self.find_parent("Spawner").find_child("DemonDrops")
+	
+	for __ in drop_amount:
+		if drop_chance >= randf():
+			var drop = drop_scene.instantiate()
+			drop.global_position = self.global_position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
+			d.add_child(drop)
+
 
 func reach_middle() -> void:
 	# stop
