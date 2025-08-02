@@ -263,11 +263,11 @@ theme_override_font_sizes/font_size = 20
 text = "Upgrades (s)"
 
 [node name="EndLabel" type="Label" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 478.0
-offset_top = 188.0
-offset_right = 689.0
-offset_bottom = 257.0
+offset_top = 69.0
+offset_right = 714.0
+offset_bottom = 210.0
 theme_override_font_sizes/font_size = 50
-text = "you suck"
+text = "You Suck
+Retry - [R]"
