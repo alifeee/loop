@@ -21,7 +21,6 @@ signal player_hit
 var player_health: int = 3
 var total_demons = 0
 var demons: Array[Demon] = []
-var kill_count = 0
 var motes = 0
 
 func reset():
