@@ -34,11 +34,9 @@ func _input(event):
 	if event.is_action_pressed("Pause"):
 		# is playing, pause
 		if Globals.gamestate == Globals.GAMESTATES.PLAYING:
-			Globals.gamestate = Globals.GAMESTATES.PAUSED
 			Globals.pause()
 		# if paused, play
 		elif Globals.gamestate == Globals.GAMESTATES.PAUSED:
-			Globals.gamestate = Globals.GAMESTATES.PLAYING
 			Globals.resume()
 	# start looping!  
 	if event is InputEventMouseButton and event.is_pressed():
