@@ -2,6 +2,8 @@ extends AnimatableBody2D
 
 @export var initial_varience: float = 50
 @export var fade_in_duration: float = 2
+@export var left_alone_duration: float = 2
+@export var fade_away_duration: float = 5
 
 
 # var target_loc: Vector2
@@ -30,4 +32,11 @@ func _on_ready() -> void:
 	drop_tween.parallel() \
 		.tween_property(self, "modulate", Color(1, 1, 1, 1), fade_in_duration) \
 		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN_OUT)
+		
+	drop_tween.tween_interval(left_alone_duration)
+	
+	drop_tween \
+		.tween_property(self, "modulate", Color(1, 1, 1, 0), fade_away_duration) \
+		.set_trans(Tween.TRANS_BOUNCE) \
 		.set_ease(Tween.EASE_IN_OUT)

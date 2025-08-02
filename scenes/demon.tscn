@@ -47,6 +47,8 @@ animations = [{
 script = ExtResource("1_3t42y")
 sprite = NodePath("AnimatedSprite2D")
 drop_scene = ExtResource("2_ofewj")
+drop_chance = 0.4
+drop_amount = 3
 walk_angle = 0.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
