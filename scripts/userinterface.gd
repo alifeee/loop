@@ -13,9 +13,6 @@ func _process(delta: float) -> void:
 	$stats/Health.text = str(Globals.player_health)
 	
 	# time
-	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
-		time_elapsed += delta
-	$stats/TimeLabel.text = str(snapped(time_elapsed, 0.1))
 
 	# enemies total
 	$stats/TotalEnemies.text = str(Globals.total_demons)

@@ -195,7 +195,7 @@ value = 50.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Kill Counter" type="Panel" parent="Panel/ProgressBar"]
+[node name="KillCounter" type="Panel" parent="Panel/ProgressBar"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
@@ -209,32 +209,7 @@ offset_right = -118.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Timer" type="Panel" parent="Panel/ProgressBar/Kill Counter"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 34.0
-offset_top = -12.0
-offset_right = 188.0
-offset_bottom = 12.0
-grow_vertical = 2
-
-[node name="Text" type="Label" parent="Panel/ProgressBar/Kill Counter/Timer"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -32.0
-offset_right = 60.0
-offset_bottom = 24.0
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
-text = "999"
-
-[node name="Icon" type="TextureRect" parent="Panel/ProgressBar/Kill Counter"]
+[node name="Icon" type="TextureRect" parent="Panel/ProgressBar/KillCounter"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -245,6 +220,20 @@ offset_bottom = 12.0
 grow_vertical = 2
 texture = ExtResource("5_bt76a")
 expand_mode = 1
+
+[node name="Text" type="Label" parent="Panel/ProgressBar/KillCounter"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -32.0
+offset_right = 94.0
+offset_bottom = 24.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_u2dgd")
+theme_override_font_sizes/font_size = 20
+text = "999"
 
 [node name="Shop Button" type="Button" parent="Panel"]
 layout_mode = 1
