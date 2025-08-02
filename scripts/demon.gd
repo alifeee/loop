@@ -5,6 +5,7 @@ extends AnimatableBody2D
 @export var walk_speed: float
 var health: float = 100
 var dead: bool = false
+var hittween: Tween
 
 func _ready() -> void:
 	pass
@@ -19,14 +20,19 @@ func _physics_process(delta: float) -> void:
 	)
 
 func hit(damage: float):
+	print("got hit")
+	if hittween:
+		hittween.kill()
+	hittween = get_tree().create_tween()
+	scale = Vector2(1.2,1.2)
+	hittween.tween_property(self, "scale", Vector2(1,1,), 0.1)
 	health -= damage
 	if health <= 0:
 		die()
-	var tween = get_tree().create_tween()
-	scale = Vector2(1.1,1.1)
-	tween.tween_property(self, "scale", Vector2(1,1), 0.1)
 
 func die() -> void:
+	if hittween:
+		hittween.kill()
 	dead = true
 	self.walk_speed = 0
 	self.modulate = Color("#f0ff")
