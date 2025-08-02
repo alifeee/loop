@@ -7,10 +7,13 @@ var rng = RandomNumberGenerator.new()
 signal error_debug(msg)
 var error = ""
 
+@export_group("assets")
 @export var loop1: Loop
+@export_group("Loop Drawing")
 @export var LOOP_MIN_AREA: float = 2500
 @export var LOOP_MAX_START_END_DISTANCE: float = 50
 @export var LOOP_SPRITE_DISTANCE: float = 5
+@export_group("Loop Damage")
 @export var LOOP_RADIUS: float = 50
 @export var DAMAGE_PERCENT: float = 50
 
@@ -73,7 +76,7 @@ func _input(event):
 				else:
 					error.emit("loop not big enough")
 			#### POLYGON SIZING ####
-			var polygon_area = Globals.calc_polygon_area(mouse_positions)
+			var polygon_area = abs(Globals.calc_polygon_area(mouse_positions))
 			if polygon_area < LOOP_MIN_AREA:
 				error = "loop not big enough"
 			#### START/END DISTANCE ####
@@ -83,7 +86,8 @@ func _input(event):
 				error = "start too far from end"
 			if error == "":
 				do_loop_damage(centroid, LOOP_RADIUS)
-			error_debug.emit(error)
+			else:
+				error_debug.emit(error)
 		# do this whatever the weather
 		is_held = false
 		# delete sprite segments
