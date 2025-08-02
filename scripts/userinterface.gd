@@ -3,8 +3,10 @@ extends CanvasLayer
 var time_elapsed: float
 var errortween: Tween
 
-#func _ready() -> void:
+func _ready() -> void:
 	#start_time = Time.get_unix_time_from_system()
+	$EndLabel.visible = false
+	Globals.end_game.connect(func(): $EndLabel.visible = true)
 
 func _process(delta: float) -> void:
 	# health

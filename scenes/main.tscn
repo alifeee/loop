@@ -82,7 +82,6 @@ scale = Vector2(1.17969, 1.26172)
 texture = ExtResource("2_tbgi4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Centre"]
-position = Vector2(578, 298.75)
 scale = Vector2(0.84375, 0.804687)
 sprite_frames = SubResource("SpriteFrames_eb6dy")
 animation = &"summon_portal"
@@ -309,6 +308,15 @@ offset_left = 64.0
 offset_top = 1.0
 offset_right = 104.0
 offset_bottom = 24.0
+
+[node name="EndLabel" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 478.0
+offset_top = 188.0
+offset_right = 689.0
+offset_bottom = 257.0
+theme_override_font_sizes/font_size = 50
+text = "you suck"
 
 [node name="errors" type="Control" parent="CanvasLayer"]
 layout_mode = 3
