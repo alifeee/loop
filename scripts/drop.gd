@@ -46,6 +46,6 @@ func _on_ready() -> void:
 func die():
 	Globals.drops.erase(self)
 	
-func collect():
+func hit(__):
 	Globals.motes+= 1
 	self.die()
