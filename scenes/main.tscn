@@ -83,11 +83,13 @@ position = Vector2(576, 324)
 script = ExtResource("5_ya4ey")
 
 [node name="Sprite2D" type="Sprite2D" parent="Centre"]
+position = Vector2(-10, 93)
 scale = Vector2(1.17969, 1.26172)
 texture = ExtResource("2_tbgi4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Centre"]
-scale = Vector2(0.84375, 0.804687)
+position = Vector2(4, -19.625)
+scale = Vector2(1.15625, 1.10547)
 sprite_frames = SubResource("SpriteFrames_eb6dy")
 animation = &"summon_portal"
 autoplay = "summon_portal"
