@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvthrn5164h04"]
+[gd_scene load_steps=5 format=3 uid="uid://by8cyvtvv8mie"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
+[ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
 [ext_resource type="FontFile" uid="uid://x8elntfmqlmu" path="res://assets/font/Pixeled.ttf" id="2_u2dgd"]
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="3_bt76a"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u2dgd")
 
 [node name="Reference Image" type="TextureRect" parent="."]
 visible = false
@@ -24,7 +26,7 @@ grow_vertical = 2
 texture = ExtResource("1_u001w")
 expand_mode = 1
 
-[node name="Top Left UI" type="Panel" parent="."]
+[node name="TopLeftUI" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_left = 20.0
@@ -32,13 +34,13 @@ offset_top = 20.0
 offset_right = 20.0
 offset_bottom = 20.0
 
-[node name="Timer" type="Panel" parent="Top Left UI"]
+[node name="Timer" type="Panel" parent="TopLeftUI"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_right = 154.0
 offset_bottom = 24.0
 
-[node name="Text" type="Label" parent="Top Left UI/Timer"]
+[node name="Text" type="Label" parent="TopLeftUI/Timer"]
 layout_mode = 1
 offset_top = -20.0
 offset_right = 88.0
@@ -47,20 +49,21 @@ theme_override_fonts/font = ExtResource("2_u2dgd")
 theme_override_font_sizes/font_size = 20
 text = "00:00"
 
-[node name="Kill Counter" type="Panel" parent="Top Left UI"]
+[node name="KillCounter" type="Panel" parent="TopLeftUI"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_top = 34.0
 offset_right = 154.0
 offset_bottom = 58.0
 
-[node name="Timer" type="Panel" parent="Top Left UI/Kill Counter"]
+[node name="Timer" type="Panel" parent="TopLeftUI/KillCounter"]
 self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 34.0
 offset_right = 34.0
 offset_bottom = 24.0
 
-[node name="Text" type="Label" parent="Top Left UI/Kill Counter/Timer"]
+[node name="Text" type="Label" parent="TopLeftUI/KillCounter/Timer"]
 layout_mode = 1
 offset_top = -20.0
 offset_right = 60.0
@@ -69,7 +72,7 @@ theme_override_fonts/font = ExtResource("2_u2dgd")
 theme_override_font_sizes/font_size = 20
 text = "999"
 
-[node name="Icon" type="TextureRect" parent="Top Left UI/Kill Counter"]
+[node name="Icon" type="TextureRect" parent="TopLeftUI/KillCounter"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -81,14 +84,14 @@ grow_vertical = 2
 texture = ExtResource("3_bt76a")
 expand_mode = 1
 
-[node name="Health" type="Panel" parent="Top Left UI"]
+[node name="Health" type="Panel" parent="TopLeftUI"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_top = 68.0
 offset_right = 154.0
 offset_bottom = 92.0
 
-[node name="Icon" type="TextureRect" parent="Top Left UI/Health"]
+[node name="Icon" type="TextureRect" parent="TopLeftUI/Health"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -100,7 +103,7 @@ grow_vertical = 2
 texture = ExtResource("3_bt76a")
 expand_mode = 1
 
-[node name="Icon2" type="TextureRect" parent="Top Left UI/Health"]
+[node name="Icon2" type="TextureRect" parent="TopLeftUI/Health"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -113,7 +116,7 @@ grow_vertical = 2
 texture = ExtResource("3_bt76a")
 expand_mode = 1
 
-[node name="Icon3" type="TextureRect" parent="Top Left UI/Health"]
+[node name="Icon3" type="TextureRect" parent="TopLeftUI/Health"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
