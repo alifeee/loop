@@ -8,6 +8,9 @@ extends AnimatableBody2D
 @export var drop_amount: int = 1
 @export var drop_variance: float = 0.1
 
+@export var death_duration: float = 2
+@export var moat_spawn_delay: float = 1.5
+
 @export var walk_towards: Vector2
 @export var walk_speed: float = 50
 var health: float = 100
@@ -17,6 +20,8 @@ var hittween: Tween
 func _ready() -> void:
 	Globals.pause_game.connect(pause)
 	Globals.resume_game.connect(play)
+	
+	assert(moat_spawn_delay < death_duration)
 
 func pause() -> void:
 	sprite.pause()
@@ -54,14 +59,18 @@ func die() -> void:
 	if hittween:
 		hittween.kill()
 	dead = true
-	make_drop()
 	self.walk_speed = 0
 	self.modulate = Color("#f0ff")
 	self.collision_layer = 2
+
+	var spawn_tween = get_tree().create_tween()
+	spawn_tween.tween_interval(moat_spawn_delay)
+	spawn_tween.tween_callback(make_drop)
+	
 	var dietween = get_tree().create_tween()
-	dietween.tween_property(self, "modulate:a", 0, 2)
-	# dietween.tween_callback(make_drop)
+	dietween.tween_property(self, "modulate:a", 0, death_duration)
 	dietween.tween_callback(func(): self.queue_free())
+	
 	Globals.demons.erase(self)
 	
 func make_drop() -> void:

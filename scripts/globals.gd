@@ -7,12 +7,13 @@ enum GAMESTATES {
 	PAUSED,
 	WIN_SCREEN
 }
-var gamestate = GAMESTATES.PLAYING
+var gamestate = GAMESTATES.START_SCREEN
 
 # signals
 signal reset_game
 signal pause_game
 signal resume_game
+signal start_game
 signal end_game
 signal player_hit
 
@@ -21,23 +22,44 @@ signal player_hit
 var player_health: int = 3
 var total_demons = 0
 var demons: Array[Demon] = []
+var drops: Array[Drop] = []
+var kill_count = 0
 var motes = 0
+
+
+func delete_reset_array(ar: Array):
+	for i in ar:
+		i.queue_free()
+	
+	ar.clear()
 
 func reset():
 	# normal stuff
-	gamestate = GAMESTATES.PLAYING
+	gamestate = GAMESTATES.START_SCREEN
 	reset_game.emit()
 	print("resetting game")
 	# game stuff
 	player_health = INITIAL_PLAYER_HEALTH
 	## kill mobs
 	total_demons = 0
-	for demon in demons:
-		demon.queue_free()
-	demons = []
+	motes = 0
+	delete_reset_array(demons)
+	delete_reset_array(drops)
+	
 	## reset timers (in signal)
 	## drop spell (in signal)
 	resume()
+	
+func start():
+	gamestate = GAMESTATES.START_SCREEN
+	start_game.emit()
+	player_health = INITIAL_PLAYER_HEALTH
+	## kill mobs
+	total_demons = 0
+	motes = 0
+	delete_reset_array(demons)
+	delete_reset_array(drops)
+	print("starting game")
 
 func pause():
 	gamestate = GAMESTATES.PAUSED
@@ -50,8 +72,13 @@ func resume():
 	print("resuming game")
 
 func endgame():
-	gamestate = GAMESTATES.WIN_SCREEN
+	pause()
 	end_game.emit()
+	gamestate = GAMESTATES.WIN_SCREEN
+	var hittables = []
+	hittables.append_array(Globals.demons)
+	for hittable in hittables:
+		hittable.hit(100)
 	print("ending game")
 
 func hit_player(damage: int):

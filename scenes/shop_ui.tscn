@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddof72eun3ikb"]
+[gd_scene load_steps=10 format=3 uid="uid://ghswit1war77"]
 
 [ext_resource type="Texture2D" uid="uid://bhcsca1rn8sxf" path="res://assets/Temp/Frame 22.png" id="1_fs6yy"]
 [ext_resource type="Texture2D" uid="uid://yby0vxfu113f" path="res://assets/ui-element/modal.png" id="2_epbsd"]
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="2_oixfk"]
-[ext_resource type="PackedScene" uid="uid://bdp6wh7aki3xb" path="res://scenes/shop_button.tscn" id="3_usj2y"]
+[ext_resource type="PackedScene" path="res://scenes/shop_button.tscn" id="3_usj2y"]
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="4_bidp2"]
 
 [sub_resource type="Theme" id="Theme_18xnp"]
@@ -34,7 +34,7 @@ expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 region_rect = Rect2(0, 0, 112, 112)
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

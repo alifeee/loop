@@ -1,19 +1,20 @@
+class_name Drop
 extends AnimatableBody2D
 
 @export var initial_varience: float = 50
+@export var pickup_distance: float = 10
+
 @export var fade_in_duration: float = 2
 @export var left_alone_duration: float = 2
 @export var fade_away_duration: float = 5
+@export var pickup_duration: float = 1
 
-
-# var target_loc: Vector2
-
-# func _physics_process(delta: float) -> void:
-
+var colleted = false
 var drop_tween: Tween
 
 func _on_ready() -> void:
-	print("Ready!!")
+	Globals.drops.append(self)
+	
 	drop_tween = get_tree().create_tween()
 	
 	var angle = randf() * 2 * PI
@@ -40,3 +41,35 @@ func _on_ready() -> void:
 		.tween_property(self, "modulate", Color(1, 1, 1, 0), fade_away_duration) \
 		.set_trans(Tween.TRANS_BOUNCE) \
 		.set_ease(Tween.EASE_IN_OUT)
+	
+	# i  Ii
+	# II i¬
+	drop_tween.tween_callback(self.die)
+
+func die():
+	Globals.drops.erase(self)
+	self.queue_free()
+	
+func hit(__):
+	if colleted:
+		return
+
+	colleted = true
+	drop_tween.stop()
+	
+	var post_death_tween: Tween = get_tree().create_tween()
+
+	Globals.motes+= 1	
+	
+	post_death_tween \
+		.tween_property(self, "global_position", Vector2(0, -pickup_distance) + self.global_position, pickup_duration) \
+			.set_trans(Tween.TRANS_SINE) \
+			.set_ease(Tween.EASE_IN_OUT)
+		
+	post_death_tween \
+		.tween_property(self, "modulate", Color(2, 2, 2, 0), pickup_duration) \
+		.set_trans(Tween.TRANS_BOUNCE) \
+		.set_ease(Tween.EASE_IN_OUT)
+		
+	post_death_tween.tween_callback(die)
+	
