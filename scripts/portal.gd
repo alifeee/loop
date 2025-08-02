@@ -13,6 +13,7 @@ func _ready() -> void:
 	packeddemon = preload("res://scenes/demon.tscn")
 	_on_timer_timeout()
 	Globals.pause_game.connect(stop_timer)
+	Globals.end_game.connect(stop_timer)
 	Globals.resume_game.connect(start_timer)
 	# rate
 	ratetimer.wait_time = rate_every_s
