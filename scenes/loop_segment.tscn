@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxikwibxofj3t"]
+
+[ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_wfudo"]
+
+[node name="LoopSegment" type="Sprite2D"]
+scale = Vector2(0.205, 0.495)
+texture = ExtResource("1_wfudo")
