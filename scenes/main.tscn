@@ -37,4 +37,3 @@ position = Vector2(803, 385)
 script = ExtResource("5_tefeu")
 
 [connection signal="timeout" from="InsidePortal/SpawnTimer" to="InsidePortal" method="_on_timer_timeout"]
-[connection signal="spawn_loop" from="Camera2D" to="." method="_on_camera_2d_spawn_loop"]
