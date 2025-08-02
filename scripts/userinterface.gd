@@ -37,6 +37,9 @@ func _process(delta: float) -> void:
 	
 	# rate mult
 	$stats/RateMult.text = str($"../Spawner".rate_multiply)
+	
+	# loop validity
+	$stats/LoopValid.text = str($"..".is_valid)
 
 func display_error(errortext: String) -> void:
 	var errorlabel = $errors/Error

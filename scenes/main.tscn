@@ -147,12 +147,16 @@ script = ExtResource("6_85g3d")
 shape = SubResource("CircleShape2D_choun")
 
 [node name="Wizard1" type="AnimatedSprite2D" parent="Centre"]
-position = Vector2(50, 78)
+texture_filter = 1
+position = Vector2(54, 70)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 autoplay = "default"
 
 [node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
-position = Vector2(-121, -13)
+texture_filter = 1
+position = Vector2(-139, -30)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yc10j")
 autoplay = "default"
 
@@ -378,6 +382,19 @@ offset_left = 64.0
 offset_top = 1.0
 offset_right = 104.0
 offset_bottom = 24.0
+
+[node name="LoopValidLabel" type="Label" parent="CanvasLayer/stats"]
+offset_left = 1.0
+offset_top = 210.0
+offset_right = 51.0
+offset_bottom = 233.0
+text = "loop valid"
+
+[node name="LoopValid" type="Label" parent="CanvasLayer/stats"]
+offset_left = 84.0
+offset_top = 210.0
+offset_right = 159.0
+offset_bottom = 233.0
 
 [node name="EndLabel" type="Label" parent="CanvasLayer"]
 visible = false
