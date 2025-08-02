@@ -83,3 +83,4 @@ func reach_middle() -> void:
 	Globals.hit_player(1)
 	# die
 	die()
+ 
