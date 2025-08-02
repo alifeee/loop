@@ -2,8 +2,15 @@ class_name Demon
 extends AnimatableBody2D
 
 @export var sprite: AnimatedSprite2D
+
+@export var drop_scene: PackedScene
+@export var drop_chance: float = 1
+@export var drop_amount: int = 1
+
 @export var walk_angle: float
 @export var walk_speed: float
+
+
 var health: float = 100
 var dead: bool = false
 var hittween: Tween
@@ -55,6 +62,12 @@ func die() -> void:
 	var dietween = get_tree().create_tween()
 	dietween.tween_property(self, "modulate:a", 0, 2)
 	dietween.tween_callback(func(): self.queue_free())
+	
+func make_drop() -> void:
+	for __ in drop_amount:
+		if drop_chance >= randf():
+			var drop = drop_scene.instantiate()
+
 
 func reach_middle() -> void:
 	# stop
