@@ -10,6 +10,7 @@ var error = ""
 @export_group("assets")
 @export var loop1: Loop
 @export_group("Loop Drawing")
+@export var LOOP_MAX_LENGTH: float = 500
 @export var LOOP_MIN_AREA: float = 2500
 @export var LOOP_MAX_START_END_DISTANCE: float = 50
 @export var LOOP_SPRITE_DISTANCE: float = 5
@@ -17,6 +18,7 @@ var error = ""
 @export var LOOP_RADIUS: float = 50
 @export var DAMAGE_PERCENT: float = 50
 
+var loop_distance: float = 0
 var mouse_positions: Array[Vector2] = []
 var loop_segments: Array[Node2D] = []
 var is_held = false
@@ -38,6 +40,7 @@ func pick_up_spell(pos):
 	# mouse down: spawn sprites and reset positions
 	is_held = true
 	mouse_positions = [pos]
+	loop_distance = 0
 
 func drop_spell():
 	# mouse up or start menu/etc: drop all sprites
@@ -93,7 +96,15 @@ func check_and_add_spell_point(pos):
 	#   add segment and carry on (wait for mouse up)
 	var last_position = mouse_positions[-1]
 	var this_position = pos
-	if this_position.distance_to(last_position) > LOOP_SPRITE_DISTANCE:
+	var distance = this_position.distance_to(last_position)
+	# length check
+	loop_distance += distance
+	if loop_distance > LOOP_MAX_LENGTH:
+		error_debug.emit("length too long!!!!")
+		drop_spell()
+		return
+	# new point check
+	if distance > LOOP_SPRITE_DISTANCE:
 		mouse_positions.append(this_position)
 		# add sprite at midpoint
 		var midpoint = last_position.lerp(this_position, 0.5)
