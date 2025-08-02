@@ -11,13 +11,13 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	if spawn_from == SPAWN_FROM.Centre:
-		print("spawning demon from centre")
+		#print("spawning demon from centre")
 		var newdemon: Demon = packeddemon.instantiate()
 		newdemon.position = Vector2(0,0)
 		newdemon.walk_angle = rng.randf_range(0.0, 2*PI)
 		add_child(newdemon)
 	if spawn_from == SPAWN_FROM.Outside:
-		print("spawning demon from outside")
+		#print("spawning demon from outside")
 		var newdemon: Demon = packeddemon.instantiate()
 		var spawning_angle = rng.randf_range(0.0, 2*PI)
 		var spawning_distance = 320 # px
@@ -26,6 +26,6 @@ func _on_timer_timeout() -> void:
 			spawning_distance * cos(spawning_angle)
 		)
 		newdemon.walk_angle = spawning_angle - PI
-		print(newdemon.position)
-		print(newdemon.walk_angle)
+		#print(newdemon.position)
+		#print(newdemon.walk_angle)
 		add_child(newdemon)

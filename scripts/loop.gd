@@ -7,15 +7,28 @@ enum ATTACK_TYPES {DamageOverTime, Instant}
 @export var DAMAGE_PERCENT: float = 20
 
 var fadetween: Tween
+var current_bodies: Array[Node2D] = []
 
 func _process(delta: float) -> void:
 	#var attack_targets = get_overlapping_bodies()
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
+	#print("add ", body, " to bodies")
+	if body not in current_bodies:
+		current_bodies.append(body)
+		body.hit(DAMAGE_PERCENT)
+	if attack_type != ATTACK_TYPES.DamageOverTime:
+		return
 	body.modulate = Color("#f8ff")
 
 func _on_body_exited(body: Node2D) -> void:
+	#print("remove ", body, " to bodies")
+	current_bodies.remove_at(
+		current_bodies.find(body)
+	)
+	if attack_type != ATTACK_TYPES.DamageOverTime:
+		return
 	if body is Demon and not body.dead:
 		body.modulate = Color("#ffff")
 
@@ -35,7 +48,9 @@ func _on_timer_timeout() -> void:
 func do_punch_and_disappear() -> void:
 	if attack_type != ATTACK_TYPES.Instant:
 		return
-	var attack_targets: Array[Node2D] = get_overlapping_bodies()
+	#var attack_targets: Array[Node2D] = get_overlapping_bodies()
+	var attack_targets: Array[Node2D] = current_bodies
+	#print("got attack targets", attack_targets)
 	for target in attack_targets:
 		if target is Demon:
 			target.hit(DAMAGE_PERCENT)

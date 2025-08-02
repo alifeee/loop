@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c51kaeayp4wn"]
+
+[ext_resource type="PackedScene" uid="uid://ck2h376ut281v" path="res://scenes/loop.tscn" id="1_errlg"]
+[ext_resource type="Script" uid="uid://cpqp16d3dm71j" path="res://scripts/test.gd" id="1_iyx0m"]
+[ext_resource type="PackedScene" uid="uid://bl2csjlnsrcy7" path="res://scenes/demon.tscn" id="2_bl13t"]
+
+[node name="test" type="Node2D"]
+script = ExtResource("1_iyx0m")
+
+[node name="Loop1" parent="." instance=ExtResource("1_errlg")]
+position = Vector2(48, 55)
+attack_type = 1
+DAMAGE_PERCENT = 50.0
+
+[node name="Demon" parent="." instance=ExtResource("2_bl13t")]
+position = Vector2(104, 51)
+walk_angle = -2.0
+walk_speed = 5.0
