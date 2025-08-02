@@ -6,7 +6,7 @@ extends Node2D
 @export var DAMAGE_PERCENT: float = 50
 
 var mouse_positions: Array[Vector2] = []
-var loop_segments: Array[Sprite2D] = []
+var loop_segments: Array[Node2D] = []
 var is_held = false
 var packed_loop_segment: PackedScene
 

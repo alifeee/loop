@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dc61jsp7ri5ni" path="res://scripts/loop.gd" id="1_fpe6o"]
 [ext_resource type="Texture2D" uid="uid://wajv0p62nlg7" path="res://icon.svg" id="1_p0t4i"]
 [ext_resource type="Texture2D" uid="uid://i4s55q5iy7e6" path="res://assets/animations/loop-effect/loop-damage.png" id="3_ayrsc"]
-[ext_resource type="Script" uid="uid://byc17nc8ui05a" path="res://scripts/animated_sprite.gd" id="4_kyqv0"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="4_kyqv0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpe6o"]
 radius = 50.0

@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://cpk7kjhmokc6l" path="res://scenes/globals.tscn" id="2_tipki"]
+[ext_resource type="PackedScene" uid="uid://cm3qopymteb3r" path="res://scenes/globals.tscn" id="2_tipki"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ck2h376ut281v" path="res://scenes/loop.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://b1o1776rup4my" path="res://scripts/userinterface.gd" id="5_tefeu"]
-[ext_resource type="Script" uid="uid://byc17nc8ui05a" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
+[ext_resource type="Script" path="res://scripts/animated_sprite.gd" id="6_85g3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -46,7 +46,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("loop1")]
+[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("loop1")]
 script = ExtResource("1_jyhfs")
 loop1 = NodePath("Loop1")
 DAMAGE_PERCENT = 100.0
