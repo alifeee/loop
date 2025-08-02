@@ -29,7 +29,6 @@ var motes: int = 0
 var time_elapsed: float = 0
 
 func _ready() -> void:
-	#start()
 	pass
 
 func _process(delta: float) -> void:
@@ -56,15 +55,12 @@ func resume():
 	gamestate = GAMESTATES.PLAYING
 	resume_game.emit()
 	print("resuming game")
-func endgame():
+func endgame(is_win: bool):
 	gamestate = GAMESTATES.WIN_SCREEN
-	pause()
 	end_game.emit()
-	var hittables = []
-	hittables.append_array(Globals.demons)
-	for hittable in hittables:
-		hittable.hit(100)
-	print("ending game")
+	if is_win:
+		for hittable in Globals.demons.duplicate():
+			hittable.hit(100)
 func reset():
 	gamestate = GAMESTATES.START_SCREEN
 	# normal stuff
@@ -85,7 +81,7 @@ func reset():
 func hit_player(damage: int):
 	player_health -= 1
 	if player_health <= 0:
-		endgame()
+		endgame(false)
 	player_hit.emit(player_health)
 
 func calc_polygon_area(coords) -> float:

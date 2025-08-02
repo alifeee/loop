@@ -51,7 +51,6 @@ func _ready() -> void:
 	Globals.resume_game.connect(resume)
 	Globals.end_game.connect(pause)
 	Globals.reset_game.connect(reset)
-	Globals.start()
 
 func start():
 	if CONTINUOUS_CASTING:

@@ -16,7 +16,7 @@ func _ready() -> void:
 	Globals.reset_game.connect(func(): $EndLabel.text = "you suck!")
 	close_button.pressed.connect(
 		func():
-			Globals.endgame()
+			Globals.endgame(true)
 			$EndLabel.text = "you s̶u̶c̶k̶ win!"
 	)
 	Globals.start_game.connect(func(): $EndLabel.visible = false)
