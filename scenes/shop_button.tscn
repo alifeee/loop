@@ -42,7 +42,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="no_upgrade_container" type="Panel" parent="Button"]
-visible = false
 custom_minimum_size = Vector2(90, 84)
 layout_mode = 1
 anchors_preset = 15
@@ -102,6 +101,7 @@ texture = ExtResource("2_1oc1l")
 expand_mode = 1
 
 [node name="upgrade_container" type="Panel" parent="Button"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
