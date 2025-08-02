@@ -7,7 +7,8 @@ func _ready() -> void:
 	#start_time = Time.get_unix_time_from_system()
 	$EndLabel.visible = false
 	Globals.end_game.connect(func(): $EndLabel.visible = true)
-
+	Globals.reset_game.connect(func(): time_elapsed = 0)
+	
 func _process(delta: float) -> void:
 
 	# time

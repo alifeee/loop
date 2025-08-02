@@ -31,6 +31,10 @@ func _physics_process(delta: float) -> void:
 	var distance = delta * walk_speed
 	var direction_unit_vec = (walk_towards - position).normalized()
 	position = position + direction_unit_vec * distance
+	if position.x > 0:
+		$AnimatedSprite2D.scale.x = -1  # Facing right
+	elif position.x < 0:
+		$AnimatedSprite2D.scale.x = 1 # Facing left
 
 func hit(damage: float):
 	#print("got hit")
