@@ -22,19 +22,29 @@ var loop_distance: float = 0
 var mouse_positions: Array[Vector2] = []
 var loop_segments: Array[Node2D] = []
 var is_held = false
+
 var packed_loop_segment: PackedScene
+var packedloop: PackedScene
 
 func _init() -> void:
+	packedloop = preload("res://scenes/loop.tscn")
 	packed_loop_segment = preload("res://scenes/loop_segment.tscn")
 
-func do_loop_damage(position: Vector2, radius: float) -> void:
+func do_loop_damage(pos: Vector2, radius: float) -> void:
 	# check if each demon is in range and hit if it is
-	loop1.position = position
 	for demon in Globals.demons:
 		#print("distance: ", demon.global_position.distance_to(position))
-		if demon.global_position.distance_to(position) < radius:
+		if demon.global_position.distance_to(pos) < radius:
 			#print("demon is hit !", demon)
 			demon.hit(DAMAGE_PERCENT)
+	var loop = packedloop.instantiate()
+	loop.position = pos
+	var tween = get_tree().create_tween()
+	tween.tween_property(loop, "modulate:a", 0, 0.5)
+	tween.tween_callback(
+		func(): loop.queue_free()
+	)
+	add_child(loop)
 
 func pick_up_spell(pos):
 	# mouse down: spawn sprites and reset positions
