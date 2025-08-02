@@ -384,6 +384,7 @@ offset_right = 104.0
 offset_bottom = 24.0
 
 [node name="LoopValidLabel" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 210.0
 offset_right = 51.0
@@ -391,6 +392,7 @@ offset_bottom = 233.0
 text = "loop valid"
 
 [node name="LoopValid" type="Label" parent="CanvasLayer/stats"]
+layout_mode = 0
 offset_left = 84.0
 offset_top = 210.0
 offset_right = 159.0
