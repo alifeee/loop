@@ -13,6 +13,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
+		return
 	var distance = delta * walk_speed
 	position = position + Vector2(
 		distance * sin(walk_angle),
