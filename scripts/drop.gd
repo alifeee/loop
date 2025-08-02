@@ -9,8 +9,30 @@ extends AnimatableBody2D
 @export var fade_away_duration: float = 5
 @export var pickup_duration: float = 1
 
+@export var sprite: AnimatedSprite2D = self.find_child("Sprite2D")
+
 var colleted = false
 var drop_tween: Tween
+var post_death_tween: Tween
+
+func _ready() -> void:
+	Globals.pause_game.connect(pause)
+	Globals.resume_game.connect(play)
+	
+	assert(sprite)
+
+func pause() -> void:
+	sprite.pause()
+	drop_tween.pause()
+	
+	if post_death_tween != null:
+		post_death_tween.pause()
+
+func play() -> void:
+	sprite.play()
+	drop_tween.play()
+	if post_death_tween != null:
+		post_death_tween.play()
 
 func _on_ready() -> void:
 	Globals.drops.append(self)
@@ -57,9 +79,9 @@ func hit(__):
 	colleted = true
 	drop_tween.stop()
 	
-	var post_death_tween: Tween = get_tree().create_tween()
+	post_death_tween = get_tree().create_tween()
 
-	Globals.motes+= 1	
+	Globals.motes+= 1
 	
 	post_death_tween \
 		.tween_property(self, "global_position", Vector2(0, -pickup_distance) + self.global_position, pickup_duration) \
