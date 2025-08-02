@@ -10,17 +10,35 @@ enum GAMESTATES {
 var gamestate = GAMESTATES.PLAYING
 
 # signals
+signal reset_game
 signal pause_game
 signal resume_game
 signal end_game
 signal player_hit
 
 # global variables
-@export var player_health: int = 3
+@export var INITIAL_PLAYER_HEALTH: int = 3
+var player_health: int = 3
 var total_demons = 0
 var demons: Array[Demon] = []
 var kill_count = 0
 var motes = 0
+
+func reset():
+	# normal stuff
+	gamestate = GAMESTATES.PLAYING
+	reset_game.emit()
+	print("resetting game")
+	# game stuff
+	player_health = INITIAL_PLAYER_HEALTH
+	## kill mobs
+	total_demons = 0
+	for demon in demons:
+		demon.queue_free()
+	demons = []
+	## reset timers (in signal)
+	## drop spell (in signal)
+	resume()
 
 func pause():
 	gamestate = GAMESTATES.PAUSED
