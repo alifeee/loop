@@ -56,6 +56,7 @@ func _ready() -> void:
 	Globals.win.connect(win)
 	Globals.spawn_bunch_of_enemies.connect(lose)
 	Globals.sound_worm_hit.connect(play_worm_hit)
+	Globals.sound_worm_thud.connect(play_worm_thud)
 	Globals.sound_loop_success.connect(play_loop_success)
 	Globals.sound_player_hit.connect(play_player_hit)
 	Globals.sound_collect_mote.connect(play_collect_mote)
@@ -92,6 +93,9 @@ func lose():
 func play_worm_hit():
 	print("play worm hit")
 	$Node/WormHitAudio.play()
+func play_worm_thud():
+	print("play worm thud")
+	$Node/WormThudAudio.play()
 func play_loop_success():
 	print("play loop success")
 	$Node/LoopSuccessAudio.play()
