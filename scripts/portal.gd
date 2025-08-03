@@ -64,6 +64,7 @@ func spawnenemies() -> void:
 			demon.scale.x = -1
 		else:
 			demon.scale.x = 1
+		demon.DemonDrops = DemonDrops
 		Globals.total_demons += 1
 		Globals.demons.append(demon)
 		add_child(demon)
