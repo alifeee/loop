@@ -46,7 +46,11 @@ func _ready() -> void:
 	
 	var init_col = Color(self.modulate)
 	self.modulate.a = 0
-	
+
+	var num_frames = sprite.sprite_frames.get_frame_count("default")
+	sprite.frame = rng.randi_range(0, num_frames)
+	sprite.frame_progress = rng.randf_range(0, 1)
+
 	var twn = get_tree().create_tween()
 	twn.tween_property(self, "modulate", init_col, 2) \
 			.set_trans(Tween.TRANS_QUART) \
