@@ -105,11 +105,7 @@ func _on_ready() -> void:
 		.set_ease(Tween.EASE_OUT)
 	
 	drop_tween.tween_interval(invul_duration + randf() * uncertainty)
-	drop_tween.tween_callback(func(): 
-		dead = false
-		sprite_playing = true
-		sprite.play()
-	)
+	drop_tween.tween_callback(disable_invuln)
 	
 	drop_tween.parallel() \
 		.tween_property(self, "modulate", Color(1, 1, 1, target_opacity), fade_in_duration) \
@@ -126,6 +122,12 @@ func _on_ready() -> void:
 	# i  Ii
 	# II i¬
 	drop_tween.tween_callback(self.die)
+
+
+func disable_invuln():
+	dead = false
+	sprite_playing = true
+	sprite.play()
 
 """
 Kills the drop instantly
