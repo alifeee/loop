@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c0wsuvtxawbo3"]
+[gd_scene load_steps=23 format=3 uid="uid://c0wsuvtxawbo3"]
 
 [ext_resource type="Script" uid="uid://snprantw3kcp" path="res://scripts/start.gd" id="1_u80x2"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_bodal"]
@@ -28,10 +28,6 @@ region = Rect2(200, 0, 100, 100)
 atlas = ExtResource("3_bodal")
 region = Rect2(300, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8itgj"]
-atlas = ExtResource("3_bodal")
-region = Rect2(0, 100, 100, 100)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tn317"]
 atlas = ExtResource("3_bodal")
 region = Rect2(100, 100, 100, 100)
@@ -43,10 +39,6 @@ region = Rect2(200, 100, 100, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgjjs"]
 atlas = ExtResource("3_bodal")
 region = Rect2(300, 100, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1nvso"]
-atlas = ExtResource("3_bodal")
-region = Rect2(0, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsp51"]
 atlas = ExtResource("3_bodal")
@@ -76,10 +68,6 @@ region = Rect2(200, 300, 100, 100)
 atlas = ExtResource("3_bodal")
 region = Rect2(300, 300, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aox1m"]
-atlas = ExtResource("3_bodal")
-region = Rect2(0, 400, 100, 100)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_hp05y"]
 animations = [{
 "frames": [{
@@ -96,9 +84,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_4ge6i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8itgj")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_tn317")
 }, {
 "duration": 1.0,
@@ -106,10 +91,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pgjjs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1nvso")
-}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gsp51")
 }, {
@@ -130,12 +117,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_twuju")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aox1m")
 }],
 "loop": true,
-"name": &"default",
+"name": &"default2",
 "speed": 5.0
 }]
 
@@ -176,8 +160,15 @@ theme = SubResource("Theme_4ge6i")
 theme_override_fonts/font = ExtResource("3_0auqf")
 text = "Start"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(579.5, 171)
-scale = Vector2(1.23, 1.18)
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(459, 170)
+scale = Vector2(1.5129, 1.3924)
 sprite_frames = SubResource("SpriteFrames_hp05y")
+animation = &"default2"
 autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(724, 170)
+scale = Vector2(1.5129, 1.3924)
+sprite_frames = SubResource("SpriteFrames_hp05y")
+autoplay = "default2"
