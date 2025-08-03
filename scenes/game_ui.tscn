@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhf44q5ylwxc"]
+[gd_scene load_steps=14 format=3 uid="uid://bhf44q5ylwxc"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
@@ -9,6 +9,9 @@
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="7_o3bws"]
 [ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="8_3huio"]
 [ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="9_3huio"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kh4o"]
+bg_color = Color(0.556863, 0.12549, 0.792157, 0.752941)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjwyb"]
 bg_color = Color(0.15, 0.15, 0.15, 1)
@@ -200,6 +203,7 @@ theme_override_font_sizes/font_size = 20
 text = "Portal"
 
 [node name="ProgressBar" type="ProgressBar" parent="Panel"]
+self_modulate = Color(0.524842, 0.000206481, 0.528301, 1)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -211,6 +215,7 @@ offset_top = -201.0
 offset_bottom = 243.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_5kh4o")
 max_value = 30.0
 step = 1.0
 value = 1.0
