@@ -15,7 +15,7 @@ extends AnimatableBody2D
 @export var sprite: AnimatedSprite2D
 @export var allow_sprite_flip: bool = true
 
-var locked = true
+var dead = true
 var drop_tween: Tween
 var post_death_tween: Tween
 
@@ -93,7 +93,7 @@ func _on_ready() -> void:
 	
 	drop_tween.tween_interval(invul_duration)
 	drop_tween.tween_callback(func(): 
-		self.locked = false
+		self.dead = false
 		self.sprite_playing = true
 		sprite.play()
 	)
@@ -121,10 +121,10 @@ func die():
 
 
 func hit(__):
-	if locked:
+	if dead:
 		return
 
-	locked = true
+	dead = true
 	drop_tween.stop()
 	
 	post_death_tween = get_tree().create_tween()
