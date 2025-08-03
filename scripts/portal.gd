@@ -33,6 +33,7 @@ func _ready() -> void:
 	Globals.pause_game.connect(pause)
 	Globals.resume_game.connect(resume)
 	Globals.end_game.connect(pause)
+	Globals.spawn_bunch_of_enemies.connect(spawnenemies)
 	Globals.reset_game.connect(reset)
 
 func start() -> void:
@@ -49,6 +50,24 @@ func reset() -> void:
 	timer.wait_time = timer_initial_wait
 	timer.stop()
 	ratetimer.stop()
+func spawnenemies() -> void:
+	for i in range(100):
+		var demon = packeddemon.instantiate()
+		var distance = rng.randf_range(0.25, 1)
+		var spawning_angle = rng.randf_range(0.0, 2*PI)
+		demon.position = Vector2(
+			distance * ELLIPSE_X_RADIUS * sin(spawning_angle),
+			distance * ELLIPSE_Y_RADIUS * cos(spawning_angle)
+		)
+		demon.modulate.a = 0
+		if spawning_angle < PI:
+			demon.scale.x = -1
+		else:
+			demon.scale.x = 1
+		Globals.total_demons += 1
+		Globals.demons.append(demon)
+		add_child(demon)
+		demon.slow_appear()
 
 func increase_rate() -> void:
 	var new_time = (timer.wait_time - rate_subtract_s) * rate_multiply

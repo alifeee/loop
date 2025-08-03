@@ -29,9 +29,10 @@ func _ready() -> void:
 	)
 	shop_button.pressed.connect(
 		func():
-			Globals.pause()
-			if shop_canvas:
-				shop_canvas.visible = true
+			if Globals.gamestate == Globals.GAMESTATES.PLAYING:
+				Globals.pause()
+				if shop_canvas:
+					shop_canvas.visible = true
 	)
 	var close_button: Button = shop_canvas.find_child("CloseButton")
 	close_button.pressed.connect(
