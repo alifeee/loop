@@ -15,11 +15,19 @@ extends Sprite2D
 @export var flicker_time_min: float
 @export var flicker_time_max: float
 
+var initial_modulate: Color
+
 var tween: Tween
 
 func _ready() -> void:
 	randomly_make_shadow_bigger_and_smaller()
 	Globals.spawn_bunch_of_enemies.connect(stopstuff)
+	Globals.reset_game.connect(reset)
+	initial_modulate = modulate
+	reset()
+
+func reset() -> void:
+	modulate = initial_modulate
 
 #func _process(delta: float) -> void:
 	#scale = Vector2(

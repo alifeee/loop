@@ -57,6 +57,7 @@ theme_override_font_sizes/font_size = 20
 text = "00:00"
 
 [node name="KillCounter" type="Panel" parent="TopLeftUI"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_top = 34.0
@@ -87,6 +88,7 @@ theme_override_font_sizes/font_size = 20
 text = "999"
 
 [node name="Health" type="Panel" parent="TopLeftUI"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_top = 68.0

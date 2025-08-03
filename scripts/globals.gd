@@ -57,7 +57,9 @@ func start():
 	## kill mobs
 	delete_reset_array(demons)
 	delete_reset_array(drops)
+	delete_reset_array(loops)
 	print("starting game")
+	resume()
 func pause():
 	gamestate = GAMESTATES.SHOPPING
 	pause_game.emit()
@@ -70,6 +72,9 @@ func endgame(is_win: bool):
 	gamestate = GAMESTATES.WIN_SCREEN
 	print("emit end_game")
 	end_game.emit()
+	for loop: Loop in loops.duplicate():
+		loop.die()
+	loops = []
 	if is_win:
 		win.emit()
 		for hittable in Globals.demons.duplicate():

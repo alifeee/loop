@@ -46,6 +46,12 @@ func _ready() -> void:
 				shop_canvas.visible = false
 	)
 	
+	Globals.reset_game.connect(reset)
+	
+func reset():
+	$TopLeftUI.visible = true
+	$Panel.visible = true
+	
 func _process(delta: float) -> void:
 	$TopLeftUI/Timer/Text.text = str(snapped(Globals.time_elapsed, 0.1))
 	$TopLeftUI/Health/Text.text = str(Globals.player_health)
