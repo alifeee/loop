@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://besntdjocs2lr" path="res://assets/animations/water/0014.jpg" id="16_jo1tx"]
 [ext_resource type="PackedScene" uid="uid://46rk0std7vf4" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://cdefpd0fe3qtr" path="res://assets/animations/water/0015.jpg" id="17_jfpmd"]
-[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://cwi3qoa8555st" path="res://scenes/start.tscn" id="17_muem4"]
 [ext_resource type="Texture2D" uid="uid://c1v1cx551jal5" path="res://assets/animations/water/0016.jpg" id="18_nb646"]
 [ext_resource type="Texture2D" uid="uid://c5cjbcyjghpuj" path="res://assets/animations/water/0017.jpg" id="19_xewid"]
 [ext_resource type="Texture2D" uid="uid://dy3eae3xu6f2i" path="res://assets/animations/water/0018.jpg" id="20_gdurg"]
@@ -2195,6 +2195,9 @@ sprite_frames = SubResource("SpriteFrames_gqmmt")
 autoplay = "default"
 script = ExtResource("6_85g3d")
 
+[node name="LoopContainer" type="Node2D" parent="."]
+z_index = 1
+
 [node name="Centre" type="Area2D" parent="." node_paths=PackedStringArray("wizards_array", "hats_array")]
 position = Vector2(576, 324)
 script = ExtResource("5_ya4ey")
@@ -2592,9 +2595,6 @@ base_size = 1.01
 flicker_amplitude = 0.01
 flicker_time_min = 0.5
 flicker_time_max = 1.0
-
-[node name="LoopContainer" type="Node2D" parent="."]
-z_index = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
