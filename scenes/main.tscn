@@ -507,7 +507,6 @@
 [ext_resource type="AudioStream" uid="uid://d05b45o0qxsfe" path="res://assets/sound effects/John Sounds/Worm Death Sound.wav" id="504_aahym"]
 [ext_resource type="AudioStream" uid="uid://bajjt25ioi20t" path="res://assets/sound effects/loop.wav" id="505_2vmv4"]
 [ext_resource type="AudioStream" uid="uid://dvy8s1h2ivmgj" path="res://assets/sound effects/Initial Test/Damage taken sound effect _1.wav" id="506_tpl0g"]
-[ext_resource type="Script" uid="uid://bt0h3wr4fjgfy" path="res://scripts/loop_success_audio.gd" id="507_b0ihq"]
 [ext_resource type="AudioStream" uid="uid://bbut8bf8nr4tf" path="res://assets/sound effects/mote_collect.wav" id="507_wooaw"]
 [ext_resource type="AudioStream" uid="uid://dmik23fe5vhqe" path="res://assets/music/GMTK 2025 tutorial loop music.mp3" id="508_wooaw"]
 [ext_resource type="AudioStream" uid="uid://uodmyio6gsuq" path="res://assets/sound effects/light-thud.wav" id="510_h6ik7"]
@@ -2177,6 +2176,12 @@ animations = [{
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0ld40"]
 gradient = SubResource("Gradient_dp3eg")
 
+[sub_resource type="GDScript" id="GDScript_h6ik7"]
+script/source = "extends AudioStreamPlayer
+
+func _ready() -> void:
+	self.pitch_scale *= randf_range(0.58, 1.03)"
+
 [node name="Node2D2" type="Node2D" node_paths=PackedStringArray("audio_mute", "LOOP_CONTAINER")]
 script = ExtResource("1_jyhfs")
 audio_mute = NodePath("CanvasLayer/CheckButton")
@@ -2660,7 +2665,7 @@ volume_db = -21.0
 [node name="LoopSuccessAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("505_2vmv4")
 volume_db = -15.0
-script = ExtResource("507_b0ihq")
+script = SubResource("GDScript_h6ik7")
 
 [node name="PlayerHitAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("506_tpl0g")
