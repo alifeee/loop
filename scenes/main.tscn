@@ -1,4 +1,4 @@
-[gd_scene load_steps=539 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=540 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
@@ -502,6 +502,7 @@
 [ext_resource type="Texture2D" uid="uid://c5dvl1g08jfka" path="res://assets/animations/water/0478.jpg" id="480_eakhk"]
 [ext_resource type="Texture2D" uid="uid://bbr0bw3c6nu0m" path="res://assets/animations/water/0479.jpg" id="481_rnvxv"]
 [ext_resource type="Texture2D" uid="uid://dsc68c145hgix" path="res://assets/animations/water/0480.jpg" id="482_meeji"]
+[ext_resource type="PackedScene" uid="uid://bbi6850r4kbrr" path="res://scenes/wizard_particles.tscn" id="492_wooaw"]
 [ext_resource type="AudioStream" uid="uid://bdc2l41ktgpm1" path="res://assets/music/GMTK 2025 loop main theme v2.mp3" id="503_qkihs"]
 [ext_resource type="AudioStream" uid="uid://d05b45o0qxsfe" path="res://assets/sound effects/John Sounds/Worm Death Sound.wav" id="504_aahym"]
 [ext_resource type="AudioStream" uid="uid://bajjt25ioi20t" path="res://assets/sound effects/loop.wav" id="505_2vmv4"]
@@ -2272,6 +2273,12 @@ autoplay = "default"
 script = ExtResource("6_85g3d")
 animateonwin = true
 
+[node name="CPUParticles2D2" parent="Centre/Wizard1" instance=ExtResource("492_wooaw")]
+position = Vector2(-16.5, -6.5)
+
+[node name="CPUParticles2D" parent="Centre/Wizard1" instance=ExtResource("492_wooaw")]
+position = Vector2(10.5, -14.5)
+
 [node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
 z_index = 1
 texture_filter = 1
@@ -2282,6 +2289,9 @@ autoplay = "default"
 script = ExtResource("6_85g3d")
 animateonwin = true
 
+[node name="CPUParticles2D2" parent="Centre/Wizard2" instance=ExtResource("492_wooaw")]
+position = Vector2(-1.5, 2.5)
+
 [node name="Wizard3" type="AnimatedSprite2D" parent="Centre"]
 z_index = 1
 texture_filter = 1
@@ -2291,6 +2301,12 @@ sprite_frames = SubResource("SpriteFrames_jscy8")
 autoplay = "default"
 script = ExtResource("6_85g3d")
 animateonwin = true
+
+[node name="CPUParticles2D2" parent="Centre/Wizard3" instance=ExtResource("492_wooaw")]
+position = Vector2(-18.5, -5)
+
+[node name="CPUParticles2D3" parent="Centre/Wizard3" instance=ExtResource("492_wooaw")]
+position = Vector2(18, -0.5)
 
 [node name="Hat1" type="Sprite2D" parent="Centre"]
 visible = false
