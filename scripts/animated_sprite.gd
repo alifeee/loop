@@ -3,7 +3,7 @@ extends AnimatedSprite2D
 func _ready() -> void:
 	Globals.pause_game.connect(pause)
 	Globals.resume_game.connect(play)
-	Globals.end_game.connect(_win)
+	Globals.win.connect(_win)
 
 func _win ():
 	play("summon_portal")
