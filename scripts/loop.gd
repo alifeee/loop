@@ -4,6 +4,7 @@ extends Node2D
 var rng = RandomNumberGenerator.new()
 
 @export var damage_timer: Timer
+@export var particles: CPUParticles2D
 @export var DAMAGE_TIMER_WAIT: float = 0.15
 @export var DAMAGE_TIMER_DAMAGE: float = 34
 @export var DAMAGE_ANIMATION_TIME: float = 0.05
@@ -18,9 +19,15 @@ func _ready() -> void:
 	damage_timer.stop()
 	damage_timer.start()
 	_on_damage_timer_timeout()
+	particles.emitting = false
+	modulate.a = 1
 
 func _process(delta: float) -> void:
-	pass
+	if Globals.loops.find(self) == 0 and len(Globals.loops) > 2:
+		particles.emitting = true
+		modulate.a = 0.8
+		var time_elapsed = Time.get_ticks_msec()
+		scale = (1 - sin(time_elapsed/150) / 10) * Vector2(1,1)
 
 func die():
 	Globals.loops.erase(self)

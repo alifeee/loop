@@ -24,6 +24,7 @@ func _ready() -> void:
 	Globals.spawn_bunch_of_enemies.connect(stopstuff)
 	Globals.reset_game.connect(reset)
 	initial_modulate = modulate
+	visible = true
 	reset()
 
 func reset() -> void:
