@@ -57,6 +57,9 @@ func _ready() -> void:
 	Globals.sound_loop_success.connect(func():$Node/LoopSuccessAudio.play )
 	Globals.sound_player_hit.connect(func(): $Node/PlayerHitAudio.play)
 	Globals.sound_collect_mote.connect(func(): $Node/CollectMoteAudio.play)
+	
+	# go find section in code that triggers thing, and run this
+	# Globals.sound_collect_mote.emit()
 
 func start():
 	if CONTINUOUS_CASTING:

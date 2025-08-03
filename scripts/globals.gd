@@ -39,6 +39,9 @@ var kill_count: int = 0
 var motes: int = 0
 var time_elapsed: float = 0
 
+# Silly Variables
+var hats_owned: int = 0
+
 func _ready() -> void:
 	pass
 

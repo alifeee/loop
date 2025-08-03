@@ -30,5 +30,6 @@ func buyhat():
 	for hat in hats_array:
 		if not hat.visible:
 			Globals.motes -= 20
+			Globals.hats_owned += 1
 			hat.visible = true
 			break

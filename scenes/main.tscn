@@ -1,4 +1,4 @@
-[gd_scene load_steps=538 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=535 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
@@ -503,9 +503,6 @@
 [ext_resource type="Texture2D" uid="uid://bbr0bw3c6nu0m" path="res://assets/animations/water/0479.jpg" id="481_rnvxv"]
 [ext_resource type="Texture2D" uid="uid://dsc68c145hgix" path="res://assets/animations/water/0480.jpg" id="482_meeji"]
 [ext_resource type="AudioStream" uid="uid://bdc2l41ktgpm1" path="res://assets/music/GMTK 2025 loop main theme v2.mp3" id="503_qkihs"]
-[ext_resource type="AudioStream" uid="uid://d05b45o0qxsfe" path="res://assets/sound effects/John Sounds/Worm Death Sound.wav" id="504_tpl0g"]
-[ext_resource type="AudioStream" uid="uid://bsbghxqt3bt2v" path="res://assets/sound effects/Initial Test/Defeat sound 1.wav" id="505_2vmv4"]
-[ext_resource type="AudioStream" uid="uid://cxcfmnlt07qsd" path="res://assets/sound effects/Initial Test/Dont have enough currency to buy.wav" id="506_wooaw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gqmmt"]
 animations = [{
@@ -2630,21 +2627,6 @@ flicker_time_max = 1.0
 [node name="MainGameThemeAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("503_qkihs")
 parameters/looping = false
-
-[node name="WormHitAudio" type="AudioStreamPlayer" parent="Node"]
-stream = ExtResource("504_tpl0g")
-volume_db = -10.895
-pitch_scale = 0.85
-
-[node name="LoopSuccessAudio" type="AudioStreamPlayer" parent="Node"]
-
-[node name="PlayerHitAudio" type="AudioStreamPlayer" parent="Node"]
-stream = ExtResource("505_2vmv4")
-
-[node name="CollectMoteAudio" type="AudioStreamPlayer" parent="Node"]
-stream = ExtResource("506_wooaw")
-volume_db = -9.369
-pitch_scale = 2.71
 
 [connection signal="error_debug" from="." to="DebugStats" method="display_error"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
