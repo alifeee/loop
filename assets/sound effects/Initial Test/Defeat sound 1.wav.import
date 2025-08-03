@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bsbghxqt3bt2v"
-path="res://.godot/imported/Defeat sound 1.wav-c83c7f48c29328d9732d759145b0ddbb.sample"
+path="res://.godot/imported/Defeat sound 1.wav-66352345c4db57b91a498121eed99590.sample"
 
 [deps]
 
-source_file="res://assets/sound effects/Defeat sound 1.wav"
-dest_files=["res://.godot/imported/Defeat sound 1.wav-c83c7f48c29328d9732d759145b0ddbb.sample"]
+source_file="res://assets/sound effects/Initial Test/Defeat sound 1.wav"
+dest_files=["res://.godot/imported/Defeat sound 1.wav-66352345c4db57b91a498121eed99590.sample"]
 
 [params]
 

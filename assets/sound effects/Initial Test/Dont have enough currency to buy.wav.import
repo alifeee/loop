@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cxcfmnlt07qsd"
+path="res://.godot/imported/Dont have enough currency to buy.wav-7df1a457c49135538e09f80504373653.sample"
+
+[deps]
+
+source_file="res://assets/sound effects/Initial Test/Dont have enough currency to buy.wav"
+dest_files=["res://.godot/imported/Dont have enough currency to buy.wav-7df1a457c49135538e09f80504373653.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

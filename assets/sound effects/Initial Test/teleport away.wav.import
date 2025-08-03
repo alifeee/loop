@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://f7o60s5sgsup"
-path="res://.godot/imported/teleport away.wav-45622e6d7ad56fbe97784e5ff73adfc8.sample"
+path="res://.godot/imported/teleport away.wav-7a20edebd3c2cda6ca03a103b254b491.sample"
 
 [deps]
 
-source_file="res://assets/sound effects/teleport away.wav"
-dest_files=["res://.godot/imported/teleport away.wav-45622e6d7ad56fbe97784e5ff73adfc8.sample"]
+source_file="res://assets/sound effects/Initial Test/teleport away.wav"
+dest_files=["res://.godot/imported/teleport away.wav-7a20edebd3c2cda6ca03a103b254b491.sample"]
 
 [params]
 

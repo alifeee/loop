@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cdnc7efs3lkdi"
+path="res://.godot/imported/Damage taken sound effect 2.wav-1799db4d7dd93edbb88b2579c9165984.sample"
+
+[deps]
+
+source_file="res://assets/sound effects/Initial Test/Damage taken sound effect 2.wav"
+dest_files=["res://.godot/imported/Damage taken sound effect 2.wav-1799db4d7dd93edbb88b2579c9165984.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

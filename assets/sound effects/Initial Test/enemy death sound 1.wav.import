@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dw0bsmxt4blxk"
-path="res://.godot/imported/enemy death sound 1.wav-ae8ae3c5b75b5aa151f8c005772f015f.sample"
+path="res://.godot/imported/enemy death sound 1.wav-59e265ae739b29c6d2c4527db79fcb89.sample"
 
 [deps]
 
-source_file="res://assets/sound effects/enemy death sound 1.wav"
-dest_files=["res://.godot/imported/enemy death sound 1.wav-ae8ae3c5b75b5aa151f8c005772f015f.sample"]
+source_file="res://assets/sound effects/Initial Test/enemy death sound 1.wav"
+dest_files=["res://.godot/imported/enemy death sound 1.wav-59e265ae739b29c6d2c4527db79fcb89.sample"]
 
 [params]
 

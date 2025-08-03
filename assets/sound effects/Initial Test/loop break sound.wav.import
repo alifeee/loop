@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://hob1au8bsvtk"
-path="res://.godot/imported/loop break sound.wav-f1b4c6400251382013a9a2ddf3da7399.sample"
+path="res://.godot/imported/loop break sound.wav-c208e662ad10d65deb5989564e09fbf7.sample"
 
 [deps]
 
-source_file="res://assets/sound effects/loop break sound.wav"
-dest_files=["res://.godot/imported/loop break sound.wav-f1b4c6400251382013a9a2ddf3da7399.sample"]
+source_file="res://assets/sound effects/Initial Test/loop break sound.wav"
+dest_files=["res://.godot/imported/loop break sound.wav-c208e662ad10d65deb5989564e09fbf7.sample"]
 
 [params]
 

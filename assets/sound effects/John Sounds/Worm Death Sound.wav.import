@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d05b45o0qxsfe"
+path="res://.godot/imported/Worm Death Sound.wav-e652065e8a2aefad5066d7d094d7b710.sample"
+
+[deps]
+
+source_file="res://assets/sound effects/John Sounds/Worm Death Sound.wav"
+dest_files=["res://.godot/imported/Worm Death Sound.wav-e652065e8a2aefad5066d7d094d7b710.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

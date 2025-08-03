@@ -53,22 +53,22 @@ func _ready() -> void:
 	Globals.reset_game.connect(reset)
 	Globals.win.connect(win)
 	Globals.spawn_bunch_of_enemies.connect(lose)
-	Globals.sound_worm_hit.connect(func(): pass)
-	Globals.sound_loop_success.connect(func(): pass)
-	Globals.sound_player_hit.connect(func(): pass)
-	Globals.sound_collect_mote.connect(func(): pass)
+	Globals.sound_worm_hit.connect(func():$Node/WormHitAudio.play)
+	Globals.sound_loop_success.connect(func():$Node/LoopSuccessAudio.play )
+	Globals.sound_player_hit.connect(func(): $Node/PlayerHitAudio.play)
+	Globals.sound_collect_mote.connect(func(): $Node/CollectMoteAudio.play)
 
 func start():
 	if CONTINUOUS_CASTING:
 		pick_up_spell(get_viewport().get_mouse_position())
-	$Node/AudioStreamPlayer.play()
+	$Node/MainGameThemeAudio.play()
 func pause():
 	drop_spell()
 func resume():
 	pass
 func reset():
 	drop_spell()
-	$Node/AudioStreamPlayer.stop()
+	$Node/MainGameThemeAudio.stop()
 func win():
 	pass
 func lose():

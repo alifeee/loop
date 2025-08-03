@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cr8to87wc157y"
-path="res://.godot/imported/portal sound.wav-6fd8dfadfaca99aad8f2503c01cbab97.sample"
+path="res://.godot/imported/portal sound.wav-d5cd7d9bf5b6fdc485bb4f5cdb150849.sample"
 
 [deps]
 
-source_file="res://assets/sound effects/portal sound.wav"
-dest_files=["res://.godot/imported/portal sound.wav-6fd8dfadfaca99aad8f2503c01cbab97.sample"]
+source_file="res://assets/sound effects/Initial Test/portal sound.wav"
+dest_files=["res://.godot/imported/portal sound.wav-d5cd7d9bf5b6fdc485bb4f5cdb150849.sample"]
 
 [params]
 
