@@ -116,7 +116,7 @@ func make_drop() -> void:
 	for __ in drop_amount:
 		if drop_chance >= randf():
 			var drop = drop_scene.instantiate()
-			drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
+			drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance)) * randf() * drop_variance
 			DemonDrops.add_child(drop)
 
 
