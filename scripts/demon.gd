@@ -80,14 +80,17 @@ func hit(damage: float):
 func die() -> void:
 	if hittween:
 		hittween.kill()
-		
-	sprite.stop()
 	
 	dead = true
 	self.walk_speed = 0
 	self.modulate = Color("#f0ff")
 	self.collision_layer = 2
-
+	
+	sprite.play("death")
+	await get_tree().create_timer(1).timeout
+	sprite.stop()
+	sprite.visible = false
+	
 	spawn_tween = get_tree().create_tween()
 	spawn_tween.tween_interval(moat_spawn_delay)
 	spawn_tween.tween_callback(make_drop)

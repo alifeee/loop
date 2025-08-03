@@ -51,6 +51,8 @@ func _ready() -> void:
 	Globals.resume_game.connect(resume)
 	Globals.end_game.connect(pause)
 	Globals.reset_game.connect(reset)
+	Globals.win.connect(win)
+	Globals.spawn_bunch_of_enemies.connect(lose)
 
 func start():
 	if CONTINUOUS_CASTING:
@@ -63,6 +65,10 @@ func resume():
 func reset():
 	drop_spell()
 	$Node/AudioStreamPlayer.stop()
+func win():
+	pass
+func lose():
+	pass
 
 func _process(delta: float) -> void:
 	# check for validity every frame
@@ -143,7 +149,7 @@ func do_loop_damage(pos: Vector2, radius: float) -> void:
 	
 		# check if each item is in range and hit if it is
 		for item in hittable:
-			if item.global_position.distance_to(pos) < radius:
+			if item.global_position.distance_to(pos) < radius and not item.dead:
 				item.hit(DAMAGE_PERCENT)
 
 		var loop = packedloop.instantiate()
