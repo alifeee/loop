@@ -3,6 +3,8 @@ extends AnimatableBody2D
 
 var rng = RandomNumberGenerator.new()
 
+@export var fade_in_duration: float = 2
+
 @export var sprite: AnimatedSprite2D
 @export var DemonDrops: Node2D
 
@@ -18,6 +20,7 @@ var rng = RandomNumberGenerator.new()
 
 @export var walk_towards: Vector2
 @export var walk_speed: float = 50
+
 var health: float = 100
 var dead: bool = false
 
@@ -40,6 +43,14 @@ func _ready() -> void:
 	Globals.resume_game.connect(play)
 	
 	assert(moat_spawn_delay < death_duration)
+	
+	var init_col = Color(self.modulate)
+	self.modulate.a = 0
+	
+	var twn = get_tree().create_tween()
+	twn.tween_property(self, "modulate", init_col, 2) \
+			.set_trans(Tween.TRANS_QUART) \
+			.set_ease(Tween.EASE_IN_OUT)
 
 func pause() -> void:
 	for x in [sprite, hittween, spawn_tween, dietween]:
@@ -105,7 +116,7 @@ func make_drop() -> void:
 	for __ in drop_amount:
 		if drop_chance >= randf():
 			var drop = drop_scene.instantiate()
-			drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance))
+			drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance)) * randf() * drop_variance
 			DemonDrops.add_child(drop)
 
 
