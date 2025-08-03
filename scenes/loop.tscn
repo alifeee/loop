@@ -38,10 +38,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("damage_timer", "particles")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("damage_timer", "particles", "sprite")]
 script = ExtResource("1_fpe6o")
 damage_timer = NodePath("DamageTimer")
 particles = NodePath("CPUParticles2D")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

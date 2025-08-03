@@ -5,6 +5,7 @@ var rng = RandomNumberGenerator.new()
 
 @export var damage_timer: Timer
 @export var particles: CPUParticles2D
+@export var sprite: AnimatedSprite2D
 @export var DAMAGE_TIMER_WAIT: float = 0.15
 @export var DAMAGE_TIMER_DAMAGE: float = 34
 @export var DAMAGE_ANIMATION_TIME: float = 0.05
@@ -21,8 +22,16 @@ func _ready() -> void:
 	_on_damage_timer_timeout()
 	particles.emitting = false
 	modulate.a = 1
+	Globals.pause_game.connect(
+		func():
+			sprite.pause
+			particles.emitting = false
+	)
+	Globals.resume_game.connect(sprite.play)
 
 func _process(delta: float) -> void:
+	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
+		return
 	if Globals.loops.find(self) == 0 and len(Globals.loops) > 2:
 		particles.emitting = true
 		modulate.a = 0.8
