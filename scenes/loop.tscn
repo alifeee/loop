@@ -64,7 +64,8 @@ shape = SubResource("CircleShape2D_fpe6o")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.447059)
 light_mask = 6145
-position = Vector2(1, -5)
+position = Vector2(0.500002, -4.12381)
+scale = Vector2(0.757813, 0.92381)
 sprite_frames = SubResource("SpriteFrames_kyqv0")
 animation = &"loop_attack"
 autoplay = "loop_attack"
