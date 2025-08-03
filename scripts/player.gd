@@ -5,6 +5,7 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
+@export var audio_mute: CheckButton
 @export_group("Loop Drawing")
 @export var LOOP_CONTAINER: Node2D
 @export var CONTINUOUS_CASTING: bool = true
@@ -46,6 +47,7 @@ func _init() -> void:
 	packed_loop_segment = preload("res://scenes/loop_segment.tscn")
 
 func _ready() -> void:
+	#close_button.focus_mode = Control.FOCUS_NONE
 	Globals.start_game.connect(start)
 	Globals.pause_game.connect(pause)
 	Globals.resume_game.connect(resume)
@@ -53,13 +55,21 @@ func _ready() -> void:
 	Globals.reset_game.connect(reset)
 	Globals.win.connect(win)
 	Globals.spawn_bunch_of_enemies.connect(lose)
-	Globals.sound_worm_hit.connect(func():$Node/WormHitAudio.play)
-	Globals.sound_loop_success.connect(func():$Node/LoopSuccessAudio.play )
-	Globals.sound_player_hit.connect(func(): $Node/PlayerHitAudio.play)
-	Globals.sound_collect_mote.connect(func(): $Node/CollectMoteAudio.play)
+	Globals.sound_worm_hit.connect(play_worm_hit)
+	Globals.sound_loop_success.connect(play_loop_success)
+	Globals.sound_player_hit.connect(play_player_hit)
+	Globals.sound_collect_mote.connect(play_collect_mote)
+	
+	# mute/unmute
+	audio_mute.focus_mode = Control.FOCUS_NONE
 	
 	# go find section in code that triggers thing, and run this
 	# Globals.sound_collect_mote.emit()
+
+func mute_audio():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+func unmute_audio():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 
 func start():
 	if CONTINUOUS_CASTING:
@@ -76,6 +86,19 @@ func win():
 	pass
 func lose():
 	pass
+
+func play_worm_hit():
+	print("play worm hit")
+	$Node/WormHitAudio.play()
+func play_loop_success():
+	print("play loop success")
+	$Node/LoopSuccessAudio.play()
+func play_player_hit():
+	print("play player hit")
+	$Node/PlayerHitAudio.play()
+func play_collect_mote():
+	print("play collect mote")
+	$Node/CollectMoteAudio.play()
 
 func _process(delta: float) -> void:
 	# check for validity every frame
@@ -135,6 +158,7 @@ func dispel():
 		)
 
 func do_loop_damage(pos: Vector2, radius: float) -> void:
+	Globals.sound_loop_success.emit()
 	if PERSISTENT_SPELLS:
 		# spawn a loop to do damage over time
 		var loop: Loop = packedloop.instantiate()
@@ -274,3 +298,10 @@ func _input(event):
 	# continue looping !
 	elif event is InputEventMouseMotion and is_held:
 		check_and_add_spell_point(event.position)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		unmute_audio()
+	else:
+		mute_audio()
