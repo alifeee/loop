@@ -1946,7 +1946,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 60.0
+"speed": 30.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
@@ -2070,9 +2070,9 @@ screenshake_amplitude = 2.0
 screenshake_duration_time = 0.4
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.32, 0.32, 0.32, 0.431373)
+modulate = Color(0.45, 0.45, 0.45, 0.607843)
 position = Vector2(578, 324)
-scale = Vector2(2.82301, 2.82301)
+scale = Vector2(2.9292, 2.9292)
 sprite_frames = SubResource("SpriteFrames_gqmmt")
 autoplay = "default"
 script = ExtResource("6_85g3d")
