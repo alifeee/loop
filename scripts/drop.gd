@@ -8,7 +8,7 @@ extends AnimatableBody2D
 @export var fade_in_duration: float = 2
 @export var left_alone_duration: float = 2
 @export var fade_away_duration: float = 5
-@export var pickup_duration: float = 1
+@export var pickup_duration: float = 0.5
 
 @export var sprite: AnimatedSprite2D = self.find_child("Sprite2D")
 

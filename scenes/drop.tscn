@@ -95,7 +95,6 @@ animations = [{
 
 [node name="Coin" type="AnimatableBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_rwqht")
-pickup_duration = 0.5
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
