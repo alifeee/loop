@@ -269,6 +269,7 @@ func _input(event):
 		print("press cheat!")
 		if OS.is_debug_build():
 			Globals.motes += 100
+			Globals.lifetime_motes += 100
 	# reset game
 	if event.is_action_pressed("Reset"):
 		print("press reset!")

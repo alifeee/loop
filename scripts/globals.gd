@@ -37,6 +37,7 @@ var player_health: int = 3
 var total_demons: int = 0
 var kill_count: int = 0
 var motes: int = 0
+var lifetime_motes: int = 0
 var time_elapsed: float = 0
 
 # Silly Variables
@@ -92,7 +93,9 @@ func reset():
 	# game stuff
 	player_health = 3
 	total_demons = 0
+	kill_count = 0
 	motes = 0
+	lifetime_motes = 0
 	time_elapsed = 0
 	## kill mobs
 	delete_reset_array(demons)

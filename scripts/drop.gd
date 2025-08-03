@@ -135,6 +135,7 @@ func hit(__):
 	post_death_tween = get_tree().create_tween()
 
 	Globals.motes+= 1
+	Globals.lifetime_motes += 1
 	
 	post_death_tween \
 		.tween_property(self, "global_position", Vector2(0, -pickup_distance) + self.global_position, pickup_duration) \
