@@ -42,13 +42,6 @@ func die():
 	dietween.tween_callback(queue_free)
 
 func _on_damage_timer_timeout() -> void:
-	# flash
-	if flashtween:
-		flashtween.kill()
-	flashtween = get_tree().create_tween()
-	flashtween.tween_property(
-		self, "modulate:v", 1, DAMAGE_ANIMATION_TIME
-	).from(DAMAGE_ANIMATION_BRIGHTNESS)
 	# do damage
 	# hit everything within the circle once
 	var hittable = []
@@ -56,6 +49,19 @@ func _on_damage_timer_timeout() -> void:
 	hittable.append_array(Globals.drops)
 
 	# check if each item is in range and hit if it is
+	var dmg_done = false
 	for item in hittable:
 		if item.global_position.distance_to(global_position) < damage_radius:
 			item.hit(DAMAGE_TIMER_DAMAGE)
+			if item is Demon:
+				dmg_done = true
+
+	# flash if any damage done
+	if not dmg_done:
+		return
+	if flashtween:
+		flashtween.kill()
+	flashtween = get_tree().create_tween()
+	flashtween.tween_property(
+		self, "modulate:v", 1, DAMAGE_ANIMATION_TIME
+	).from(DAMAGE_ANIMATION_BRIGHTNESS)
