@@ -92,18 +92,23 @@ func lose():
 
 func play_worm_hit():
 	print("play worm hit")
+	$Node/WormHitAudio.pitch_scale = randf_range(0.99, 1.01)
 	$Node/WormHitAudio.play()
 func play_worm_thud():
 	print("play worm thud")
+	$Node/WormHitAudio.pitch_scale = randf_range(0.98, 1.03)
 	$Node/WormThudAudio.play()
 func play_loop_success():
 	print("play loop success")
+	$Node/LoopSuccessAudio.pitch_scale = randf_range(0.8, 1)
 	$Node/LoopSuccessAudio.play()
 func play_player_hit():
 	print("play player hit")
+	$Node/PlayerHitAudio.pitch_scale = randf_range(0.98, 1.03)
 	$Node/PlayerHitAudio.play()
 func play_collect_mote():
 	print("play collect mote")
+	$Node/CollectMoteAudio.pitch_scale = randf_range(0.98, 1.03)
 	$Node/CollectMoteAudio.play()
 
 func _process(delta: float) -> void:
