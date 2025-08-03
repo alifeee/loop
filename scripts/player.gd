@@ -239,6 +239,10 @@ func check_and_add_spell_point(pos):
 		add_child(loopsprite)
 
 func _input(event):
+	if event.is_action_pressed("Cheat_Add_Motes"):
+		print("press cheat!")
+		if OS.is_debug_build():
+			Globals.motes += 100
 	# reset game
 	if event.is_action_pressed("Reset"):
 		print("press reset!")
