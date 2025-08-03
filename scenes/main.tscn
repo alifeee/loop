@@ -1,8 +1,8 @@
-[gd_scene load_steps=519 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=534 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
-[ext_resource type="Script" uid="uid://d0a2a3yjlaco4" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
+[ext_resource type="Script" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://cx7li1yqkl0nb" path="res://assets/animations/water/0001.jpg" id="3_n5h2c"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
@@ -16,9 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://ull28kdb4v1n" path="res://assets/animations/water/0005.jpg" id="7_aahym"]
 [ext_resource type="Texture2D" uid="uid://bquff013i5sl6" path="res://assets/animations/water/0006.jpg" id="8_27rfn"]
 [ext_resource type="Texture2D" uid="uid://bxfqa5s4dtr7e" path="res://assets/animations/wizards/wizard1.png" id="9_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://dd88vc85umu73" path="res://assets/animations/portal/portal_opening_sprite.png" id="9_pm3ni"]
 [ext_resource type="Texture2D" uid="uid://gjyyao1bk585" path="res://assets/animations/water/0007.jpg" id="9_tpl0g"]
 [ext_resource type="Texture2D" uid="uid://4ps1p7aeeu7u" path="res://assets/animations/water/0008.jpg" id="10_2vmv4"]
 [ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="10_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://d2oxcqjf8ihlb" path="res://assets/animations/portal/portal_open_sprite.png" id="10_y6deb"]
 [ext_resource type="Texture2D" uid="uid://ctkk1fc8jkvjl" path="res://assets/animations/wizards/wizard3.png" id="11_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://boufjr660e1m7" path="res://assets/animations/water/0009.jpg" id="11_wooaw"]
 [ext_resource type="Texture2D" uid="uid://dw1scdsid0xn" path="res://assets/non-animations/hat1.png" id="12_0ld40"]
@@ -1949,6 +1951,58 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_41j1p"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkihs"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aahym"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27rfn"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpl0g"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vmv4"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wooaw"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5550t"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6ik7"]
+atlas = ExtResource("9_pm3ni")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0ihq"]
+atlas = ExtResource("10_y6deb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ea5h"]
+atlas = ExtResource("10_y6deb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo1tx"]
+atlas = ExtResource("10_y6deb")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfpmd"]
+atlas = ExtResource("10_y6deb")
+region = Rect2(64, 64, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
 region = Rect2(0, 0, 64, 64)
@@ -1967,6 +2021,60 @@ region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eb6dy"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41j1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkihs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aahym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27rfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpl0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vmv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wooaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5550t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6ik7")
+}],
+"loop": true,
+"name": &"open_portal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0ihq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ea5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo1tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfpmd")
+}],
+"loop": true,
+"name": &"portal",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tipki")
@@ -2149,7 +2257,7 @@ flicker_time_max = 0.1
 position = Vector2(1, -33.625)
 scale = Vector2(1.15625, 1.10547)
 sprite_frames = SubResource("SpriteFrames_eb6dy")
-animation = &"summon_portal"
+animation = &"portal"
 autoplay = "summon_portal"
 script = ExtResource("6_85g3d")
 dieondie = true

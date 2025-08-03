@@ -14,6 +14,7 @@ signal start_game
 signal pause_game
 signal resume_game
 signal end_game
+signal win
 signal reset_game
 signal spawn_bunch_of_enemies
 # other signals
@@ -64,6 +65,7 @@ func endgame(is_win: bool):
 	print("emit end_game")
 	end_game.emit()
 	if is_win:
+		win.emit()
 		for hittable in Globals.demons.duplicate():
 			hittable.hit(100)
 	if not is_win:
