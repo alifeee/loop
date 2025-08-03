@@ -8,6 +8,8 @@ extends Control
 func _ready() -> void:
 	#start_time = Time.get_unix_time_from_system()
 	$EndLabel.visible = false
+	$TopLeftUI.visible = true
+	$Panel.visible = true
 	
 	close_button.disabled = true
 	close_button.modulate.a = 0.5
@@ -19,13 +21,15 @@ func _ready() -> void:
 	
 	Globals.end_game.connect(func(): $EndLabel.visible = true)
 	Globals.reset_game.connect(func(): $EndLabel.visible = false)
-	Globals.reset_game.connect(func(): $EndLabel.text = "you suck!")
+	Globals.reset_game.connect(func(): $EndLabel.text = "Overrun!")
 	Globals.start_game.connect(func(): $EndLabel.visible = false)
 	
 	close_button.pressed.connect(
 		func():
 			Globals.endgame(true)
-			$EndLabel.text = "you s̶u̶c̶k̶ win!"
+			$TopLeftUI.visible = false
+			$Panel.visible = false
+			$EndLabel.text = "Escaped!"
 	)
 	shop_button.pressed.connect(
 		func():

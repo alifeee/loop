@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhf44q5ylwxc"]
+[gd_scene load_steps=8 format=3 uid="uid://bhf44q5ylwxc"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dk7duasgqy0rh" path="res://assets/non-animations/skill.png" id="4_djwj0"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="5_bt76a"]
 [ext_resource type="Texture2D" uid="uid://dqq53perjcbym" path="res://assets/non-animations/heart.png" id="5_djwj0"]
+
+[sub_resource type="Theme" id="Theme_djwj0"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("close_button", "shop_button", "progress_bar")]
 layout_mode = 3
@@ -194,7 +196,7 @@ offset_bottom = 243.0
 grow_horizontal = 0
 grow_vertical = 2
 step = 1.0
-value = 2.0
+value = 1.0
 fill_mode = 3
 show_percentage = false
 
@@ -263,11 +265,12 @@ theme_override_font_sizes/font_size = 20
 text = "Upgrades (s)"
 
 [node name="EndLabel" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 478.0
-offset_top = 188.0
-offset_right = 689.0
-offset_bottom = 257.0
+offset_left = 394.0
+offset_top = 26.0
+offset_right = 764.0
+offset_bottom = 166.0
+theme = SubResource("Theme_djwj0")
+theme_override_fonts/font = ExtResource("2_u2dgd")
 theme_override_font_sizes/font_size = 50
-text = "you suck"
+text = "Overrun!"
