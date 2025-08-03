@@ -21,6 +21,7 @@ signal spawn_bunch_of_enemies
 signal player_hit(lives_left: int)
 # purchases
 signal purchase_hat
+signal button_pressed(button_name_id: String)
 
 # global variables
 var demons: Array[Demon] = []
