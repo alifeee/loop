@@ -3,10 +3,7 @@ extends Area2D
 @export var wizards_array: Array[AnimatedSprite2D]
 @export var hats_array: Array[Sprite2D]
 
-var deathtween1: Tween
-var deathtween2: Tween
-var deathtween3: Tween
-var deathtweens = [deathtween1, deathtween2, deathtween3]
+var deathtweens: Array[Tween] = [null, null, null]
 
 func _ready() -> void:
 	Globals.player_hit.connect(animate_wizard_death)
@@ -18,9 +15,12 @@ func reset() -> void:
 
 	for wizard in wizards_array:
 		wizard.modulate.a = 1
+
 	for t in deathtweens:
 		if t:
 			t.kill()
+			
+	deathtweens = [null, null, null]
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Demon:
@@ -32,6 +32,7 @@ func animate_wizard_death(wizard_number: int):
 		deathtween.kill()
 
 	deathtween = get_tree().create_tween()
+	deathtweens[wizard_number] = deathtween
 	
 	var do_hat = wizard_number <= Globals.hats_owned
 	
