@@ -60,6 +60,9 @@ func _ready() -> void:
 func reset():
 	$TopLeftUI.visible = true
 	$Panel.visible = true
+	close_button.disabled = true
+	close_button.modulate.a = 0.5
+	close_button.focus_mode = Control.FOCUS_NONE
 	
 func _process(delta: float) -> void:
 	$TopLeftUI/Timer/Text.text = str(snapped(Globals.time_elapsed, 0.1))
