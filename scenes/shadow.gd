@@ -21,7 +21,6 @@ var tween: Tween
 var deathtween: Tween
 
 func _ready() -> void:
-	randomly_make_shadow_bigger_and_smaller()
 	Globals.spawn_bunch_of_enemies.connect(stopstuff)
 	Globals.reset_game.connect(reset)
 	initial_modulate = modulate
@@ -34,6 +33,7 @@ func reset() -> void:
 	if deathtween:
 		deathtween.kill()
 	modulate = initial_modulate
+	randomly_make_shadow_bigger_and_smaller()
 
 #func _process(delta: float) -> void:
 	#scale = Vector2(
