@@ -28,6 +28,7 @@ func _ready() -> void:
 	#shop_button.focus_mode = Control.FOCUS_NONE
 	
 	Globals.end_game.connect(func(): show_game_end_stuff())
+	Globals.end_game.connect(func(): $Panel.visible = false)
 	Globals.reset_game.connect(func(): game_end_ui.hide())
 	Globals.reset_game.connect(func(): end_label.text = "Overrun!")
 	Globals.start_game.connect(func(): game_end_ui.hide())
