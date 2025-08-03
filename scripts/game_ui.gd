@@ -62,6 +62,8 @@ func reset():
 	$TopLeftUI.visible = true
 	$Panel.visible = true
 	close_button.disabled = true
+	$"GameEndContainer/Panel/VBoxContainer/Hat Container/grumbo".visible = false
+	$"GameEndContainer/Panel/VBoxContainer/Hat Container/HatLabel2".visible = false
 	close_button.modulate.a = 0.5
 	close_button.focus_mode = Control.FOCUS_NONE
 	
@@ -81,6 +83,9 @@ func show_game_end_stuff():
 	game_end_ui.modulate.a = 0;
 	var tween = get_tree().create_tween()
 	tween.tween_property(game_end_ui, "modulate:a", 1, 1)
+	if Globals.hats_owned ==3:
+		$"GameEndContainer/Panel/VBoxContainer/Hat Container/grumbo".visible = true
+		$"GameEndContainer/Panel/VBoxContainer/Hat Container/HatLabel2".visible = true
 	
 	time_label.text = "Time: " + str(snapped(Globals.time_elapsed, 0.1))
 	kill_label.text = "x " + str(Globals.kill_count)

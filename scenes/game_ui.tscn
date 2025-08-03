@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhf44q5ylwxc"]
+[gd_scene load_steps=17 format=3 uid="uid://bhf44q5ylwxc"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="7_o3bws"]
 [ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="8_3huio"]
 [ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="9_3huio"]
+[ext_resource type="Texture2D" uid="uid://boe4hk0yqvt50" path="res://assets/animations/GRUMBO/Grumbo flying(1).png" id="9_sjwyb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjwyb"]
 bg_color = Color(0.15, 0.15, 0.15, 1)
@@ -16,6 +17,28 @@ bg_color = Color(0.15, 0.15, 0.15, 1)
 [sub_resource type="Theme" id="Theme_djwj0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huio"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kh4o"]
+atlas = ExtResource("9_sjwyb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2npe"]
+atlas = ExtResource("9_sjwyb")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g2v8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kh4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2npe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("close_button", "shop_button", "progress_bar", "game_end_ui", "end_label", "time_label", "kill_label", "mote_label", "hat_label")]
 layout_mode = 3
@@ -381,6 +404,24 @@ text = "x 999"
 [node name="Hat Container" type="Panel" parent="GameEndContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+
+[node name="HatLabel2" type="Label" parent="GameEndContainer/Panel/VBoxContainer/Hat Container"]
+visible = false
+layout_mode = 0
+offset_left = -747.5
+offset_top = -151.5
+offset_right = -411.5
+offset_bottom = -74.5
+text = "Pleasure doing
+ buisness!"
+
+[node name="grumbo" type="AnimatedSprite2D" parent="GameEndContainer/Panel/VBoxContainer/Hat Container"]
+visible = false
+position = Vector2(-643.625, -210)
+rotation = -0.42237
+scale = Vector2(1.87109, 1.67188)
+sprite_frames = SubResource("SpriteFrames_g2v8e")
+autoplay = "default"
 
 [node name="TextureRect" type="TextureRect" parent="GameEndContainer/Panel/VBoxContainer/Hat Container"]
 layout_mode = 0
