@@ -12,7 +12,7 @@ extends AnimatableBody2D
 
 @export var sprite: AnimatedSprite2D = self.find_child("Sprite2D")
 
-var colleted = false
+var dead: bool = false
 var drop_tween: Tween
 var post_death_tween: Tween
 
@@ -74,10 +74,10 @@ func die():
 	self.queue_free()
 	
 func hit(__):
-	if colleted:
+	if dead:
 		return
 
-	colleted = true
+	dead = true
 	drop_tween.stop()
 	
 	post_death_tween = get_tree().create_tween()
