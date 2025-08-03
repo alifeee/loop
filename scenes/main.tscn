@@ -2646,15 +2646,6 @@ hide_canvas = NodePath("..")
 hide_gameui = NodePath("../../GameUI")
 hide_shopui = NodePath("../../ShopUI")
 
-[node name="Shadow2" type="Sprite2D" parent="StartScreen"]
-position = Vector2(576, 324)
-texture = ExtResource("12_eb6dy")
-script = ExtResource("14_muem4")
-base_size = 1.01
-flicker_amplitude = 0.01
-flicker_time_min = 0.5
-flicker_time_max = 1.0
-
 [node name="Node" type="Node" parent="."]
 
 [node name="MainGameThemeAudio" type="AudioStreamPlayer" parent="Node"]

@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://snprantw3kcp" path="res://scripts/start.gd" id="1_u80x2"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_bodal"]
+[ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="3_8itgj"]
 [ext_resource type="Texture2D" uid="uid://bj6ejut8c5jvt" path="res://assets/animations/tutorial/tut.png" id="3_bodal"]
+[ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scenes/shadow.gd" id="4_tn317"]
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="4_y16t7"]
 [ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="5_y16t7"]
-[ext_resource type="Texture2D" uid="uid://yby0vxfu113f" path="res://assets/ui-element/modal.png" id="6_4ge6i"]
 
 [sub_resource type="Theme" id="Theme_8itgj"]
 default_font = ExtResource("5_y16t7")
@@ -164,18 +165,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8itgj"]
-texture = ExtResource("6_4ge6i")
-texture_margin_left = 16.0
-texture_margin_top = 16.0
-texture_margin_right = 16.0
-texture_margin_bottom = 16.0
-expand_margin_left = 8.0
-expand_margin_top = 8.0
-expand_margin_right = 8.0
-expand_margin_bottom = 8.0
-region_rect = Rect2(0, 0, 112, 112)
-
 [node name="Start" type="Node2D"]
 script = ExtResource("1_u80x2")
 
@@ -183,6 +172,15 @@ script = ExtResource("1_u80x2")
 position = Vector2(578.889, 323)
 scale = Vector2(1.01235, 1.01235)
 texture = ExtResource("2_bodal")
+
+[node name="Shadow2" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("3_8itgj")
+script = ExtResource("4_tn317")
+base_size = 1.01
+flicker_amplitude = 0.01
+flicker_time_min = 0.5
+flicker_time_max = 1.0
 
 [node name="Label5" type="Label" parent="."]
 offset_left = 462.0
@@ -250,6 +248,7 @@ offset_right = 492.0
 offset_bottom = 495.0
 grow_horizontal = 0
 scale = Vector2(0.6, 0.6)
+theme = ExtResource("4_y16t7")
 
 [node name="Panel" type="Panel" parent="Close Portal Button"]
 layout_mode = 1
@@ -260,7 +259,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_8itgj")
 
 [node name="Close2" type="Label" parent="Close Portal Button/Panel"]
 layout_mode = 1
