@@ -5,6 +5,7 @@ extends AnimatableBody2D
 @export var pickup_distance: float = 10
 @export var target_opacity: float = 0.8
 
+@export var uncertainty: float = 1
 @export var invul_duration: float = 2
 @export var invul_in_duration: float = 2
 @export var fade_in_duration: float = 2
@@ -41,6 +42,8 @@ func _ready() -> void:
 		sprite = self.find_child("Sprite2D")
 	
 	assert(sprite, "you need to assign the sprite object")
+	
+	sprite.pause()
 
 
 func pause() -> void:
@@ -82,7 +85,7 @@ func _on_ready() -> void:
 		sprite.rotate(PI * 2 * (randi() % 4))
 
 	drop_tween \
-		.tween_property(self, "global_position", target_loc + self.global_position, invul_in_duration) \
+		.tween_property(self, "global_position", target_loc + self.global_position, invul_in_duration + randf() * uncertainty) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN_OUT)
 		
@@ -91,7 +94,7 @@ func _on_ready() -> void:
 		.set_trans(Tween.TRANS_ELASTIC) \
 		.set_ease(Tween.EASE_OUT)
 	
-	drop_tween.tween_interval(invul_duration)
+	drop_tween.tween_interval(invul_duration + randf() * uncertainty)
 	drop_tween.tween_callback(func(): 
 		self.dead = false
 		self.sprite_playing = true
