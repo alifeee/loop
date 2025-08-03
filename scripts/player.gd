@@ -135,6 +135,7 @@ func dispel():
 		)
 
 func do_loop_damage(pos: Vector2, radius: float) -> void:
+	Globals.sound_loop_success.emit()
 	if PERSISTENT_SPELLS:
 		# spawn a loop to do damage over time
 		var loop: Loop = packedloop.instantiate()
