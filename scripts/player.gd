@@ -162,7 +162,6 @@ func pick_up_spell(pos):
 	loop_distance = 0
 
 func drop_spell():
-	var last_held_pos = mouse_positions[-1]
 	# mouse up or start menu/etc: drop all sprites
 	is_held = false
 	# delete sprite segments
@@ -170,7 +169,7 @@ func drop_spell():
 	mouse_positions = []
 	loop_segments = []
 	if CONTINUOUS_CASTING:
-		pick_up_spell(last_held_pos)
+		pick_up_spell(get_viewport().get_mouse_position())
 
 func check_and_spawn_spell():
 	# check if loop can spawn (if loop was drawn well or badly)

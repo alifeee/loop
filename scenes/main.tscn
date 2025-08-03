@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c06e8kqm41gh3"]
+[gd_scene load_steps=39 format=3 uid="uid://c06e8kqm41gh3"]
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
@@ -17,10 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="12_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://6wvdq4v632nu" path="res://assets/non-animations/hat 2.png" id="13_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="14_gqmmt"]
-[ext_resource type="Script" path="res://scenes/shadow.gd" id="14_muem4"]
-[ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
-[ext_resource type="PackedScene" uid="uid://46rk0std7vf4" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
-[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scenes/shadow.gd" id="14_muem4"]
+[ext_resource type="PackedScene" uid="uid://bvthrn5164h04" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://ddof72eun3ikb" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
+[ext_resource type="PackedScene" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -197,6 +197,13 @@ flicker_time_max = 1.0
 position = Vector2(-13, 79)
 scale = Vector2(1.17969, 1.26172)
 texture = ExtResource("2_tbgi4")
+script = ExtResource("14_muem4")
+base_size = 1.18
+alpha_flickering = true
+base_alpha = 0.8
+alpha_amplitude = 0.2
+flicker_time_min = 0.05
+flicker_time_max = 0.1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Centre"]
 position = Vector2(1, -33.625)
