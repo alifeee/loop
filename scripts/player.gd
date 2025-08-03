@@ -51,6 +51,8 @@ func _ready() -> void:
 	Globals.resume_game.connect(resume)
 	Globals.end_game.connect(pause)
 	Globals.reset_game.connect(reset)
+	Globals.win.connect(win)
+	Globals.spawn_bunch_of_enemies.connect(lose)
 
 func start():
 	if CONTINUOUS_CASTING:
@@ -63,6 +65,10 @@ func resume():
 func reset():
 	drop_spell()
 	$Node/AudioStreamPlayer.stop()
+func win():
+	pass
+func lose():
+	pass
 
 func _process(delta: float) -> void:
 	# check for validity every frame
