@@ -2642,18 +2642,18 @@ parameters/looping = false
 
 [node name="WormHitAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("504_aahym")
-volume_db = -15.0
+volume_db = -21.0
 
 [node name="LoopSuccessAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("505_2vmv4")
-volume_db = -12.0
+volume_db = -21.0
 
 [node name="PlayerHitAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("506_tpl0g")
+volume_db = -15.0
 
 [node name="CollectMoteAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("507_wooaw")
-volume_db = 3.0
 
 [connection signal="error_debug" from="." to="DebugStats" method="display_error"]
 [connection signal="area_entered" from="Centre" to="Centre" method="_on_area_entered"]
