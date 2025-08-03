@@ -103,6 +103,7 @@ func reset():
 
 func hit_player(damage: int):
 	player_health -= 1
+	sound_player_hit.emit()
 	if player_health <= 0:
 		endgame(false)
 	player_hit.emit(player_health)

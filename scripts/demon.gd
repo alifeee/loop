@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 
 func hit(damage: float):
 	print("got hit")
+	Globals.sound_worm_hit.emit()
 	if hittween:
 		hittween.kill()
 	hittween = get_tree().create_tween()

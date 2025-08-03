@@ -126,6 +126,8 @@ func die():
 func hit(__):
 	if dead:
 		return
+	
+	Globals.sound_collect_mote.emit()
 
 	dead = true
 	drop_tween.stop()
