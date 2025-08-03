@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
-[ext_resource type="Script" uid="uid://d0a2a3yjlaco4" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
+[ext_resource type="Script" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://cx7li1yqkl0nb" path="res://assets/animations/water/0001.jpg" id="3_n5h2c"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://besntdjocs2lr" path="res://assets/animations/water/0014.jpg" id="16_jo1tx"]
 [ext_resource type="PackedScene" uid="uid://46rk0std7vf4" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://cdefpd0fe3qtr" path="res://assets/animations/water/0015.jpg" id="17_jfpmd"]
-[ext_resource type="PackedScene" uid="uid://cwi3qoa8555st" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
 [ext_resource type="Texture2D" uid="uid://c1v1cx551jal5" path="res://assets/animations/water/0016.jpg" id="18_nb646"]
 [ext_resource type="Texture2D" uid="uid://c5cjbcyjghpuj" path="res://assets/animations/water/0017.jpg" id="19_xewid"]
 [ext_resource type="Texture2D" uid="uid://dy3eae3xu6f2i" path="res://assets/animations/water/0018.jpg" id="20_gdurg"]
@@ -2175,6 +2175,7 @@ LOOP_CONTAINER = NodePath("LoopContainer")
 CONTINUOUS_CASTING = false
 LOOP_MAX_LENGTH = 1000.0
 LOOP_MIN_AREA = 500.0
+LOOP_MAX_START_END_DISTANCE = 60.0
 DAMAGE_PERCENT = 34.0
 
 [node name="Screenshaker" type="Node2D" parent="."]
