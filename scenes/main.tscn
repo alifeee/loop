@@ -2195,6 +2195,9 @@ sprite_frames = SubResource("SpriteFrames_gqmmt")
 autoplay = "default"
 script = ExtResource("6_85g3d")
 
+[node name="LoopContainer" type="Node2D" parent="."]
+z_index = 1
+
 [node name="Centre" type="Area2D" parent="." node_paths=PackedStringArray("wizards_array", "hats_array")]
 position = Vector2(576, 324)
 script = ExtResource("5_ya4ey")
@@ -2592,9 +2595,6 @@ base_size = 1.01
 flicker_amplitude = 0.01
 flicker_time_min = 0.5
 flicker_time_max = 1.0
-
-[node name="LoopContainer" type="Node2D" parent="."]
-z_index = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
