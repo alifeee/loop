@@ -1,7 +1,8 @@
 # Loop
-```
- L O O P
- O O O O
- O O O O
- P P P P
-```
+
+GMTK 2025 Game Submission
+
+https://jman9092.itch.io/penumbra
+
+![screenshot of game page](./game.png)
+
