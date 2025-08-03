@@ -23,6 +23,7 @@ signal purchase_hat
 # global variables
 var demons: Array[Demon] = []
 var drops: Array[Drop] = []
+var loops: Array[Loop] = []
 # counters
 var player_health: int = 3
 var total_demons: int = 0
@@ -76,6 +77,7 @@ func reset():
 	## kill mobs
 	delete_reset_array(demons)
 	delete_reset_array(drops)
+	delete_reset_array(loops)
 	## reset timers (in player script)
 	## drop spell (in portal script)
 	resume()

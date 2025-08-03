@@ -9,6 +9,8 @@ extends AnimatableBody2D
 @export var drop_amount: int = 1
 @export var drop_variance: float = 0.1
 
+@export var hit_anim_duration: float = 0.1
+
 @export var death_duration: float = 2
 @export var moat_spawn_delay: float = 1.5
 
@@ -59,15 +61,16 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.scale.x = 1 # Facing left
 
 func hit(damage: float):
-	#print("got hit")
+	print("got hit")
 	if hittween:
 		hittween.kill()
-
 	hittween = get_tree().create_tween()
-	scale = Vector2(1.2,1.2)
-	hittween.tween_property(self, "scale", Vector2(1,1,), 0.1)
-	self.modulate = Color("#f0ff")
-	hittween.parallel().tween_property(self, "modulate", Color("#ffff"), 0.1)
+	hittween.tween_property(
+		self, "scale", Vector2(1,1), hit_anim_duration
+	).from(Vector2(1.2,1.2))
+	hittween.parallel().tween_property(
+		self, "modulate:v", 1, hit_anim_duration
+	).from(5)
 	health -= damage
 	if health <= 0:
 		die()

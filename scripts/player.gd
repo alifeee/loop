@@ -5,16 +5,16 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-@export var CONTINUOUS_CASTING: bool = true
-@export_group("assets")
-@export var loop1: Loop
 @export_group("Loop Drawing")
+@export var LOOP_CONTAINER: Node2D
+@export var CONTINUOUS_CASTING: bool = true
 @export var LOOP_MAX_LENGTH: float = 500
 @export var LOOP_MIN_AREA: float = 2500
 @export var LOOP_MAX_START_END_DISTANCE: float = 50
 @export var LOOP_SPRITE_DISTANCE: float = 5
 @export_group("Loop Damage")
 @export var LOOP_RADIUS: float = 50
+@export var PERSISTENT_SPELLS: bool = true
 @export var DAMAGE_PERCENT: float = 50
 @export_group("Loop Visuals")
 @export var DISPEL_DISTANCE: float = 25
@@ -90,15 +90,15 @@ func _process(delta: float) -> void:
 
 func make_spell_invalid():
 	for sparkle in loop_segments:
-		sparkle.modulate = Color("#fff")
+		sparkle.modulate = Color("#d9f")
 		sparkle.speed_scale = 1
 func make_spell_valid_level1():
 	for sparkle in loop_segments:
-		sparkle.modulate = Color("#fee")
+		sparkle.modulate = Color("#d9f")
 		sparkle.speed_scale = 5
 func make_spell_valid_level2():
 	for sparkle in loop_segments:
-		sparkle.modulate = Color("#f66")
+		sparkle.modulate = Color("#efe")
 		sparkle.speed_scale = 10
 func dispel():
 	for sparkle in loop_segments:
@@ -120,23 +120,38 @@ func dispel():
 		)
 
 func do_loop_damage(pos: Vector2, radius: float) -> void:
-	var hittable = []
-	hittable.append_array(Globals.demons)
-	hittable.append_array(Globals.drops)
-	
-	# check if each item is in range and hit if it is
-	for item in hittable:
-		if item.global_position.distance_to(pos) < radius:
-			item.hit(DAMAGE_PERCENT)
+	if PERSISTENT_SPELLS:
+		# spawn a loop to do damage over time
+		var loop: Loop = packedloop.instantiate()
+		loop.position = pos
+		loop.do_damage_over_time = true
+		loop.damage_radius = radius
+		Globals.loops.append(loop)
+		LOOP_CONTAINER.add_child(loop)
+		
+		# delete loop if there are now too many loops
+		while len(Globals.loops) > 3:
+			Globals.loops[0].die()
 
-	var loop = packedloop.instantiate()
-	loop.position = pos
-	var tween = get_tree().create_tween()
-	tween.tween_property(loop, "modulate:a", 0, 0.5)
-	tween.tween_callback(
-		func(): loop.queue_free()
-	)
-	add_child(loop)
+	else:
+		# hit everything within the circle once
+		var hittable = []
+		hittable.append_array(Globals.demons)
+		hittable.append_array(Globals.drops)
+	
+		# check if each item is in range and hit if it is
+		for item in hittable:
+			if item.global_position.distance_to(pos) < radius:
+				item.hit(DAMAGE_PERCENT)
+
+		var loop = packedloop.instantiate()
+		loop.position = pos
+		var tween = get_tree().create_tween()
+		tween.tween_property(loop, "modulate:a", 0, 0.5)
+		tween.tween_callback(
+			func(): loop.queue_free()
+		)
+		LOOP_CONTAINER.add_child(loop)
 
 # checks
 #func is_too_long(mouse_history) -> bool:
