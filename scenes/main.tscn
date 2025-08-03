@@ -2294,7 +2294,7 @@ animateonwin = true
 
 [node name="Hat1" type="Sprite2D" parent="Centre"]
 visible = false
-z_index = -1
+z_index = 1
 position = Vector2(103, -136)
 scale = Vector2(1.61111, 1.61111)
 texture = ExtResource("12_0ld40")
