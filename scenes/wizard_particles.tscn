@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bbi6850r4kbrr"]
+[gd_scene load_steps=0 format=3 uid="uid://bbi6850r4kbrr"]
 
 [node name="CPUParticles2D" type="CPUParticles2D"]
 emission_shape = 1
