@@ -24,6 +24,7 @@ signal purchase_hat
 signal button_pressed(button_name_id: String)
 # sounds
 signal sound_worm_hit
+signal sound_worm_thud
 signal sound_loop_success
 signal sound_player_hit
 signal sound_collect_mote

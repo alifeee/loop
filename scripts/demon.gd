@@ -79,7 +79,6 @@ func _physics_process(delta: float) -> void:
 
 func hit(damage: float):
 	print("got hit")
-	Globals.sound_worm_hit.emit()
 	if hittween:
 		hittween.kill()
 	hittween = get_tree().create_tween()
@@ -92,6 +91,7 @@ func hit(damage: float):
 	health -= damage
 	if health <= 0:
 		die()
+	Globals.sound_worm_thud.emit()
 
 func die() -> void:
 	if hittween:
@@ -101,6 +101,8 @@ func die() -> void:
 	self.walk_speed = 0
 	self.modulate = Color("#f0ff")
 	self.collision_layer = 2
+	
+	Globals.sound_worm_hit.emit()
 	
 	sprite.play("death")
 	await get_tree().create_timer(1).timeout
