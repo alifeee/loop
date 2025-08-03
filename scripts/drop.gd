@@ -36,6 +36,7 @@ func _ready() -> void:
 	Globals.pause_game.connect(pause)
 	# Globals.end_game.connect(pause) # they can fade away now
 	Globals.resume_game.connect(play)
+	Globals.reset_game.connect(reset)
 	
 	# might as well try to find the sprite
 	if sprite == null:
@@ -44,6 +45,15 @@ func _ready() -> void:
 	assert(sprite, "you need to assign the sprite object")
 	
 	sprite.pause()
+
+func reset():
+	if drop_tween:
+		drop_tween.kill()
+	
+	if post_death_tween:
+		post_death_tween.kill()
+
+	die()
 
 
 func pause() -> void:
@@ -117,7 +127,9 @@ func _on_ready() -> void:
 	# II i¬
 	drop_tween.tween_callback(self.die)
 
-
+"""
+Kills the drop instantly
+"""
 func die():
 	Globals.drops.erase(self)
 	self.queue_free()
@@ -130,7 +142,7 @@ func hit(__):
 	Globals.sound_collect_mote.emit()
 
 	dead = true
-	drop_tween.stop()
+	drop_tween.kill()
 	
 	post_death_tween = get_tree().create_tween()
 
