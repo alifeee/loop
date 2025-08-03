@@ -5,35 +5,55 @@ extends AnimatableBody2D
 @export var pickup_distance: float = 10
 @export var target_opacity: float = 0.8
 
+@export var invul_duration: float = 2
 @export var fade_in_duration: float = 2
 @export var left_alone_duration: float = 2
 @export var fade_away_duration: float = 5
 @export var pickup_duration: float = 0.5
 
-@export var sprite: AnimatedSprite2D = self.find_child("Sprite2D")
+@export var sprite: AnimatedSprite2D
 
-var colleted = false
+var locked = true
 var drop_tween: Tween
 var post_death_tween: Tween
 
+
+"""
+Lifespan of a mote:
+ - Spawn in invis
+ - Slowly fade in
+ - Become pickable
+ - slowly fade away
+
+"""
+
 func _ready() -> void:
 	Globals.pause_game.connect(pause)
+	Globals.end_game.connect(pause)
 	Globals.resume_game.connect(play)
+	
+	# might as well try to find the sprite
+	if sprite == null:
+		sprite = self.find_child("Sprite2D")
 	
 	assert(sprite, "you need to assign the sprite object")
 
+
 func pause() -> void:
+	print("PAUSED")
 	sprite.pause()
 	drop_tween.pause()
 	
 	if post_death_tween != null:
 		post_death_tween.pause()
 
+
 func play() -> void:
 	sprite.play()
 	drop_tween.play()
 	if post_death_tween != null:
 		post_death_tween.play()
+
 
 func _on_ready() -> void:
 	Globals.drops.append(self)
@@ -69,15 +89,17 @@ func _on_ready() -> void:
 	# II i¬
 	drop_tween.tween_callback(self.die)
 
+
 func die():
 	Globals.drops.erase(self)
 	self.queue_free()
-	
+
+
 func hit(__):
-	if colleted:
+	if locked:
 		return
 
-	colleted = true
+	locked = true
 	drop_tween.stop()
 	
 	post_death_tween = get_tree().create_tween()
