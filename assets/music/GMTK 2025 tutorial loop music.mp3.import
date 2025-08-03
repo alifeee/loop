@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmik23fe5vhqe"
+path="res://.godot/imported/GMTK 2025 tutorial loop music.mp3-bcee35c1c6c6e9014090dad0739841ab.mp3str"
+
+[deps]
+
+source_file="res://assets/music/GMTK 2025 tutorial loop music.mp3"
+dest_files=["res://.godot/imported/GMTK 2025 tutorial loop music.mp3-bcee35c1c6c6e9014090dad0739841ab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
