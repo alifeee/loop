@@ -27,14 +27,13 @@ func die():
 	damage_timer.stop()
 	
 	var direction = -1 if rng.randi() % 2 else 1
-	var move_distance = 20
 	
 	var dietween = get_tree().create_tween()
 	dietween.tween_property(
 		self, "modulate:a", 0, DIE_ANIMATION_TIME
 	)
 	dietween.parallel().tween_property(
-		self, "position", position + Vector2(direction * move_distance, move_distance/2), DIE_ANIMATION_TIME
+		self, "scale", Vector2(0,0), DIE_ANIMATION_TIME
 	).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)
 	dietween.parallel().tween_property(
 		self, "rotation", direction * PI/4, DIE_ANIMATION_TIME
