@@ -94,6 +94,7 @@ func hit(damage: float):
 		die()
 
 func die() -> void:
+	Globals.kill_count += 1
 	if hittween:
 		hittween.kill()
 	

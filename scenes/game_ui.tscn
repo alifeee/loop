@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhf44q5ylwxc"]
+[gd_scene load_steps=13 format=3 uid="uid://bhf44q5ylwxc"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
@@ -6,10 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://dk7duasgqy0rh" path="res://assets/non-animations/skill.png" id="4_djwj0"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="5_bt76a"]
 [ext_resource type="Texture2D" uid="uid://dqq53perjcbym" path="res://assets/non-animations/heart.png" id="5_djwj0"]
+[ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="7_o3bws"]
+[ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="8_3huio"]
+[ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="9_3huio"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjwyb"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
 
 [sub_resource type="Theme" id="Theme_djwj0"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("close_button", "shop_button", "progress_bar")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huio"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("close_button", "shop_button", "progress_bar", "game_end_ui", "end_label", "time_label", "kill_label", "mote_label", "hat_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +28,12 @@ script = ExtResource("1_u2dgd")
 close_button = NodePath("Panel/Close Portal Button")
 shop_button = NodePath("Panel/Shop Button")
 progress_bar = NodePath("Panel/ProgressBar")
+game_end_ui = NodePath("GameEndContainer")
+end_label = NodePath("GameEndContainer/EndLabel")
+time_label = NodePath("GameEndContainer/Panel/VBoxContainer/Time Container/TimeLabel")
+kill_label = NodePath("GameEndContainer/Panel/VBoxContainer/Kill Container/KillLabel")
+mote_label = NodePath("GameEndContainer/Panel/VBoxContainer/Mote Container/MoteLabel")
+hat_label = NodePath("GameEndContainer/Panel/VBoxContainer/Hat Container/HatLabel")
 
 [node name="Reference Image" type="TextureRect" parent="."]
 visible = false
@@ -268,13 +282,133 @@ theme_override_font_sizes/font_size = 20
 text = "SHOP"
 horizontal_alignment = 1
 
-[node name="EndLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 394.0
-offset_top = 26.0
-offset_right = 764.0
-offset_bottom = 166.0
+[node name="GameEndContainer" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_o3bws")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sjwyb")
+
+[node name="EndLabel" type="Label" parent="GameEndContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -190.0
+offset_top = 36.0
+offset_right = 190.0
+offset_bottom = 176.0
+grow_horizontal = 2
 theme = SubResource("Theme_djwj0")
 theme_override_fonts/font = ExtResource("2_u2dgd")
 theme_override_font_sizes/font_size = 50
 text = "Overrun!"
+
+[node name="Panel" type="Panel" parent="GameEndContainer"]
+self_modulate = Color(0, 0, 0, 0.490196)
+layout_mode = 0
+offset_left = 815.0
+offset_top = 229.0
+offset_right = 995.0
+offset_bottom = 429.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3huio")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameEndContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -99.5
+offset_right = 82.5
+offset_bottom = 99.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Time Container" type="Panel" parent="GameEndContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="GameEndContainer/Panel/VBoxContainer/Time Container"]
+layout_mode = 1
+offset_right = 157.0
+offset_bottom = 37.0
+text = "Time: 00:00"
+
+[node name="Kill Container" type="Panel" parent="GameEndContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameEndContainer/Panel/VBoxContainer/Kill Container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_djwj0")
+
+[node name="KillLabel" type="Label" parent="GameEndContainer/Panel/VBoxContainer/Kill Container"]
+layout_mode = 0
+offset_left = 42.0
+offset_right = 105.0
+offset_bottom = 37.0
+text = "x 999"
+
+[node name="Mote Container" type="Panel" parent="GameEndContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameEndContainer/Panel/VBoxContainer/Mote Container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_bt76a")
+
+[node name="MoteLabel" type="Label" parent="GameEndContainer/Panel/VBoxContainer/Mote Container"]
+layout_mode = 0
+offset_left = 42.0
+offset_right = 105.0
+offset_bottom = 37.0
+text = "x 999"
+
+[node name="Hat Container" type="Panel" parent="GameEndContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameEndContainer/Panel/VBoxContainer/Hat Container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_3huio")
+expand_mode = 2
+
+[node name="HatLabel" type="Label" parent="GameEndContainer/Panel/VBoxContainer/Hat Container"]
+layout_mode = 0
+offset_left = 42.0
+offset_right = 105.0
+offset_bottom = 37.0
+text = "x 999"
+
+[node name="Button" type="Button" parent="GameEndContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.5
+offset_top = -141.0
+offset_right = 82.5
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
+text = "Reset (R)"
+
+[connection signal="pressed" from="GameEndContainer/Button" to="." method="_on_button_pressed"]
