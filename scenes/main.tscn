@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/portal.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/player.gd" id="1_jyhfs"]
-[ext_resource type="Script" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
+[ext_resource type="Script" uid="uid://d0a2a3yjlaco4" path="res://scenes/screenshaker.gd" id="2_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://cx7li1yqkl0nb" path="res://assets/animations/water/0001.jpg" id="3_n5h2c"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="4_o6xl0"]
@@ -2275,6 +2275,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_dp3eg")
 autoplay = "default"
 script = ExtResource("6_85g3d")
+animateonwin = true
 
 [node name="Wizard2" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
@@ -2283,6 +2284,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yc10j")
 autoplay = "default"
 script = ExtResource("6_85g3d")
+animateonwin = true
 
 [node name="Wizard3" type="AnimatedSprite2D" parent="Centre"]
 texture_filter = 1
@@ -2291,6 +2293,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_jscy8")
 autoplay = "default"
 script = ExtResource("6_85g3d")
+animateonwin = true
 
 [node name="Hat1" type="Sprite2D" parent="Centre"]
 visible = false
