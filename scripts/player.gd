@@ -66,15 +66,16 @@ func _ready() -> void:
 	
 	# go find section in code that triggers thing, and run this
 	# Globals.sound_collect_mote.emit()
-
+	$Node/TutooialThemeAudio.play()
 func mute_audio():
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 func unmute_audio():
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
-
+	
 func start():
 	if CONTINUOUS_CASTING:
 		pick_up_spell(get_viewport().get_mouse_position())
+	$Node/TutooialThemeAudio.stop()
 	$Node/MainGameThemeAudio.play()
 func pause():
 	drop_spell()
@@ -83,6 +84,7 @@ func resume():
 func reset():
 	drop_spell()
 	$Node/MainGameThemeAudio.stop()
+	$Node/TutooialThemeAudio.play()
 func win():
 	pass
 func lose():
@@ -271,6 +273,7 @@ func _input(event):
 		print("press cheat!")
 		if OS.is_debug_build():
 			Globals.motes += 100
+			Globals.lifetime_motes += 100
 	# reset game
 	if event.is_action_pressed("Reset"):
 		print("press reset!")

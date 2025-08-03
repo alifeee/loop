@@ -94,6 +94,7 @@ func hit(damage: float):
 	Globals.sound_worm_thud.emit()
 
 func die() -> void:
+	Globals.kill_count += 1
 	if hittween:
 		hittween.kill()
 	

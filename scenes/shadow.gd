@@ -18,9 +18,9 @@ extends Sprite2D
 var initial_modulate: Color
 
 var tween: Tween
+var deathtween: Tween
 
 func _ready() -> void:
-	randomly_make_shadow_bigger_and_smaller()
 	Globals.spawn_bunch_of_enemies.connect(stopstuff)
 	Globals.reset_game.connect(reset)
 	initial_modulate = modulate
@@ -28,7 +28,12 @@ func _ready() -> void:
 	reset()
 
 func reset() -> void:
+	if tween:
+		tween.kill()
+	if deathtween:
+		deathtween.kill()
 	modulate = initial_modulate
+	randomly_make_shadow_bigger_and_smaller()
 
 #func _process(delta: float) -> void:
 	#scale = Vector2(
@@ -41,8 +46,10 @@ func stopstuff():
 		return
 	if tween:
 		tween.kill()
-	var tween2 = get_tree().create_tween()
-	tween2.tween_property(self, "modulate:a", 0, 3)
+	if deathtween:
+		deathtween.kill()
+	deathtween = get_tree().create_tween()
+	deathtween.tween_property(self, "modulate:a", 0, 3)
 	
 func randomly_make_shadow_bigger_and_smaller():
 	tween = get_tree().create_tween()
