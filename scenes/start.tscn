@@ -174,43 +174,41 @@ scale = Vector2(1.01235, 1.01235)
 texture = ExtResource("2_bodal")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 457.0
+offset_left = 454.0
 offset_top = 42.0
-offset_right = 701.0
+offset_right = 698.0
 offset_bottom = 93.0
 theme = SubResource("Theme_8itgj")
 text = "Instructions"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 356.0
-offset_top = 243.0
-offset_right = 831.0
-offset_bottom = 510.0
+offset_left = 318.0
+offset_top = 299.0
+offset_right = 834.0
+offset_bottom = 463.0
 theme = SubResource("Theme_8itgj")
 text = "1. Kill Shadowlings
 2. Collect Motes of Shadow
-3. Don't Die
-4. Open a Portal to Safety
-5. WIN"
+3. Open a Portal to Safety"
 
 [node name="Button" type="Button" parent="."]
-offset_left = 535.0
+offset_left = 532.0
 offset_top = 525.0
-offset_right = 623.0
+offset_right = 620.0
 offset_bottom = 579.0
 theme = SubResource("Theme_4ge6i")
 theme_override_fonts/font = ExtResource("3_0auqf")
 text = "Start"
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
-position = Vector2(459, 170)
+position = Vector2(480, 195)
 scale = Vector2(1.5129, 1.3924)
 sprite_frames = SubResource("SpriteFrames_hp05y")
 animation = &"default2"
 autoplay = "default"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(724, 170)
+position = Vector2(672, 195)
 scale = Vector2(1.5129, 1.3924)
 sprite_frames = SubResource("SpriteFrames_hp05y")
 autoplay = "default2"
