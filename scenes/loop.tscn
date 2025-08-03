@@ -51,7 +51,7 @@ texture = ExtResource("1_p0t4i")
 autostart = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.266667, 1, 1, 0.121569)
+color = Color(0.266667, 1, 1, 0.0156863)
 polygon = PackedVector2Array(-1, -51, 14, -48, 30, -42, 39, -31, 46, -21, 49, -9, 51, 8, 46, 25, 37, 32, 21, 42, 3, 47, -15, 48, -31, 43, -42, 32, -44, 21, -44, 4, -45, -10, -45, -26, -37, -36, -23, -41, -7, -48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
