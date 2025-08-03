@@ -53,6 +53,10 @@ func _ready() -> void:
 	Globals.reset_game.connect(reset)
 	Globals.win.connect(win)
 	Globals.spawn_bunch_of_enemies.connect(lose)
+	Globals.sound_worm_hit.connect(func(): pass)
+	Globals.sound_loop_success.connect(func(): pass)
+	Globals.sound_player_hit.connect(func(): pass)
+	Globals.sound_collect_mote.connect(func(): pass)
 
 func start():
 	if CONTINUOUS_CASTING:
