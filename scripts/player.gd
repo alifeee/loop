@@ -55,12 +55,14 @@ func _ready() -> void:
 func start():
 	if CONTINUOUS_CASTING:
 		pick_up_spell(get_viewport().get_mouse_position())
+	$Node/AudioStreamPlayer.play()
 func pause():
 	drop_spell()
 func resume():
 	pass
 func reset():
 	drop_spell()
+	$Node/AudioStreamPlayer.stop()
 
 func _process(delta: float) -> void:
 	# check for validity every frame
@@ -228,7 +230,6 @@ func _input(event):
 	if event.is_action_pressed("Reset"):
 		print("press reset!")
 		Globals.reset()
-		Globals.start()
 	# pause game
 	if event.is_action_pressed("Pause"):
 		## is playing, pause

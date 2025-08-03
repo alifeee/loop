@@ -80,7 +80,6 @@ func reset():
 	delete_reset_array(loops)
 	## reset timers (in player script)
 	## drop spell (in portal script)
-	resume()
 
 func hit_player(damage: int):
 	player_health -= 1
