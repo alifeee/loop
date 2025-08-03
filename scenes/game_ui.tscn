@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhf44q5ylwxc"]
+[gd_scene load_steps=13 format=3 uid="uid://bhf44q5ylwxc"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
@@ -9,9 +9,6 @@
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="7_o3bws"]
 [ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="8_3huio"]
 [ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="9_3huio"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kh4o"]
-bg_color = Color(0.556863, 0.12549, 0.792157, 0.752941)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjwyb"]
 bg_color = Color(0.15, 0.15, 0.15, 1)
@@ -216,7 +213,6 @@ offset_top = -201.0
 offset_bottom = 243.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_5kh4o")
 max_value = 30.0
 step = 1.0
 value = 1.0
@@ -233,7 +229,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -208.0
 offset_top = -24.0
-offset_right = -118.0
+offset_right = -126.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -243,12 +239,12 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 34.0
-offset_top = -32.0
-offset_right = 94.0
-offset_bottom = 24.0
+offset_top = -20.0
+offset_right = 81.0
+offset_bottom = 17.0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
 text = "999"
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel/ProgressBar/KillCounter"]
