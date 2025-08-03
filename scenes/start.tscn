@@ -1,16 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://c0wsuvtxawbo3"]
+[gd_scene load_steps=24 format=3 uid="uid://c0wsuvtxawbo3"]
 
 [ext_resource type="Script" uid="uid://snprantw3kcp" path="res://scripts/start.gd" id="1_u80x2"]
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_bodal"]
-[ext_resource type="FontFile" uid="uid://x8elntfmqlmu" path="res://assets/font/Pixeled.ttf" id="3_0auqf"]
 [ext_resource type="Texture2D" uid="uid://bj6ejut8c5jvt" path="res://assets/animations/tutorial/tut.png" id="3_bodal"]
+[ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="4_y16t7"]
 [ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="5_y16t7"]
+[ext_resource type="Texture2D" uid="uid://yby0vxfu113f" path="res://assets/ui-element/modal.png" id="6_4ge6i"]
 
 [sub_resource type="Theme" id="Theme_8itgj"]
 default_font = ExtResource("5_y16t7")
 default_font_size = 50
-
-[sub_resource type="Theme" id="Theme_4ge6i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdmts"]
 atlas = ExtResource("3_bodal")
@@ -165,6 +164,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8itgj"]
+texture = ExtResource("6_4ge6i")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 112, 112)
+
 [node name="Start" type="Node2D"]
 script = ExtResource("1_u80x2")
 
@@ -202,8 +213,9 @@ offset_left = 486.0
 offset_top = 495.0
 offset_right = 654.0
 offset_bottom = 556.0
-theme = SubResource("Theme_4ge6i")
-theme_override_fonts/font = ExtResource("3_0auqf")
+theme = ExtResource("4_y16t7")
+theme_override_fonts/font = ExtResource("5_y16t7")
+theme_override_font_sizes/font_size = 36
 text = "Start"
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
@@ -238,8 +250,6 @@ offset_right = 492.0
 offset_bottom = 495.0
 grow_horizontal = 0
 scale = Vector2(0.6, 0.6)
-theme_override_fonts/font = ExtResource("3_0auqf")
-theme_override_font_sizes/font_size = 32
 
 [node name="Panel" type="Panel" parent="Close Portal Button"]
 layout_mode = 1
@@ -250,8 +260,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8itgj")
 
-[node name="Close" type="Label" parent="Close Portal Button/Panel"]
+[node name="Close2" type="Label" parent="Close Portal Button/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -259,16 +270,17 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = -50.0
+offset_top = -34.6667
 offset_right = 44.0
-offset_bottom = 6.0
+offset_bottom = 21.3333
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_0auqf")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("5_y16t7")
+theme_override_font_sizes/font_size = 36
 text = "Open"
+horizontal_alignment = 1
 
-[node name="Portal" type="Label" parent="Close Portal Button/Panel"]
+[node name="Portal2" type="Label" parent="Close Portal Button/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -276,11 +288,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -54.0
-offset_top = -20.0001
+offset_top = -6.66669
 offset_right = 54.0
-offset_bottom = 35.9999
+offset_bottom = 49.3333
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_0auqf")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("5_y16t7")
+theme_override_font_sizes/font_size = 36
 text = "Portal"
+horizontal_alignment = 1

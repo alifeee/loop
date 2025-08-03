@@ -63,11 +63,10 @@ offset_bottom = 24.0
 
 [node name="Text" type="Label" parent="TopLeftUI/Timer"]
 layout_mode = 1
-offset_top = -20.0
 offset_right = 88.0
-offset_bottom = 36.0
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
 text = "00:00"
 
 [node name="KillCounter" type="Panel" parent="TopLeftUI"]
@@ -94,11 +93,10 @@ expand_mode = 1
 [node name="Text" type="Label" parent="TopLeftUI/KillCounter"]
 layout_mode = 1
 offset_left = 34.0
-offset_top = -20.0
 offset_right = 94.0
-offset_bottom = 36.0
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
 text = "999"
 
 [node name="Health" type="Panel" parent="TopLeftUI"]
@@ -124,11 +122,10 @@ expand_mode = 1
 [node name="Text" type="Label" parent="TopLeftUI/Health"]
 layout_mode = 0
 offset_left = 32.0
-offset_top = -20.0
 offset_right = 92.0
-offset_bottom = 36.0
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
 text = "999"
 
 [node name="Panel" type="Panel" parent="."]
@@ -152,6 +149,7 @@ anchor_right = 1.0
 offset_left = -158.0
 offset_bottom = 90.0
 grow_horizontal = 0
+theme = ExtResource("7_o3bws")
 theme_override_fonts/font = ExtResource("2_u2dgd")
 theme_override_font_sizes/font_size = 32
 
@@ -162,6 +160,8 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_top = -7.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -173,14 +173,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = -50.0
+offset_top = -28.0
 offset_right = 44.0
-offset_bottom = 6.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
 text = "Open"
+horizontal_alignment = 1
 
 [node name="Portal" type="Label" parent="Panel/Close Portal Button/Panel"]
 layout_mode = 1
@@ -190,14 +191,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -54.0
-offset_top = -20.0
 offset_right = 54.0
-offset_bottom = 36.0
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
 text = "Portal"
+horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="Panel"]
 layout_mode = 1
@@ -258,11 +259,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -223.0
 offset_top = -37.0
+offset_right = 5.05499
 offset_bottom = 7.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("7_o3bws")
 
 [node name="Close" type="Label" parent="Panel/Shop Button"]
 layout_mode = 1
@@ -272,14 +273,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -108.0
-offset_top = -28.0
+offset_top = -22.0
 offset_right = 108.0
-offset_bottom = 28.0
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 20
-text = "SHOP"
+theme_override_fonts/font = ExtResource("9_3huio")
+text = "Shop"
 horizontal_alignment = 1
 
 [node name="GameEndContainer" type="Panel" parent="."]
@@ -301,12 +301,13 @@ anchor_right = 0.5
 offset_left = -190.0
 offset_top = 36.0
 offset_right = 190.0
-offset_bottom = 176.0
+offset_bottom = 97.0
 grow_horizontal = 2
 theme = SubResource("Theme_djwj0")
-theme_override_fonts/font = ExtResource("2_u2dgd")
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 80
 text = "Overrun!"
+horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="GameEndContainer"]
 self_modulate = Color(0, 0, 0, 0.490196)
