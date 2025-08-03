@@ -51,7 +51,11 @@ func _on_damage_timer_timeout() -> void:
 	# check if each item is in range and hit if it is
 	var dmg_done = false
 	for item in hittable:
-		if item.global_position.distance_to(global_position) < damage_radius:
+		if (
+			item.global_position.distance_to(global_position) < damage_radius
+			and 
+			not item.dead
+		):
 			item.hit(DAMAGE_TIMER_DAMAGE)
 			if item is Demon:
 				dmg_done = true

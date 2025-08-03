@@ -143,7 +143,7 @@ func do_loop_damage(pos: Vector2, radius: float) -> void:
 	
 		# check if each item is in range and hit if it is
 		for item in hittable:
-			if item.global_position.distance_to(pos) < radius:
+			if item.global_position.distance_to(pos) < radius and not item.dead:
 				item.hit(DAMAGE_PERCENT)
 
 		var loop = packedloop.instantiate()
