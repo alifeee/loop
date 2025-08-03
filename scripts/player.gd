@@ -100,7 +100,7 @@ func play_worm_thud():
 	$Node/WormThudAudio.play()
 func play_loop_success():
 	print("play loop success")
-	$Node/LoopSuccessAudio.pitch_scale = randf_range(0.8, 1)
+	$Node/LoopSuccessAudio.pitch_scale = randf_range(0.98, 1.02)
 	$Node/LoopSuccessAudio.play()
 func play_player_hit():
 	print("play player hit")
