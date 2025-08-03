@@ -53,10 +53,10 @@ func _ready() -> void:
 	Globals.reset_game.connect(reset)
 	Globals.win.connect(win)
 	Globals.spawn_bunch_of_enemies.connect(lose)
-	Globals.sound_worm_hit.connect(func():$Node/WormHitAudio.play)
-	Globals.sound_loop_success.connect(func():$Node/LoopSuccessAudio.play )
-	Globals.sound_player_hit.connect(func(): $Node/PlayerHitAudio.play)
-	Globals.sound_collect_mote.connect(func(): $Node/CollectMoteAudio.play)
+	Globals.sound_worm_hit.connect(play_worm_hit)
+	Globals.sound_loop_success.connect(play_loop_success)
+	Globals.sound_player_hit.connect(play_player_hit)
+	Globals.sound_collect_mote.connect(play_collect_mote)
 	
 	# go find section in code that triggers thing, and run this
 	# Globals.sound_collect_mote.emit()
@@ -76,6 +76,19 @@ func win():
 	pass
 func lose():
 	pass
+
+func play_worm_hit():
+	print("play worm hit")
+	$Node/WormHitAudio.play()
+func play_loop_success():
+	print("play loop success")
+	$Node/LoopSuccessAudio.play()
+func play_player_hit():
+	print("play player hit")
+	$Node/PlayerHitAudio.play()
+func play_collect_mote():
+	print("play collect mote")
+	$Node/CollectMoteAudio.play()
 
 func _process(delta: float) -> void:
 	# check for validity every frame
