@@ -1,6 +1,8 @@
 class_name Demon
 extends AnimatableBody2D
 
+var rng = RandomNumberGenerator.new()
+
 @export var sprite: AnimatedSprite2D
 @export var DemonDrops: Node2D
 
@@ -56,9 +58,9 @@ func _physics_process(delta: float) -> void:
 	var direction_unit_vec = (walk_towards - position).normalized()
 	position = position + direction_unit_vec * distance
 	if position.x > 0:
-		$AnimatedSprite2D.scale.x = -1  # Facing right
+		sprite.scale.x = -1  # Facing right
 	elif position.x < 0:
-		$AnimatedSprite2D.scale.x = 1 # Facing left
+		sprite.scale.x = 1 # Facing left
 
 func hit(damage: float):
 	print("got hit")
@@ -119,3 +121,11 @@ func reach_middle() -> void:
 	# die
 	die()
  
+func slow_appear() -> void:
+	var delay = rng.randf_range(0.1, 3)
+	var spawn_time = rng.randf_range(1.5, 3)
+	var tween = get_tree().create_tween()
+	tween.tween_interval(delay)
+	tween.tween_property(
+		self, "modulate:a", 1, spawn_time
+	)

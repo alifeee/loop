@@ -14,7 +14,9 @@ signal start_game
 signal pause_game
 signal resume_game
 signal end_game
+signal win
 signal reset_game
+signal spawn_bunch_of_enemies
 # other signals
 signal player_hit(lives_left: int)
 # purchases
@@ -60,10 +62,14 @@ func resume():
 	print("resuming game")
 func endgame(is_win: bool):
 	gamestate = GAMESTATES.WIN_SCREEN
+	print("emit end_game")
 	end_game.emit()
 	if is_win:
+		win.emit()
 		for hittable in Globals.demons.duplicate():
 			hittable.hit(100)
+	if not is_win:
+		spawn_bunch_of_enemies.emit()
 func reset():
 	gamestate = GAMESTATES.START_SCREEN
 	# normal stuff
