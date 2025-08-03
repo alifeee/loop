@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://46rk0std7vf4"]
+[gd_scene load_steps=13 format=3 uid="uid://46rk0std7vf4"]
 
 [ext_resource type="Texture2D" uid="uid://bhcsca1rn8sxf" path="res://assets/Temp/Frame 22.png" id="1_fs6yy"]
 [ext_resource type="Script" uid="uid://okpt6c6b2u03" path="res://scenes/shop_ui.gd" id="1_obwu6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bdp6wh7aki3xb" path="res://scenes/shop_button.tscn" id="3_usj2y"]
 [ext_resource type="Texture2D" uid="uid://7mn7deb8je4q" path="res://assets/ui-element/Triangle.png" id="4_usj2y"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="5_bidp2"]
+[ext_resource type="Script" uid="uid://ixqqasf34n85" path="res://scripts/terrible-scripts/buyhat.gd" id="7_bidp2"]
 
 [sub_resource type="Theme" id="Theme_18xnp"]
 
@@ -267,4 +268,16 @@ grow_vertical = 2
 texture = ExtResource("1_fs6yy")
 expand_mode = 1
 
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 297.0
+offset_top = 234.0
+offset_right = 396.0
+offset_bottom = 297.0
+theme_override_font_sizes/font_size = 40
+text = "BUY!"
+script = ExtResource("7_bidp2")
+
 [connection signal="pressed" from="Main Modal Background/CloseButton" to="Main Modal Background/Description Panel/Control" method="_on_close_button_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

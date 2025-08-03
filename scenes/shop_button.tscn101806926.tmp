@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://d1ox2lxruc8j5" path="res://themes/full_style_box_texture.tres" id="3_u16r7"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="6_u16r7"]
 
-[node name="Control2" type="Control" node_paths=PackedStringArray("button", "no_upgrade_container", "name_label_no_upgrade", "price_label_no_upgrade", "upgrade_container", "name_label_upgrade", "price_label_upgrade", "all_bars", "level_3_bar_and_gap", "level_4_bar_and_gap", "level_5_bar_and_gap")]
+[node name="Control" type="Control" node_paths=PackedStringArray("button", "no_upgrade_container", "name_label_no_upgrade", "price_label_no_upgrade", "upgrade_container", "name_label_upgrade", "price_label_upgrade", "all_bars", "level_3_bar_and_gap", "level_4_bar_and_gap", "level_5_bar_and_gap")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,20 +18,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a34ft")
 button = NodePath("Button")
-no_upgrade_container = NodePath("no_upgrade_container")
-name_label_no_upgrade = NodePath("no_upgrade_container/Name")
-price_label_no_upgrade = NodePath("no_upgrade_container/Price")
-upgrade_container = NodePath("upgrade_container")
-name_label_upgrade = NodePath("upgrade_container/Background2/Name")
-price_label_upgrade = NodePath("upgrade_container/Background2/Price")
-all_bars = [NodePath("upgrade_container/HBoxContainer/Panel"), NodePath("upgrade_container/HBoxContainer/Panel2"), NodePath("upgrade_container/HBoxContainer/Panel3"), NodePath("upgrade_container/HBoxContainer/Panel4"), NodePath("upgrade_container/HBoxContainer/Panel5")]
-level_3_bar_and_gap = [NodePath("upgrade_container/HBoxContainer/Gap3"), NodePath("upgrade_container/HBoxContainer/Panel3")]
-level_4_bar_and_gap = [NodePath("upgrade_container/HBoxContainer/Gap4"), NodePath("upgrade_container/HBoxContainer/Panel4")]
-level_5_bar_and_gap = [NodePath("upgrade_container/HBoxContainer/Gap5"), NodePath("upgrade_container/HBoxContainer/Panel5")]
+no_upgrade_container = NodePath("Button/no_upgrade_container")
+name_label_no_upgrade = NodePath("Button/no_upgrade_container/Name")
+price_label_no_upgrade = NodePath("Button/no_upgrade_container/Price")
+upgrade_container = NodePath("Button/upgrade_container")
+name_label_upgrade = NodePath("Button/upgrade_container/Background2/Name")
+price_label_upgrade = NodePath("Button/upgrade_container/Background2/Price")
+all_bars = [NodePath("Button/upgrade_container/HBoxContainer/Panel"), NodePath("Button/upgrade_container/HBoxContainer/Panel2"), NodePath("Button/upgrade_container/HBoxContainer/Panel3"), NodePath("Button/upgrade_container/HBoxContainer/Panel4"), NodePath("Button/upgrade_container/HBoxContainer/Panel5")]
+level_3_bar_and_gap = [NodePath("Button/upgrade_container/HBoxContainer/Gap3"), NodePath("Button/upgrade_container/HBoxContainer/Panel3")]
+level_4_bar_and_gap = [NodePath("Button/upgrade_container/HBoxContainer/Gap4"), NodePath("Button/upgrade_container/HBoxContainer/Panel4")]
+level_5_bar_and_gap = [NodePath("Button/upgrade_container/HBoxContainer/Gap5"), NodePath("Button/upgrade_container/HBoxContainer/Panel5")]
 empty_texture_style = ExtResource("2_hv2j0")
 full_texture_style = ExtResource("3_u16r7")
 
-[node name="no_upgrade_container" type="Panel" parent="."]
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="no_upgrade_container" type="Panel" parent="Button"]
+visible = false
 custom_minimum_size = Vector2(90, 84)
 layout_mode = 1
 anchors_preset = 15
@@ -42,7 +53,7 @@ grow_vertical = 2
 theme = ExtResource("1_1oc1l")
 theme_override_styles/panel = ExtResource("2_hv2j0")
 
-[node name="Name" type="Label" parent="no_upgrade_container"]
+[node name="Name" type="Label" parent="Button/no_upgrade_container"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -55,7 +66,7 @@ grow_vertical = 2
 theme = ExtResource("1_1oc1l")
 text = "Name"
 
-[node name="Price" type="Label" parent="no_upgrade_container"]
+[node name="Price" type="Label" parent="Button/no_upgrade_container"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -74,7 +85,7 @@ theme_override_font_sizes/font_size = 36
 text = "10"
 horizontal_alignment = 2
 
-[node name="Mote icon" type="TextureRect" parent="no_upgrade_container/Price"]
+[node name="Mote icon" type="TextureRect" parent="Button/no_upgrade_container/Price"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -90,7 +101,7 @@ grow_vertical = 2
 texture = ExtResource("6_u16r7")
 expand_mode = 1
 
-[node name="upgrade_container" type="Panel" parent="."]
+[node name="upgrade_container" type="Panel" parent="Button"]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -100,7 +111,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background2" type="Panel" parent="upgrade_container"]
+[node name="Background2" type="Panel" parent="Button/upgrade_container"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 1
 anchors_preset = 15
@@ -112,7 +123,7 @@ grow_vertical = 2
 theme = ExtResource("1_1oc1l")
 theme_override_styles/panel = ExtResource("2_hv2j0")
 
-[node name="Name" type="Label" parent="upgrade_container/Background2"]
+[node name="Name" type="Label" parent="Button/upgrade_container/Background2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -125,7 +136,7 @@ grow_vertical = 2
 theme = ExtResource("1_1oc1l")
 text = "Name"
 
-[node name="Price" type="Label" parent="upgrade_container/Background2"]
+[node name="Price" type="Label" parent="Button/upgrade_container/Background2"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -144,7 +155,7 @@ theme_override_font_sizes/font_size = 36
 text = "10"
 horizontal_alignment = 2
 
-[node name="Mote icon" type="TextureRect" parent="upgrade_container/Background2/Price"]
+[node name="Mote icon" type="TextureRect" parent="Button/upgrade_container/Background2/Price"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -160,7 +171,7 @@ grow_vertical = 2
 texture = ExtResource("6_u16r7")
 expand_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="upgrade_container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/upgrade_container"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -171,59 +182,49 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="Panel" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Panel" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_hv2j0")
 
-[node name="Gap2" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Gap2" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Panel2" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_hv2j0")
 
-[node name="Gap3" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Gap3" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
-[node name="Panel3" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Panel3" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_hv2j0")
 
-[node name="Gap4" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Gap4" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
-[node name="Panel4" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Panel4" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_hv2j0")
 
-[node name="Gap5" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Gap5" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 
-[node name="Panel5" type="Panel" parent="upgrade_container/HBoxContainer"]
+[node name="Panel5" type="Panel" parent="Button/upgrade_container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_hv2j0")
-
-[node name="Button" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
