@@ -96,8 +96,8 @@ func _on_ready() -> void:
 	
 	drop_tween.tween_interval(invul_duration + randf() * uncertainty)
 	drop_tween.tween_callback(func(): 
-		self.dead = false
-		self.sprite_playing = true
+		dead = false
+		sprite_playing = true
 		sprite.play()
 	)
 	
