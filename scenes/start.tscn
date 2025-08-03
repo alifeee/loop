@@ -161,10 +161,10 @@ offset_top = 243.0
 offset_right = 831.0
 offset_bottom = 510.0
 theme = SubResource("Theme_8itgj")
-text = "1. Kill Shadow Monsters
-2. Collect Motes
+text = "1. Kill Shadowlings
+2. Collect Motes of Shadow
 3. Don't Die
-4. Open a Portal to Safty
+4. Open a Portal to Safety
 5. WIN"
 
 [node name="Button" type="Button" parent="."]
