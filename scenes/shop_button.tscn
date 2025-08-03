@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://d1ox2lxruc8j5" path="res://themes/full_style_box_texture.tres" id="3_u16r7"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="6_u16r7"]
 
-[node name="Control2" type="Control" node_paths=PackedStringArray("button", "no_upgrade_container", "name_label_no_upgrade", "price_label_no_upgrade", "upgrade_container", "name_label_upgrade", "price_label_upgrade", "all_bars", "level_3_bar_and_gap", "level_4_bar_and_gap", "level_5_bar_and_gap")]
+[node name="Control3" type="Control" node_paths=PackedStringArray("button", "no_upgrade_container", "name_label_no_upgrade", "price_label_no_upgrade", "upgrade_container", "name_label_upgrade", "price_label_upgrade", "all_bars", "level_3_bar_and_gap", "level_4_bar_and_gap", "level_5_bar_and_gap")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

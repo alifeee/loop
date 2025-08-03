@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhf44q5ylwxc"]
+[gd_scene load_steps=12 format=3 uid="uid://bhf44q5ylwxc"]
 
 [ext_resource type="Texture2D" uid="uid://du56rrl4erik5" path="res://assets/Temp/Frame 27.png" id="1_u001w"]
 [ext_resource type="Script" uid="uid://ddjeaykm8tiuf" path="res://scripts/game_ui.gd" id="1_u2dgd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dqq53perjcbym" path="res://assets/non-animations/heart.png" id="5_djwj0"]
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="7_o3bws"]
 [ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="8_3huio"]
+[ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="9_3huio"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjwyb"]
 bg_color = Color(0.15, 0.15, 0.15, 1)
@@ -288,9 +289,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -215.0
-offset_top = -191.0
+offset_top = -200.0
 offset_right = 215.0
-offset_bottom = 191.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o3bws")
@@ -312,17 +313,17 @@ text = "Overrun!"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameEndContainer"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -82.5
-offset_top = -223.0
+offset_top = -94.0
 offset_right = 82.5
-offset_bottom = -24.0
+offset_bottom = 105.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 alignment = 1
 
 [node name="Time Container" type="Panel" parent="GameEndContainer/VBoxContainer"]
@@ -386,3 +387,22 @@ offset_left = 42.0
 offset_right = 105.0
 offset_bottom = 37.0
 text = "x 999"
+
+[node name="Button" type="Button" parent="GameEndContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.5
+offset_top = -93.0
+offset_right = 82.5
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("9_3huio")
+theme_override_font_sizes/font_size = 36
+text = "Reset (R)"
+
+[connection signal="pressed" from="GameEndContainer/Button" to="." method="_on_button_pressed"]

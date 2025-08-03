@@ -82,3 +82,6 @@ func show_game_end_stuff():
 	kill_label.text = "x " + str(Globals.kill_count)
 	mote_label.text = "x " + str(Globals.lifetime_motes)
 	hat_label.text = "x " + str(Globals.hats_owned)
+
+func _on_button_pressed() -> void:
+	Globals.reset()
