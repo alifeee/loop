@@ -36,7 +36,7 @@ expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 region_rect = Rect2(0, 0, 112, 112)
 
-[node name="Control2" type="Control"]
+[node name="Control2" type="Control" node_paths=PackedStringArray("mote_count_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_18xnp")
 script = ExtResource("1_obwu6")
+mote_count_label = NodePath("Main Modal Background/Mote Count/Wallet")
 
 [node name="Main Modal Background" type="Panel" parent="."]
 layout_mode = 1
@@ -217,7 +218,6 @@ expand_mode = 5
 flip_h = true
 
 [node name="Mote Count" type="Panel" parent="Main Modal Background"]
-visible = false
 layout_mode = 0
 offset_left = 24.0
 offset_top = 24.0

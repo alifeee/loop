@@ -22,6 +22,11 @@ signal player_hit(lives_left: int)
 # purchases
 signal purchase_hat
 signal button_pressed(button_name_id: String)
+# sounds
+signal sound_worm_hit
+signal sound_loop_success
+signal sound_player_hit
+signal sound_collect_mote
 
 # global variables
 var demons: Array[Demon] = []
