@@ -135,6 +135,12 @@ func hit(__):
 		.tween_property(self, "global_position", Vector2(0, -pickup_distance) + self.global_position, pickup_duration) \
 			.set_trans(Tween.TRANS_SINE) \
 			.set_ease(Tween.EASE_IN_OUT)
+			
+	post_death_tween \
+		.parallel() \
+		.tween_property(self, "modulate", Color(2, 2, 2, 1), pickup_duration) \
+		.set_trans(Tween.TRANS_BOUNCE) \
+		.set_ease(Tween.EASE_IN_OUT)
 		
 	post_death_tween \
 		.tween_property(self, "modulate", Color(2, 2, 2, 0), pickup_duration) \
