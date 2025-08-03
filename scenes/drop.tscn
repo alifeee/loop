@@ -94,8 +94,8 @@ animations = [{
 }]
 
 [node name="Coin" type="AnimatableBody2D" node_paths=PackedStringArray("sprite")]
+modulate = Color(0.32, 0.32, 0.32, 0.490196)
 script = ExtResource("1_rwqht")
-pickup_duration = 0.5
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
