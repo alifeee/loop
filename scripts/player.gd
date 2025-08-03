@@ -90,15 +90,15 @@ func _process(delta: float) -> void:
 
 func make_spell_invalid():
 	for sparkle in loop_segments:
-		sparkle.modulate = Color("#fff")
+		sparkle.modulate = Color("#d9f")
 		sparkle.speed_scale = 1
 func make_spell_valid_level1():
 	for sparkle in loop_segments:
-		sparkle.modulate = Color("#fee")
+		sparkle.modulate = Color("#d9f")
 		sparkle.speed_scale = 5
 func make_spell_valid_level2():
 	for sparkle in loop_segments:
-		sparkle.modulate = Color("#f66")
+		sparkle.modulate = Color("#efe")
 		sparkle.speed_scale = 10
 func dispel():
 	for sparkle in loop_segments:
