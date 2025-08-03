@@ -18,9 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://6wvdq4v632nu" path="res://assets/non-animations/hat 2.png" id="13_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://d0c31cqbove2w" path="res://assets/non-animations/hat 3.png" id="14_gqmmt"]
 [ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scenes/shadow.gd" id="14_muem4"]
-[ext_resource type="PackedScene" uid="uid://bvthrn5164h04" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
-[ext_resource type="PackedScene" uid="uid://ddof72eun3ikb" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
-[ext_resource type="PackedScene" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://bhf44q5ylwxc" path="res://scenes/game_ui.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://46rk0std7vf4" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tipki"]
 atlas = ExtResource("4_o6xl0")
@@ -133,8 +133,12 @@ animations = [{
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0ld40"]
 gradient = SubResource("Gradient_dp3eg")
 
-[node name="Node2D2" type="Node2D"]
+[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("LOOP_CONTAINER")]
 script = ExtResource("1_jyhfs")
+LOOP_CONTAINER = NodePath("LoopContainer")
+CONTINUOUS_CASTING = false
+LOOP_MAX_LENGTH = 1000.0
+LOOP_MIN_AREA = 500.0
 DAMAGE_PERCENT = 34.0
 
 [node name="Screenshaker" type="Node2D" parent="."]
@@ -160,6 +164,8 @@ ratetimer = NodePath("RateTimer")
 wait_time = 1.5
 
 [node name="RateTimer" type="Timer" parent="Spawner"]
+
+[node name="LoopContainer" type="Node2D" parent="."]
 
 [node name="Centre" type="Area2D" parent="." node_paths=PackedStringArray("wizards_array", "hats_array")]
 position = Vector2(576, 324)

@@ -37,14 +37,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("damage_timer")]
 script = ExtResource("1_fpe6o")
+damage_timer = NodePath("DamageTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.458824)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_p0t4i")
+
+[node name="DamageTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.266667, 1, 1, 0.121569)
@@ -59,3 +63,5 @@ sprite_frames = SubResource("SpriteFrames_kyqv0")
 animation = &"loop_attack"
 autoplay = "loop_attack"
 script = ExtResource("4_kyqv0")
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
