@@ -5,6 +5,8 @@ extends Control
 @export var shop_canvas: CanvasLayer
 @export var progress_bar: ProgressBar
 
+
+
 func _ready() -> void:
 	#start_time = Time.get_unix_time_from_system()
 	$EndLabel.visible = false
