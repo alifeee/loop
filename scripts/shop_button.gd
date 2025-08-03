@@ -21,6 +21,7 @@ signal button_pressed
 @export var level_5_bar_and_gap: Array[Panel]
 
 # Button Variables
+@export var text_id: String
 @export var text: String
 @export var price: int
 @export var current_level: int = 1
@@ -93,9 +94,9 @@ func update_current_level(number) -> void:
 		)
 
 #func _on_button_button_down() -> void:
-	 # Replace with function body.
+	#print(text + " button pressed")
 
 
 func _on_button_pressed() -> void:
-	print(text + " button pressed") # Replace with function body.
-	button_pressed.emit()
+	print(text_id + " button pressed") # Replace with function body.
+	Globals.button_pressed.emit(text_id)
