@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://besntdjocs2lr" path="res://assets/animations/water/0014.jpg" id="16_jo1tx"]
 [ext_resource type="PackedScene" uid="uid://46rk0std7vf4" path="res://scenes/shop_ui.tscn" id="17_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://cdefpd0fe3qtr" path="res://assets/animations/water/0015.jpg" id="17_jfpmd"]
-[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
+[ext_resource type="PackedScene" uid="uid://cwi3qoa8555st" path="res://scenes/start.tscn" id="17_muem4"]
 [ext_resource type="Texture2D" uid="uid://c1v1cx551jal5" path="res://assets/animations/water/0016.jpg" id="18_nb646"]
 [ext_resource type="Texture2D" uid="uid://c5cjbcyjghpuj" path="res://assets/animations/water/0017.jpg" id="19_xewid"]
 [ext_resource type="Texture2D" uid="uid://dy3eae3xu6f2i" path="res://assets/animations/water/0018.jpg" id="20_gdurg"]
@@ -504,9 +504,9 @@
 [ext_resource type="Texture2D" uid="uid://dsc68c145hgix" path="res://assets/animations/water/0480.jpg" id="482_meeji"]
 [ext_resource type="AudioStream" uid="uid://bdc2l41ktgpm1" path="res://assets/music/GMTK 2025 loop main theme v2.mp3" id="503_qkihs"]
 [ext_resource type="AudioStream" uid="uid://d05b45o0qxsfe" path="res://assets/sound effects/John Sounds/Worm Death Sound.wav" id="504_aahym"]
-[ext_resource type="AudioStream" uid="uid://dee6x8fktsx4j" path="res://assets/sound effects/Initial Test/portal use 2.wav" id="505_27rfn"]
+[ext_resource type="AudioStream" uid="uid://bajjt25ioi20t" path="res://assets/sound effects/loop.wav" id="505_2vmv4"]
 [ext_resource type="AudioStream" uid="uid://dvy8s1h2ivmgj" path="res://assets/sound effects/Initial Test/Damage taken sound effect _1.wav" id="506_tpl0g"]
-[ext_resource type="AudioStream" uid="uid://cxcfmnlt07qsd" path="res://assets/sound effects/Initial Test/Dont have enough currency to buy.wav" id="507_2vmv4"]
+[ext_resource type="AudioStream" uid="uid://bbut8bf8nr4tf" path="res://assets/sound effects/mote_collect.wav" id="507_wooaw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gqmmt"]
 animations = [{
@@ -2324,8 +2324,6 @@ wait_time = 1.5
 
 [node name="RateTimer" type="Timer" parent="Spawner"]
 
-[node name="LoopContainer" type="Node2D" parent="."]
-
 [node name="DebugStats" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("5_tefeu")
@@ -2586,6 +2584,7 @@ text = "no error :]"
 autowrap_mode = 1
 
 [node name="Shadow" type="Sprite2D" parent="."]
+z_index = 3
 position = Vector2(576, 324)
 texture = ExtResource("12_eb6dy")
 script = ExtResource("14_muem4")
@@ -2593,6 +2592,9 @@ base_size = 1.01
 flicker_amplitude = 0.01
 flicker_time_min = 0.5
 flicker_time_max = 1.0
+
+[node name="LoopContainer" type="Node2D" parent="."]
+z_index = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
@@ -2637,19 +2639,23 @@ flicker_time_max = 1.0
 
 [node name="MainGameThemeAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("503_qkihs")
+volume_db = -6.0
 parameters/looping = false
 
 [node name="WormHitAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("504_aahym")
+volume_db = -21.0
 
 [node name="LoopSuccessAudio" type="AudioStreamPlayer" parent="Node"]
-stream = ExtResource("505_27rfn")
+stream = ExtResource("505_2vmv4")
+volume_db = -21.0
 
 [node name="PlayerHitAudio" type="AudioStreamPlayer" parent="Node"]
 stream = ExtResource("506_tpl0g")
+volume_db = -15.0
 
 [node name="CollectMoteAudio" type="AudioStreamPlayer" parent="Node"]
-stream = ExtResource("507_2vmv4")
+stream = ExtResource("507_wooaw")
 
 [connection signal="error_debug" from="." to="DebugStats" method="display_error"]
 [connection signal="area_entered" from="Centre" to="Centre" method="_on_area_entered"]
