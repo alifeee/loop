@@ -5,7 +5,9 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-@export var audio_mute: CheckButton
+@export_group("DEBUG INFO")
+@export var debuglabel: Label
+@export var spawner: Spawner
 @export_group("Loop Drawing")
 @export var LOOP_CONTAINER: Node2D
 @export var CONTINUOUS_CASTING: bool = true
@@ -22,7 +24,6 @@ var rng = RandomNumberGenerator.new()
 @export var DISPEL_TIME: float = 0.15
 
 # for bad loop
-signal error_debug(msg)
 var error = ""
 
 # loop distance tracker
@@ -47,6 +48,7 @@ func _init() -> void:
 	packed_loop_segment = preload("res://scenes/loop_segment.tscn")
 
 func _ready() -> void:
+	Globals.set_gamestate(Globals.GAMESTATES.PLAYING)
 	#close_button.focus_mode = Control.FOCUS_NONE
 	Globals.start_game.connect(start)
 	Globals.pause_game.connect(pause)
@@ -58,9 +60,6 @@ func _ready() -> void:
 	
 	# play tutorial theme
 	Audio.play(Audio.Sounds.TutorialTheme)
-	
-	# mute/unmute
-	audio_mute.focus_mode = Control.FOCUS_NONE
 	
 func mute_audio():
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
@@ -86,6 +85,7 @@ func lose():
 	pass
 
 func _process(delta: float) -> void:
+	fill_debug_label()
 	# check for validity every frame
 	#   loop must be big enough
 	#   loop end must be close to start
@@ -152,6 +152,8 @@ func do_loop_damage(pos: Vector2, radius: float) -> void:
 		loop.damage_radius = radius
 		Globals.loops.append(loop)
 		LOOP_CONTAINER.add_child(loop)
+		
+		print("spawn loop at ", pos)
 		
 		# delete loop if there are now too many loops
 		while len(Globals.loops) > 3:
@@ -231,7 +233,6 @@ func check_and_add_spell_point(pos):
 	# length check
 	loop_distance += distance
 	if loop_distance > LOOP_MAX_LENGTH:
-		error_debug.emit("length too long!!!!")
 		drop_spell()
 		return
 	# new point check
@@ -253,10 +254,6 @@ func _input(event):
 		if OS.is_debug_build():
 			Globals.motes += 100
 			Globals.lifetime_motes += 100
-	# reset game
-	if event.is_action_pressed("Reset"):
-		print("press reset!")
-		Globals.reset()
 	# pause game
 	if event.is_action_pressed("Pause"):
 		## is playing, pause
@@ -284,9 +281,43 @@ func _input(event):
 	elif event is InputEventMouseMotion and is_held:
 		check_and_add_spell_point(event.position)
 
-
-func _on_check_button_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		unmute_audio()
-	else:
-		mute_audio()
+func fill_debug_label():
+	var info = [
+		1,
+		Globals.gamestate,
+		Globals.player_health,
+		is_valid,
+		snappedf(spawner.timer.wait_time, 0.01),
+		snappedf(spawner.timer.time_left, 0.01),
+		snappedf(spawner.ratetimer.wait_time, 0.01),
+		snappedf(spawner.ratetimer.time_left, 0.01),
+		Globals.total_demons,
+		len(Globals.demons),
+		Globals.lifetime_motes,
+		len(Globals.loops),
+		error
+	]
+	for i in range(len(info)):
+		info[i] = str(info[i])
+	debuglabel.text = """
+	DEBUG INFORMATION
+	GAME VERSION: %s
+	GAME STATE: %s
+	
+	PLAYER/HEALTH: %s
+	
+	SPELL/VALID: %s
+	
+	SPAWNER/NEXT: %s
+	SPAWNER/NEXT: %s
+	SPAWNER/RATEUP: %s
+	SPAWNER/RATEUP: %s
+	
+	DEMONS/TOTAL: %s
+	DEMONS/CURRENT: %s
+	
+	MOTES/TOTAL: %s
+	
+	LOOPS/TOTAL: %s
+	LAST LOOP ERROR: %s
+	""" % info 

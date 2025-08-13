@@ -1,5 +1,7 @@
 extends Sprite2D
 
+# flicker sprites :]
+
 @export var stoponlose: bool = false
 
 # Size Flikering
@@ -15,41 +17,11 @@ extends Sprite2D
 @export var flicker_time_min: float
 @export var flicker_time_max: float
 
-var initial_modulate: Color
-
 var tween: Tween
 var deathtween: Tween
 
 func _ready() -> void:
-	Globals.spawn_bunch_of_enemies.connect(stopstuff)
-	Globals.reset_game.connect(reset)
-	initial_modulate = modulate
-	visible = true
-	reset()
-
-func reset() -> void:
-	if tween:
-		tween.kill()
-	if deathtween:
-		deathtween.kill()
-	modulate = initial_modulate
 	randomly_make_shadow_bigger_and_smaller()
-
-#func _process(delta: float) -> void:
-	#scale = Vector2(
-		#randf_range(1 - flicker_amplitude, 1 + flicker_amplitude),
-		#randf_range(1 - flicker_amplitude, 1 + flicker_amplitude),
-	#)
-
-func stopstuff():
-	if not stoponlose:
-		return
-	if tween:
-		tween.kill()
-	if deathtween:
-		deathtween.kill()
-	deathtween = get_tree().create_tween()
-	deathtween.tween_property(self, "modulate:a", 0, 3)
 	
 func randomly_make_shadow_bigger_and_smaller():
 	tween = get_tree().create_tween()

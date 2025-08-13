@@ -22,12 +22,6 @@ func _ready() -> void:
 	_on_damage_timer_timeout()
 	particles.emitting = false
 	modulate.a = 1
-	Globals.pause_game.connect(
-		func():
-			sprite.pause
-			particles.emitting = false
-	)
-	Globals.resume_game.connect(sprite.play)
 
 func _process(delta: float) -> void:
 	if Globals.gamestate != Globals.GAMESTATES.PLAYING:

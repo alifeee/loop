@@ -30,18 +30,15 @@ var spawn_tween: Tween
 var dietween: Tween 
 
 
-func pause_tween(tw):
-	if tw != null:
-		tw.pause()
+func pause_tween(tween):
+	if tween != null:
+		tween.pause()
 
-func play_tween(tw):
-	if tw != null:
-		tw.play()
+func play_tween(tween):
+	if tween != null:
+		tween.play()
 
-func _ready() -> void:
-	Globals.pause_game.connect(pause)
-	Globals.resume_game.connect(play)
-	
+func _ready() -> void:	
 	assert(moat_spawn_delay < death_duration)
 	
 	var init_col = Color(self.modulate)
@@ -110,9 +107,9 @@ func die() -> void:
 	sprite.stop()
 	sprite.visible = false
 	
-	spawn_tween = get_tree().create_tween()
-	spawn_tween.tween_interval(moat_spawn_delay)
-	spawn_tween.tween_callback(make_drop)
+	#spawn_tween = get_tree().create_tween()
+	#spawn_tween.tween_interval(moat_spawn_delay)
+	#spawn_tween.tween_callback(make_drop)
 	
 	dietween = get_tree().create_tween()
 	dietween.tween_property(self, "modulate:a", 0, death_duration)
@@ -120,12 +117,12 @@ func die() -> void:
 	
 	Globals.demons.erase(self)
 	
-func make_drop() -> void:
-	for __ in drop_amount:
-		if drop_chance >= randf():
-			var drop = drop_scene.instantiate()
-			drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance)) * randf() * drop_variance
-			DemonDrops.add_child(drop)
+#func make_drop() -> void:
+	#for __ in drop_amount:
+		#if drop_chance >= randf():
+			#var drop = drop_scene.instantiate()
+			#drop.global_position = self.position + Vector2(randfn(0, drop_variance), randfn(0, drop_variance)) * randf() * drop_variance
+			#DemonDrops.add_child(drop)
 
 
 func reach_middle() -> void:

@@ -1,8 +1,8 @@
-extends Node2D
+extends Node
 
-@export var screenshake_amplitude: float
-@export var screenshake_duration_time: float
-@export var screenshake_duration_left: float
+@export var screenshake_amplitude: float = 2.0
+@export var screenshake_duration_time: float = 0.4
+@export var screenshake_duration_left: float = 0.0
 
 func _ready() -> void:
 	Globals.player_hit.connect(screenshake)
@@ -17,6 +17,5 @@ func _process(delta: float) -> void:
 	else:
 		get_tree().root.global_canvas_transform.origin = Vector2.ZERO 
 	
-func screenshake(wizard_number: int):
+func screenshake():
 	screenshake_duration_left = screenshake_duration_time
-	print("ShakeScreen")

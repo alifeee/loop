@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export var close_button: Button
 @export var shop_button: Button
@@ -48,8 +48,9 @@ func _ready() -> void:
 				if shop_canvas:
 					shop_canvas.visible = true
 	)
-	var close_button: Button = shop_canvas.find_child("CloseButton")
-	close_button.pressed.connect(
+	if shop_canvas:
+		var close_button: Button = shop_canvas.find_child("CloseButton")
+		close_button.pressed.connect(
 		func():
 			Globals.resume()
 			if shop_canvas:

@@ -9,6 +9,10 @@ enum GAMESTATES {
 }
 var gamestate = GAMESTATES.START_SCREEN
 
+# game states
+signal gamestate_reset
+signal gamestate_start
+
 # game state signals
 signal start_game
 signal pause_game
@@ -50,7 +54,12 @@ func delete_reset_array(ar: Array):
 		i.queue_free()
 	ar.clear()
 
+func set_gamestate(state: GAMESTATES):
+	gamestate = state
+
 func start():
+	print("GLOBALS: got start :]")
+	gamestate_start.emit()
 	gamestate = GAMESTATES.PLAYING
 	start_game.emit()
 	## kill mobs
@@ -81,6 +90,8 @@ func endgame(is_win: bool):
 	if not is_win:
 		spawn_bunch_of_enemies.emit()
 func reset():
+	print("got reset :]")
+	reset_game.emit()
 	gamestate = GAMESTATES.START_SCREEN
 	# normal stuff
 	reset_game.emit()

@@ -1,10 +1,10 @@
+class_name Spawner
 extends Node2D
 
 # drop spawner
 @export var DemonDrops: Node2D
 # timer
 @export var timer: Timer
-var timer_initial_wait: float
 @export var ratetimer: Timer
 # rate increases
 @export var rate_every_s: float = 5
@@ -19,37 +19,15 @@ var packeddemon: PackedScene
 
 func _ready() -> void:
 	packeddemon = preload("res://scenes/demon.tscn")
-	# save vars
-	# spawn demon immediately
-	#_on_timer_timeout()
 	
-	# rate
-	timer_initial_wait = timer.wait_time
+	# rate timer - to increase spawns
 	ratetimer.wait_time = rate_every_s
 	ratetimer.timeout.connect(increase_rate)
 	
 	# signals
-	Globals.start_game.connect(start)
-	Globals.pause_game.connect(pause)
-	Globals.resume_game.connect(resume)
-	Globals.end_game.connect(pause)
-	Globals.spawn_bunch_of_enemies.connect(spawnenemies)
-	Globals.reset_game.connect(reset)
-
-func start() -> void:
-	print("starting!")
 	timer.start()
 	ratetimer.start()
-func pause() -> void:
-	timer.paused = true
-	ratetimer.paused = true
-func resume() -> void:
-	timer.paused = false
-	ratetimer.paused = false
-func reset() -> void:
-	timer.wait_time = timer_initial_wait
-	timer.stop()
-	ratetimer.stop()
+
 func spawnenemies() -> void:
 	for i in range(100):
 		var demon = packeddemon.instantiate()

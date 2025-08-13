@@ -17,13 +17,7 @@ bg_color = Color(0.15, 0.15, 0.15, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3huio"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("close_button", "shop_button", "progress_bar", "game_end_ui", "end_label", "time_label", "kill_label", "mote_label", "hat_label")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Control" type="CanvasLayer" node_paths=PackedStringArray("close_button", "shop_button", "progress_bar", "game_end_ui", "end_label", "time_label", "kill_label", "mote_label", "hat_label")]
 script = ExtResource("1_u2dgd")
 close_button = NodePath("Panel/Close Portal Button")
 shop_button = NodePath("Panel/Shop Button")
@@ -38,7 +32,6 @@ hat_label = NodePath("GameEndContainer/Panel/VBoxContainer/Hat Container/HatLabe
 [node name="Reference Image" type="TextureRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.392157)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,7 +42,6 @@ expand_mode = 1
 
 [node name="TopLeftUI" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 20.0
@@ -129,7 +121,6 @@ theme_override_font_sizes/font_size = 36
 text = "999"
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -285,7 +276,6 @@ horizontal_alignment = 1
 
 [node name="GameEndContainer" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -295,6 +285,7 @@ theme = ExtResource("7_o3bws")
 theme_override_styles/panel = SubResource("StyleBoxFlat_sjwyb")
 
 [node name="EndLabel" type="Label" parent="GameEndContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -397,6 +388,7 @@ offset_bottom = 37.0
 text = "x 999"
 
 [node name="Button" type="Button" parent="GameEndContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
