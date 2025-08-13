@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh2wq5s2rhjcm"]
+
+[ext_resource type="Script" uid="uid://b2ylpnrivqgtn" path="res://scripts/audio.gd" id="1_3g2y6"]
+[ext_resource type="AudioStream" uid="uid://bdc2l41ktgpm1" path="res://assets/music/GMTK 2025 loop main theme v2.mp3" id="2_lpqkh"]
+[ext_resource type="AudioStream" uid="uid://d05b45o0qxsfe" path="res://assets/sound effects/John Sounds/Worm Death Sound.wav" id="3_lymfh"]
+[ext_resource type="AudioStream" uid="uid://bajjt25ioi20t" path="res://assets/sound effects/loop.wav" id="4_p5uep"]
+[ext_resource type="AudioStream" uid="uid://dvy8s1h2ivmgj" path="res://assets/sound effects/Initial Test/Damage taken sound effect _1.wav" id="5_dn6px"]
+[ext_resource type="AudioStream" uid="uid://bbut8bf8nr4tf" path="res://assets/sound effects/mote_collect.wav" id="6_8ou3m"]
+[ext_resource type="AudioStream" uid="uid://bdreom6n7rfsp" path="res://assets/music/GMTK 2025 tutorial loop fix music.mp3" id="7_iynmv"]
+[ext_resource type="AudioStream" uid="uid://uodmyio6gsuq" path="res://assets/sound effects/light-thud.wav" id="8_ggveo"]
+
+[node name="Audio" type="Node" node_paths=PackedStringArray("MainGameTheme_Player", "WormHit_Player", "LoopSuccess_Player", "PlayerHit_Player", "CollectMote_Player", "TutorialTheme_Player", "WormThud_Player")]
+script = ExtResource("1_3g2y6")
+MainGameTheme_Player = NodePath("MainGameThemeAudio")
+WormHit_Player = NodePath("WormHitAudio")
+LoopSuccess_Player = NodePath("LoopSuccessAudio")
+PlayerHit_Player = NodePath("PlayerHitAudio")
+CollectMote_Player = NodePath("CollectMoteAudio")
+TutorialTheme_Player = NodePath("TutooialThemeAudio")
+WormThud_Player = NodePath("WormThudAudio")
+
+[node name="MainGameThemeAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lpqkh")
+volume_db = -9.0
+parameters/looping = true
+
+[node name="WormHitAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lymfh")
+volume_db = -21.0
+
+[node name="LoopSuccessAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p5uep")
+volume_db = -15.0
+
+[node name="PlayerHitAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dn6px")
+volume_db = -18.0
+
+[node name="CollectMoteAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_8ou3m")
+volume_db = -3.0
+
+[node name="TutooialThemeAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_iynmv")
+volume_db = -9.0
+parameters/looping = true
+
+[node name="WormThudAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ggveo")

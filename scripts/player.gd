@@ -55,18 +55,10 @@ func _ready() -> void:
 	Globals.reset_game.connect(reset)
 	Globals.win.connect(win)
 	Globals.spawn_bunch_of_enemies.connect(lose)
-	Globals.sound_worm_hit.connect(play_worm_hit)
-	Globals.sound_worm_thud.connect(play_worm_thud)
-	Globals.sound_loop_success.connect(play_loop_success)
-	Globals.sound_player_hit.connect(play_player_hit)
-	Globals.sound_collect_mote.connect(play_collect_mote)
 	
 	# mute/unmute
 	audio_mute.focus_mode = Control.FOCUS_NONE
 	
-	# go find section in code that triggers thing, and run this
-	# Globals.sound_collect_mote.emit()
-	$Node/TutooialThemeAudio.play()
 func mute_audio():
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 func unmute_audio():
@@ -75,41 +67,20 @@ func unmute_audio():
 func start():
 	if CONTINUOUS_CASTING:
 		pick_up_spell(get_viewport().get_mouse_position())
-	$Node/TutooialThemeAudio.stop()
-	$Node/MainGameThemeAudio.play()
+	#$Node/TutooialThemeAudio.stop()
+	#$Node/MainGameThemeAudio.play()
 func pause():
 	drop_spell()
 func resume():
 	pass
 func reset():
 	drop_spell()
-	$Node/MainGameThemeAudio.stop()
-	$Node/TutooialThemeAudio.play()
+	#$Node/MainGameThemeAudio.stop()
+	#$Node/TutooialThemeAudio.play()
 func win():
 	pass
 func lose():
 	pass
-
-func play_worm_hit():
-	print("play worm hit")
-	$Node/WormHitAudio.pitch_scale = randf_range(0.99, 1.01)
-	$Node/WormHitAudio.play()
-func play_worm_thud():
-	print("play worm thud")
-	$Node/WormHitAudio.pitch_scale = randf_range(0.98, 1.03)
-	$Node/WormThudAudio.play()
-func play_loop_success():
-	print("play loop success")
-	$Node/LoopSuccessAudio.pitch_scale = randf_range(0.98, 1.02)
-	$Node/LoopSuccessAudio.play()
-func play_player_hit():
-	print("play player hit")
-	$Node/PlayerHitAudio.pitch_scale = randf_range(0.98, 1.03)
-	$Node/PlayerHitAudio.play()
-func play_collect_mote():
-	print("play collect mote")
-	$Node/CollectMoteAudio.pitch_scale = randf_range(0.98, 1.03)
-	$Node/CollectMoteAudio.play()
 
 func _process(delta: float) -> void:
 	# check for validity every frame
@@ -169,7 +140,7 @@ func dispel():
 		)
 
 func do_loop_damage(pos: Vector2, radius: float) -> void:
-	Globals.sound_loop_success.emit()
+	Audio.play(Audio.Sounds.LoopSuccess)
 	if PERSISTENT_SPELLS:
 		# spawn a loop to do damage over time
 		var loop: Loop = packedloop.instantiate()

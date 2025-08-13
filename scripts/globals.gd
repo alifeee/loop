@@ -22,12 +22,6 @@ signal player_hit(lives_left: int)
 # purchases
 signal purchase_hat
 signal button_pressed(button_name_id: String)
-# sounds
-signal sound_worm_hit
-signal sound_worm_thud
-signal sound_loop_success
-signal sound_player_hit
-signal sound_collect_mote
 
 # global variables
 var demons: Array[Demon] = []
@@ -107,7 +101,7 @@ func reset():
 
 func hit_player(damage: int):
 	player_health -= 1
-	sound_player_hit.emit()
+	Audio.play(Audio.Sounds.PlayerHit)
 	if player_health <= 0:
 		endgame(false)
 	player_hit.emit(player_health)

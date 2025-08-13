@@ -141,7 +141,7 @@ func hit(__):
 	if dead:
 		return
 	
-	Globals.sound_collect_mote.emit()
+	Audio.play(Audio.Sounds.CollectMote)
 
 	dead = true
 	drop_tween.kill()

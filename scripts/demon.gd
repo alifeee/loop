@@ -91,7 +91,7 @@ func hit(damage: float):
 	health -= damage
 	if health <= 0:
 		die()
-	Globals.sound_worm_thud.emit()
+	Audio.play(Audio.Sounds.WormThud)
 
 func die() -> void:
 	Globals.kill_count += 1
@@ -103,7 +103,7 @@ func die() -> void:
 	self.modulate = Color("#f0ff")
 	self.collision_layer = 2
 	
-	Globals.sound_worm_hit.emit()
+	Audio.play(Audio.Sounds.WormHit)
 	
 	sprite.play("death")
 	await get_tree().create_timer(1).timeout
