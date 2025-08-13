@@ -56,6 +56,9 @@ func _ready() -> void:
 	Globals.win.connect(win)
 	Globals.spawn_bunch_of_enemies.connect(lose)
 	
+	# play tutorial theme
+	Audio.play(Audio.Sounds.TutorialTheme)
+	
 	# mute/unmute
 	audio_mute.focus_mode = Control.FOCUS_NONE
 	
@@ -67,16 +70,16 @@ func unmute_audio():
 func start():
 	if CONTINUOUS_CASTING:
 		pick_up_spell(get_viewport().get_mouse_position())
-	#$Node/TutooialThemeAudio.stop()
-	#$Node/MainGameThemeAudio.play()
+	Audio.stop(Audio.Sounds.TutorialTheme)
+	Audio.play(Audio.Sounds.MainGameTheme)
 func pause():
 	drop_spell()
 func resume():
 	pass
 func reset():
 	drop_spell()
-	#$Node/MainGameThemeAudio.stop()
-	#$Node/TutooialThemeAudio.play()
+	Audio.stop(Audio.Sounds.MainGameTheme)
+	Audio.play(Audio.Sounds.TutorialTheme)
 func win():
 	pass
 func lose():
