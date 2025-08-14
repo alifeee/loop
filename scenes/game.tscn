@@ -1,4 +1,4 @@
-[gd_scene load_steps=529 format=3 uid="uid://cbayqvweh66fc"]
+[gd_scene load_steps=532 format=3 uid="uid://cbayqvweh66fc"]
 
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/game.gd" id="1_7odbu"]
 [ext_resource type="Script" uid="uid://d0a2a3yjlaco4" path="res://scripts/screenshaker.gd" id="1_uwrxv"]
@@ -482,10 +482,13 @@
 [ext_resource type="Texture2D" uid="uid://c5dvl1g08jfka" path="res://assets/animations/water/0478.jpg" id="479_i0w0u"]
 [ext_resource type="Texture2D" uid="uid://bbr0bw3c6nu0m" path="res://assets/animations/water/0479.jpg" id="480_2ye8u"]
 [ext_resource type="Texture2D" uid="uid://dsc68c145hgix" path="res://assets/animations/water/0480.jpg" id="481_cyh8q"]
+[ext_resource type="Script" uid="uid://c58kl0mda5nqe" path="res://scripts/loops.gd" id="483_0gguc"]
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/spawner.gd" id="483_7nklg"]
 [ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="483_28se1"]
 [ext_resource type="Texture2D" uid="uid://b4t0w5gm8f7jr" path="res://assets/non-animations/Ellipse.png" id="484_7nklg"]
+[ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="484_lu11l"]
 [ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scripts/flicker.gd" id="485_dcx0s"]
+[ext_resource type="PackedScene" uid="uid://cxikwibxofj3t" path="res://scenes/loop_segment.tscn" id="485_klk3u"]
 [ext_resource type="Texture2D" uid="uid://br1a4v37vsbi3" path="res://assets/non-animations/portal.png" id="486_0gguc"]
 [ext_resource type="Texture2D" uid="uid://dd88vc85umu73" path="res://assets/animations/portal/portal_opening_sprite.png" id="487_5wsge"]
 [ext_resource type="Texture2D" uid="uid://d2oxcqjf8ihlb" path="res://assets/animations/portal/portal_open_sprite.png" id="488_lu11l"]
@@ -2160,16 +2163,11 @@ animations = [{
 "speed": 2.6
 }]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("debuglabel", "spawner", "LOOP_CONTAINER")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("debuglabel", "loopcontainer", "spawner")]
 script = ExtResource("1_7odbu")
 debuglabel = NodePath("DebugOverlay/DebugInfo")
+loopcontainer = NodePath("Loops")
 spawner = NodePath("Spawner")
-LOOP_CONTAINER = NodePath("LoopsContainer")
-CONTINUOUS_CASTING = false
-LOOP_MAX_LENGTH = 1000.0
-LOOP_MIN_AREA = 500.0
-LOOP_MAX_START_END_DISTANCE = 60.0
-DAMAGE_PERCENT = 34.0
 
 [node name="Screenshaker" type="Node" parent="."]
 script = ExtResource("1_uwrxv")
@@ -2181,8 +2179,11 @@ scale = Vector2(2.9292, 2.9292)
 sprite_frames = SubResource("SpriteFrames_8ftsp")
 autoplay = "default"
 
-[node name="LoopsContainer" type="Node2D" parent="."]
+[node name="Loops" type="Node2D" parent="."]
 z_index = 1
+script = ExtResource("483_0gguc")
+packedloop = ExtResource("484_lu11l")
+packed_loop_segment = ExtResource("485_klk3u")
 
 [node name="MotesContainer" type="Node2D" parent="."]
 position = Vector2(576, 322)

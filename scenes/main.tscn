@@ -2169,14 +2169,8 @@ animations = [{
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0ld40"]
 gradient = SubResource("Gradient_dp3eg")
 
-[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("LOOP_CONTAINER")]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_jyhfs")
-LOOP_CONTAINER = NodePath("LoopContainer")
-CONTINUOUS_CASTING = false
-LOOP_MAX_LENGTH = 1000.0
-LOOP_MIN_AREA = 500.0
-LOOP_MAX_START_END_DISTANCE = 60.0
-DAMAGE_PERCENT = 34.0
 
 [node name="Screenshaker" type="Node2D" parent="."]
 script = ExtResource("2_jbj1t")
