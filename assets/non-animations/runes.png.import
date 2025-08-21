@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1a4v37vsbi3"
-path="res://.godot/imported/portal.png-4fb4a40159d672d22cc386020dd71b2b.ctex"
+uid="uid://o6n03wlvkl1o"
+path="res://.godot/imported/runes.png-6cd9d914c4db2280c3abc8f319251cbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/non-animations/portal.png"
-dest_files=["res://.godot/imported/portal.png-4fb4a40159d672d22cc386020dd71b2b.ctex"]
+source_file="res://assets/non-animations/runes.png"
+dest_files=["res://.godot/imported/runes.png-6cd9d914c4db2280c3abc8f319251cbd.ctex"]
 
 [params]
 

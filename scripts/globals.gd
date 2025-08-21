@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 		time_elapsed += delta
 ## start triggered by main menu "start button"
 func start_game():
-	gamestate = GAMESTATES.PLAYING
 	gamestate_start.emit()
 ## end triggered by losing too much health
 func end_game():

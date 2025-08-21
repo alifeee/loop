@@ -7,6 +7,7 @@ extends Node2D
 @export var spawner: Spawner
 
 func _ready() -> void:
+	Globals.gamestate = Globals.GAMESTATES.PLAYING
 	# play tutorial theme
 	Audio.play(Audio.Sounds.TutorialTheme)
 
