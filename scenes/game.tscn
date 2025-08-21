@@ -1,4 +1,4 @@
-[gd_scene load_steps=536 format=3 uid="uid://cbayqvweh66fc"]
+[gd_scene load_steps=535 format=3 uid="uid://cbayqvweh66fc"]
 
 [ext_resource type="Script" uid="uid://c8u5g67s4bvvo" path="res://scripts/game.gd" id="1_7odbu"]
 [ext_resource type="Script" uid="uid://d0a2a3yjlaco4" path="res://scripts/screenshaker.gd" id="1_uwrxv"]
@@ -485,14 +485,13 @@
 [ext_resource type="Script" uid="uid://c58kl0mda5nqe" path="res://scripts/loops.gd" id="483_0gguc"]
 [ext_resource type="Script" uid="uid://cis34mrvusi2o" path="res://scripts/spawner.gd" id="483_7nklg"]
 [ext_resource type="Script" uid="uid://hk7nfw1jlh" path="res://scripts/centre.gd" id="483_28se1"]
-[ext_resource type="Texture2D" uid="uid://b4t0w5gm8f7jr" path="res://assets/non-animations/Ellipse.png" id="484_7nklg"]
 [ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="484_lu11l"]
 [ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scripts/flicker.gd" id="485_dcx0s"]
 [ext_resource type="PackedScene" uid="uid://cxikwibxofj3t" path="res://scenes/magic_segment.tscn" id="485_klk3u"]
 [ext_resource type="Texture2D" uid="uid://dd88vc85umu73" path="res://assets/animations/portal/portal_opening_sprite.png" id="487_5wsge"]
 [ext_resource type="Texture2D" uid="uid://d2oxcqjf8ihlb" path="res://assets/animations/portal/portal_open_sprite.png" id="488_lu11l"]
+[ext_resource type="PackedScene" uid="uid://bg6cclgym6yn0" path="res://scenes/runes.tscn" id="488_og3so"]
 [ext_resource type="Texture2D" uid="uid://cleacvb483w7q" path="res://assets/animations/portal/portal_summoning_spirte.png" id="489_klk3u"]
-[ext_resource type="Texture2D" uid="uid://o6n03wlvkl1o" path="res://assets/non-animations/runes.png" id="490_uj66t"]
 [ext_resource type="Texture2D" uid="uid://bxfqa5s4dtr7e" path="res://assets/animations/wizards/wizard1.png" id="491_og3so"]
 [ext_resource type="PackedScene" uid="uid://bbi6850r4kbrr" path="res://scenes/wizard_particles.tscn" id="492_uj66t"]
 [ext_resource type="Texture2D" uid="uid://b5gxhyr86q5is" path="res://assets/animations/wizards/wizard2.png" id="493_xvay4"]
@@ -2214,55 +2213,12 @@ wizards_array = [NodePath("../Wizards/Wizard1"), NodePath("../Wizards/Wizard2"),
 hats_array = [NodePath("../Wizards/Hat3"), NodePath("../Wizards/Hat2"), NodePath("../Wizards/Hat1")]
 
 [node name="CentreCollider" type="CollisionShape2D" parent="Centre"]
-position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kagel")
 one_way_collision_margin = 0.0
 
-[node name="Runes" type="Node2D" parent="."]
-
-[node name="PortalGlowOuter" type="Sprite2D" parent="Runes"]
-self_modulate = Color(0.372549, 0.282353, 0.45098, 0.490196)
-position = Vector2(576, 324)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("484_7nklg")
-script = ExtResource("485_dcx0s")
-stoponlose = true
-base_size = 0.5
-flicker_amplitude = 0.02
-alpha_flickering = true
-base_alpha = 0.5
-alpha_amplitude = 0.1
-flicker_time_min = 1.0
-flicker_time_max = 1.0
-
-[node name="PortalGlow" type="Sprite2D" parent="Runes"]
-self_modulate = Color(0.352941, 0.709804, 0.631373, 0.333333)
-position = Vector2(576, 324)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("484_7nklg")
-script = ExtResource("485_dcx0s")
-stoponlose = true
-base_size = 0.3
-flicker_amplitude = 0.02
-alpha_flickering = true
-base_alpha = 0.4
-alpha_amplitude = 0.1
-flicker_time_min = 1.0
-flicker_time_max = 1.0
-
-[node name="Runes" type="Sprite2D" parent="Runes"]
-position = Vector2(575, 324)
-scale = Vector2(1.17969, 1.26172)
-texture = ExtResource("490_uj66t")
-script = ExtResource("485_dcx0s")
-stoponlose = true
-base_size = 1.18
-alpha_flickering = true
-base_alpha = 0.8
-alpha_amplitude = 0.2
-flicker_time_min = 0.05
-flicker_time_max = 0.1
+[node name="Runes" parent="." instance=ExtResource("488_og3so")]
+position = Vector2(567, 330)
 
 [node name="Portal" type="AnimatedSprite2D" parent="."]
 z_index = 9

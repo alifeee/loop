@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg6cclgym6yn0"]
+
+[ext_resource type="Script" uid="uid://thkcth5aewn" path="res://scripts/runes.gd" id="1_h73dg"]
+[ext_resource type="Texture2D" uid="uid://b4t0w5gm8f7jr" path="res://assets/non-animations/Ellipse.png" id="1_u7eui"]
+[ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scripts/flicker.gd" id="2_7j2l4"]
+[ext_resource type="Shader" uid="uid://cjicvixgx1r2r" path="res://shaders/runes.gdshader" id="3_7j2l4"]
+[ext_resource type="Texture2D" uid="uid://o6n03wlvkl1o" path="res://assets/non-animations/runes.png" id="3_h73dg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h73dg"]
+shader = ExtResource("3_7j2l4")
+shader_parameter/fill = 0.375
+
+[node name="Runes" type="Node2D" node_paths=PackedStringArray("runes")]
+script = ExtResource("1_h73dg")
+runes = NodePath("Runes")
+
+[node name="PortalGlowOuter" type="Sprite2D" parent="."]
+self_modulate = Color(0.372549, 0.282353, 0.45098, 0.490196)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_u7eui")
+script = ExtResource("2_7j2l4")
+base_size = 0.5
+flicker_amplitude = 0.02
+alpha_flickering = true
+base_alpha = 0.5
+alpha_amplitude = 0.1
+flicker_time_min = 1.0
+flicker_time_max = 1.0
+
+[node name="PortalGlow" type="Sprite2D" parent="."]
+self_modulate = Color(0.352941, 0.709804, 0.631373, 0.333333)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_u7eui")
+script = ExtResource("2_7j2l4")
+base_size = 0.3
+flicker_amplitude = 0.02
+alpha_flickering = true
+base_alpha = 0.4
+alpha_amplitude = 0.1
+flicker_time_min = 1.0
+flicker_time_max = 1.0
+
+[node name="Runes" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_h73dg")
+scale = Vector2(1.17969, 1.26172)
+texture = ExtResource("3_h73dg")
+offset = Vector2(-7, 3.59)
+script = ExtResource("2_7j2l4")
+base_size = 1.18
+alpha_flickering = true
+base_alpha = 0.8
+alpha_amplitude = 0.2
+flicker_time_min = 0.05
+flicker_time_max = 0.1

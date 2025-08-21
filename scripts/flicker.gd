@@ -2,8 +2,6 @@ extends Sprite2D
 ## flicker sprites :]
 ## used for shadow, portal glows, and portal runes (and maybe more!)
 
-@export var stoponlose: bool = false
-
 # Size Flikering
 @export var keep_aspect_ratio: bool
 @export var base_size: float
