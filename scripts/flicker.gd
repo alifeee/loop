@@ -1,6 +1,6 @@
 extends Sprite2D
-
-# flicker sprites :]
+## flicker sprites :]
+## used for shadow, portal glows, and portal runes (and maybe more!)
 
 @export var stoponlose: bool = false
 

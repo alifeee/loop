@@ -7,8 +7,6 @@ extends Node2D
 
 signal demon_death(pos: Vector2)
 
-
-
 func make_drop() -> void:
 	for __ in drop_amount:
 		if drop_chance >= randf():

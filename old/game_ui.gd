@@ -1,4 +1,5 @@
 extends CanvasLayer
+## This is not used
 
 @export var close_button: Button
 @export var shop_button: Button
@@ -27,12 +28,6 @@ func _ready() -> void:
 	#shop_button.modulate.a = 0.5
 	#shop_button.focus_mode = Control.FOCUS_NONE
 	
-	Globals.end_game.connect(func(): show_game_end_stuff())
-	Globals.end_game.connect(func(): $Panel.visible = false)
-	Globals.reset_game.connect(func(): game_end_ui.hide())
-	Globals.reset_game.connect(func(): end_label.text = "Overrun!")
-	Globals.start_game.connect(func(): game_end_ui.hide())
-	
 	close_button.pressed.connect(
 		func():
 			Globals.endgame(true)
@@ -56,15 +51,6 @@ func _ready() -> void:
 			if shop_canvas:
 				shop_canvas.visible = false
 	)
-	
-	Globals.reset_game.connect(reset)
-	
-func reset():
-	$TopLeftUI.visible = true
-	$Panel.visible = true
-	close_button.disabled = true
-	close_button.modulate.a = 0.5
-	close_button.focus_mode = Control.FOCUS_NONE
 	
 func _process(delta: float) -> void:
 	$TopLeftUI/Timer/Text.text = str(snapped(Globals.time_elapsed, 0.1))

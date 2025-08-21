@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="LOOP"
-run/main_scene="uid://c06e8kqm41gh3"
+config/name="PENUMBRA"
+run/main_scene="uid://dt0le1d6n2kxb"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

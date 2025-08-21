@@ -32,7 +32,7 @@ var is_valid = false
 
 var error = ""
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	# check for validity every frame
 	#   loop must be big enough
@@ -159,7 +159,7 @@ func check_and_add_spell_point(pos):
 		var num_frames = loopsprite.sprite_frames.get_frame_count("default")
 		loopsprite.frame = rng.randi_range(0, num_frames)
 		loopsprite.frame_progress = rng.randf_range(0, 1)
-		loopsprite.position = pos
+		loopsprite.position = midpoint
 		loop_segments.append(loopsprite)
 		add_child(loopsprite)
 

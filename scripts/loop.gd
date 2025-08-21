@@ -23,15 +23,18 @@ func _ready() -> void:
 	particles.emitting = false
 	modulate.a = 1
 
-func _process(delta: float) -> void:
+## keep checking if I'm the 3rd (final) loop
+## if so, start pulsing and emitting particles etc.
+func _process(_delta: float) -> void:
 	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
 		return
 	if Globals.loops.find(self) == 0 and len(Globals.loops) > 2:
 		particles.emitting = true
 		modulate.a = 0.8
 		var time_elapsed = Time.get_ticks_msec()
-		scale = (1 - sin(time_elapsed/150) / 10) * Vector2(1,1)
+		scale = (1 - sin(time_elapsed/150.) / 10.) * Vector2(1,1)
 
+## die animation - spin away
 func die():
 	Globals.loops.erase(self)
 	damage_timer.stop()
@@ -50,24 +53,20 @@ func die():
 	).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)
 	dietween.tween_callback(queue_free)
 
+## do damage to all demons within range
 func _on_damage_timer_timeout() -> void:
 	# do damage
 	# hit everything within the circle once
-	var hittable = []
-	hittable.append_array(Globals.demons)
-	hittable.append_array(Globals.drops)
-
 	# check if each item is in range and hit if it is
 	var dmg_done = false
-	for item in hittable:
+	for demon in Globals.demons:
 		if (
-			item.global_position.distance_to(global_position) < damage_radius
+			demon.global_position.distance_to(global_position) < damage_radius
 			and 
-			not item.dead
+			not demon.dead
 		):
-			item.hit(DAMAGE_TIMER_DAMAGE)
-			if item is Demon:
-				dmg_done = true
+			demon.hit(DAMAGE_TIMER_DAMAGE)
+			dmg_done = true
 
 	# flash if any damage done
 	if not dmg_done:

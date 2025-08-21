@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxikwibxofj3t"]
 
-[ext_resource type="Texture2D" uid="uid://8o8q8sw1ljg4" path="res://assets/animations/loop-effect/mouse-animation.png" id="2_msd48"]
+[ext_resource type="Texture2D" uid="uid://8o8q8sw1ljg4" path="res://assets/animations/loop-effect/mouse-animation.png" id="1_4q644"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfudo"]
-atlas = ExtResource("2_msd48")
+atlas = ExtResource("1_4q644")
 region = Rect2(0, 0, 34, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_msd48"]
-atlas = ExtResource("2_msd48")
+atlas = ExtResource("1_4q644")
 region = Rect2(34, 0, 34, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hbv0"]
-atlas = ExtResource("2_msd48")
+atlas = ExtResource("1_4q644")
 region = Rect2(0, 34, 34, 34)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m5s2p"]

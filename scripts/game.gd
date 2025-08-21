@@ -1,7 +1,5 @@
 extends Node2D
-
-# player !
-##### THIS IS A MESS - DO NOT CHANGE WITHOUT GOOD TESTING #####
+## Main game script. mainly debug info and game start
 
 @export_group("DEBUG INFO")
 @export var debuglabel: Label
@@ -9,11 +7,10 @@ extends Node2D
 @export var spawner: Spawner
 
 func _ready() -> void:
-	Globals.set_gamestate(Globals.GAMESTATES.PLAYING)
 	# play tutorial theme
 	Audio.play(Audio.Sounds.TutorialTheme)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	fill_debug_label()
 
 func fill_debug_label():

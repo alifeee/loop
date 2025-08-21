@@ -1,5 +1,6 @@
 class_name Drop
 extends AnimatableBody2D
+## this is a mess and not used (yet)
 
 @export var initial_varience: float = 50
 @export var pickup_distance: float = 10
@@ -36,7 +37,6 @@ func _ready() -> void:
 	Globals.pause_game.connect(pause)
 	# Globals.end_game.connect(pause) # they can fade away now
 	Globals.resume_game.connect(play)
-	Globals.reset_game.connect(reset)
 	
 	# might as well try to find the sprite
 	if sprite == null:

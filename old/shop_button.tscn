@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bdp6wh7aki3xb"]
 
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="1_1oc1l"]
-[ext_resource type="Script" uid="uid://ciu6gkoq1m4w8" path="res://scripts/shop_button.gd" id="1_a34ft"]
+[ext_resource type="Script" uid="uid://ciu6gkoq1m4w8" path="res://old/shop_button.gd" id="1_a34ft"]
 [ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="1_g7nvd"]
-[ext_resource type="StyleBox" path="res://themes/empty_style_box_texture.tres" id="2_hv2j0"]
-[ext_resource type="StyleBox" path="res://themes/full_style_box_texture.tres" id="3_u16r7"]
+[ext_resource type="StyleBox" uid="uid://do1xhguablk8p" path="res://themes/empty_style_box_texture.tres" id="2_hv2j0"]
+[ext_resource type="StyleBox" uid="uid://d1ox2lxruc8j5" path="res://themes/full_style_box_texture.tres" id="3_u16r7"]
 [ext_resource type="Texture2D" uid="uid://bp5fs4g8gmv4t" path="res://assets/non-animations/mote.png" id="6_u16r7"]
 
 [node name="Control3" type="Control" node_paths=PackedStringArray("button", "no_upgrade_container", "name_label_no_upgrade", "price_label_no_upgrade", "upgrade_container", "name_label_upgrade", "price_label_upgrade", "all_bars", "level_3_bar_and_gap", "level_4_bar_and_gap", "level_5_bar_and_gap")]

@@ -17,5 +17,5 @@ func _process(delta: float) -> void:
 	else:
 		get_tree().root.global_canvas_transform.origin = Vector2.ZERO 
 	
-func screenshake():
+func screenshake(_dmg):
 	screenshake_duration_left = screenshake_duration_time

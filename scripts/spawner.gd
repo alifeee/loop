@@ -19,14 +19,18 @@ var packeddemon: PackedScene
 
 func _ready() -> void:
 	packeddemon = preload("res://scenes/demon.tscn")
+	# stop timers on game end
+	Globals.gamestate_end.connect(timer.stop)
 	
 	# rate timer - to increase spawns
 	ratetimer.wait_time = rate_every_s
-	ratetimer.timeout.connect(increase_rate)
 	
 	# signals
 	timer.start()
 	ratetimer.start()
+	
+	# spawn one now (debugging)
+	_on_timer_timeout()
 
 func spawnenemies() -> void:
 	for i in range(100):
@@ -55,13 +59,11 @@ func increase_rate() -> void:
 func _on_timer_timeout() -> void:
 	var newdemon: Demon = packeddemon.instantiate()
 	var spawning_angle = rng.randf_range(0.0, 2*PI)
-	var spawning_distance = 320 # px
 	newdemon.position = Vector2(
 		ELLIPSE_X_RADIUS * sin(spawning_angle),
 		ELLIPSE_Y_RADIUS  * cos(spawning_angle)
 	)
 	newdemon.walk_towards = Vector2(0,0)
-	newdemon.DemonDrops = DemonDrops
 	Globals.demons.append(newdemon)
 	Globals.total_demons += 1
 	add_child(newdemon)

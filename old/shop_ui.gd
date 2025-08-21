@@ -3,9 +3,6 @@ extends Control
 @export var mote_count_label: Label
 @export var hat_button: Node
 
-
-func _ready() -> void:
-	Globals.button_pressed.connect(handle_shop_button_pressed)
 	
 func _process(delta: float) -> void:
 	update_mote_count(Globals.motes)

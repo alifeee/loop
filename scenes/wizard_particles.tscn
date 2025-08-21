@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://bbi6850r4kbrr"]
+[gd_scene format=3 uid="uid://bbi6850r4kbrr"]
 
 [node name="CPUParticles2D" type="CPUParticles2D"]
 emission_shape = 1
@@ -8,3 +8,5 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0

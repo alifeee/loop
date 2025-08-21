@@ -8,7 +8,6 @@ extends Node2D
 @export var game_Scene: PackedScene
 
 func _ready() -> void:
-	Globals.gamestate_reset.connect(load_splashScreen)
 	# load splash
 	load_splashScreen()
 	# load game
