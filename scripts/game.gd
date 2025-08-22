@@ -31,10 +31,8 @@ func fill_debug_label():
 		spawner.ratetimer.wait_time,
 		spawner.ratetimer.time_left,
 
-		Globals.total_demons,
+		Globals.total_demons_spawned,
 		len(Globals.demons),
-
-		Globals.lifetime_motes,
 
 		len(Globals.loops),
 	]
@@ -62,8 +60,6 @@ func fill_debug_label():
 	
 	DEMONS/TOTAL: %s
 	DEMONS/CURRENT: %s
-	
-	MOTES/TOTAL: %s
-	
+		
 	LOOPS/TOTAL: %s
 	""" % info

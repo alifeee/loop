@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlyg1hoct3c63"]
+
+[ext_resource type="Script" uid="uid://bbnek5qmmfvlp" path="res://scripts/user-interface.gd" id="1_o5s3f"]
+[ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="2_21cbd"]
+[ext_resource type="Texture2D" uid="uid://dk7duasgqy0rh" path="res://assets/non-animations/skill.png" id="3_otmry"]
+[ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="4_k6djj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rriit"]
+
+[node name="Game UI Actually" type="CanvasLayer" node_paths=PackedStringArray("timerLabel", "upgradeScreen", "loopcounter", "endGameBox", "timeTakenLabel", "killsLabel")]
+script = ExtResource("1_o5s3f")
+timerLabel = NodePath("Timer/Timer")
+upgradeScreen = NodePath("UpgradeScreen")
+loopcounter = NodePath("UpgradeScreen/HBoxContainer/loopcounter")
+endGameBox = NodePath("EndGameBox")
+timeTakenLabel = NodePath("EndGameBox/VBoxContainer/Time Container/TimeLabel")
+killsLabel = NodePath("EndGameBox/VBoxContainer/Kill Container/KillLabel")
+
+[node name="EndGameBox" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 0.490196)
+offset_left = 814.0
+offset_top = 229.0
+offset_right = 994.0
+offset_bottom = 429.0
+theme = ExtResource("2_21cbd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_rriit")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndGameBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -99.5
+offset_right = 82.5
+offset_bottom = 99.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Time Container" type="Panel" parent="EndGameBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="EndGameBox/VBoxContainer/Time Container"]
+layout_mode = 1
+offset_right = 157.0
+offset_bottom = 37.0
+text = "Time: 00:00"
+
+[node name="Kill Container" type="Panel" parent="EndGameBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="EndGameBox/VBoxContainer/Kill Container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_otmry")
+
+[node name="KillLabel" type="Label" parent="EndGameBox/VBoxContainer/Kill Container"]
+layout_mode = 0
+offset_left = 42.0
+offset_right = 105.0
+offset_bottom = 37.0
+text = "x 999"
+
+[node name="Timer" type="Panel" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 173.0
+offset_bottom = 44.0
+
+[node name="Timer" type="Label" parent="Timer"]
+layout_mode = 1
+offset_right = 88.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("4_k6djj")
+theme_override_font_sizes/font_size = 36
+text = "00:00"
+
+[node name="UpgradeScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_21cbd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeScreen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 137.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="LOOP" type="Label" parent="UpgradeScreen/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_k6djj")
+text = "LOOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="loopcounter" type="Label" parent="UpgradeScreen/HBoxContainer"]
+layout_mode = 2
+text = "1/3"
+
+[node name="COMPLETED" type="Label" parent="UpgradeScreen/HBoxContainer"]
+layout_mode = 2
+text = "COMPLETED"

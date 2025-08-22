@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var runes: Sprite2D
-@export var fillspeed: float = 0.05
+@export var fillspeed: float = 2
 var fill: float = 0
 
 func _ready() -> void:
@@ -11,10 +11,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
 		return
-	fill = lerpf(
+	fill = move_toward(
 		fill,
-		Globals.kill_count / float(Globals.KILLS_TO_WIN),
-		fillspeed * delta,
+		Globals.round_progress / float(Globals.TIME_TO_WIN),
+		delta * fillspeed
 	)
 	runes.material.set_shader_parameter("fill", fill)
 	if fill >= 1.:

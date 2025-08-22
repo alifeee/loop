@@ -1,11 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://cftjvq5s61f08"]
+[gd_scene load_steps=4 format=3 uid="uid://cftjvq5s61f08"]
 
 [ext_resource type="Texture2D" uid="uid://dd4s2wk53av5f" path="res://assets/non-animations/lightning.png" id="1_k2dum"]
 
-[node name="Lightning" type="Line2D"]
+[sub_resource type="GDScript" id="GDScript_k2dum"]
+script/source = "extends Line2D
+class_name Lightning
+
+@export var hit_particles: CPUParticles2D
+@export var leftover_particles: CPUParticles2D
+"
+
+[sub_resource type="Curve" id="Curve_k2dum"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.693182, 0.629214), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Lightning" type="Line2D" node_paths=PackedStringArray("hit_particles", "leftover_particles")]
 texture_repeat = 2
 points = PackedVector2Array(0, 0, 149, 156, 98, 159, 277, 260, 238, 269, 417, 418)
 width = 5.0
 texture = ExtResource("1_k2dum")
 texture_mode = 1
 sharp_limit = 100.0
+script = SubResource("GDScript_k2dum")
+hit_particles = NodePath("HitParticles")
+leftover_particles = NodePath("LeftoverParticles")
+
+[node name="LeftoverParticles" type="CPUParticles2D" parent="."]
+position = Vector2(303, 254.625)
+emitting = false
+amount = 30
+lifetime = 6.0
+one_shot = true
+preprocess = 6.0
+emission_shape = 1
+emission_sphere_radius = 50.0
+gravity = Vector2(0, 0)
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+radial_accel_max = 5.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(0.58, 0.58, 0.58, 1)
+
+[node name="HitParticles" type="CPUParticles2D" parent="."]
+position = Vector2(134, 82.625)
+emitting = false
+amount = 20
+lifetime = 0.2
+one_shot = true
+preprocess = 0.1
+emission_shape = 2
+emission_sphere_radius = 50.0
+gravity = Vector2(0, 0)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_k2dum")
+color = Color(0.8925, 0.57, 1, 1)

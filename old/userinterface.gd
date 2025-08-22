@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 	# time
 
 	# enemies total
-	$stats/TotalEnemies.text = str(Globals.total_demons)
+	$stats/TotalEnemies.text = str(Globals.total_demons_spawned)
 	
 	# enemies now
 	$stats/CurrentEnemies.text = str(len(Globals.demons))

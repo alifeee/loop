@@ -32,6 +32,10 @@ var is_valid = false
 
 var error = ""
 
+func _ready() -> void:
+	for child in get_children().duplicate():
+		child.queue_free()
+
 func _process(_delta: float) -> void:
 	pass
 	# check for validity every frame

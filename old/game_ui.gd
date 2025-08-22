@@ -55,7 +55,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$TopLeftUI/Timer/Text.text = str(snapped(Globals.time_elapsed, 0.1))
 	$TopLeftUI/Health/Text.text = str(Globals.player_health)
-	$TopLeftUI/KillCounter/Text.text = str(Globals.total_demons - len(Globals.demons))
+	$TopLeftUI/KillCounter/Text.text = str(Globals.total_demons_spawned - len(Globals.demons))
 	$Panel/ProgressBar/KillCounter/Text.text = str(Globals.motes)
 	progress_bar.value = Globals.motes
 	if Globals.motes >= progress_bar.max_value:
@@ -70,7 +70,7 @@ func show_game_end_stuff():
 	tween.tween_property(game_end_ui, "modulate:a", 1, 1)
 	
 	time_label.text = "Time: " + str(snapped(Globals.time_elapsed, 0.1))
-	kill_label.text = "x " + str(Globals.kill_count)
+	kill_label.text = "x " + str(Globals.total_kill_count)
 	mote_label.text = "x " + str(Globals.lifetime_motes)
 	hat_label.text = "x " + str(Globals.hats_owned)
 
