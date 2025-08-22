@@ -102,9 +102,7 @@ func do_loop_damage(pos: Vector2, radius: float) -> void:
 	loop.damage_radius = radius
 	Globals.loops.append(loop)
 	add_child(loop)
-	
-	print("spawn loop at ", pos)
-	
+		
 	# delete loop if there are now too many loops
 	while len(Globals.loops) > 3:
 		Globals.loops[0].die()

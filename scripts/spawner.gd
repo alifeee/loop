@@ -6,11 +6,6 @@ extends Node2D
 # timer
 @export var timer: Timer
 @export var ratetimer: Timer
-# rate increases
-@export var rate_every_s: float = 5
-@export var rate_subtract_s: float = 0
-@export var rate_multiply: float = 0.96
-@export var rate_minimum_s: float = 0.4
 # spawn radiuses
 @export var ELLIPSE_X_RADIUS: float = 500
 @export var ELLIPSE_Y_RADIUS: float = 300
@@ -24,21 +19,24 @@ func _ready() -> void:
 	# stop timers on game end
 	Globals.spawn_loads_of_enemies.connect(spawn_loads_of_enemies)
 	
-	# rate timer - to increase spawns
-	ratetimer.wait_time = rate_every_s
+	timer.wait_time = Globals.initial_spawn_timeout
+	ratetimer.wait_time = Globals.rate_increase_timeout
 	
 	# signals
 	timer.start()
 	ratetimer.start()
 	
 	# spawn one now (debugging)
-	_on_timer_timeout()
+	#if OS.is_debug_build():
+		#_on_timer_timeout()
 
 func _process(delta: float) -> void:
-	if timer.is_stopped() and Globals.gamestate == Globals.GAMESTATES.PLAYING:
-		timer.start()
-	if not timer.is_stopped() and Globals.gamestate != Globals.GAMESTATES.PLAYING:
-		timer.stop()
+	if timer.paused and Globals.gamestate == Globals.GAMESTATES.PLAYING:
+		timer.paused = false
+		ratetimer.paused = false
+	if (not timer.paused) and Globals.gamestate != Globals.GAMESTATES.PLAYING:
+		timer.paused = true
+		ratetimer.paused = true
 
 func spawn_loads_of_enemies() -> void:
 	for i in range(100):
@@ -59,8 +57,10 @@ func spawn_loads_of_enemies() -> void:
 		demoncontainer.call_deferred("add_child", demon)
 
 func increase_rate() -> void:
-	var new_time = (timer.wait_time - rate_subtract_s) * rate_multiply
-	timer.wait_time = max(new_time, rate_minimum_s)
+	var new_time = (
+		timer.wait_time - Globals.rate_increase_subtract
+	) * Globals.rate_increase_multiply
+	timer.wait_time = max(new_time, Globals.minimum_spawn_timeout)
 
 func _on_timer_timeout() -> void:
 	var newdemon: Demon = packeddemon.instantiate()
@@ -71,9 +71,5 @@ func _on_timer_timeout() -> void:
 	)
 	newdemon.walk_towards = Vector2(0,0)
 	Globals.demons.append(newdemon)
-	print(
-		"at spawn new demon length ", 
-		len(Globals.demons), " ", Globals.demons
-	)
 	Globals.total_demons_spawned += 1
 	demoncontainer.add_child(newdemon)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c0wsuvtxawbo3"]
+[gd_scene load_steps=25 format=3 uid="uid://c0wsuvtxawbo3"]
 
 [ext_resource type="Texture2D" uid="uid://bx70glaekxydg" path="res://assets/non-animations/background_placeholder.png" id="2_bodal"]
 [ext_resource type="Texture2D" uid="uid://camjl37g7bruo" path="res://assets/non-animations/backgrounf_shadow.png" id="3_8itgj"]
@@ -6,13 +6,17 @@
 [ext_resource type="Script" uid="uid://wlnvx3xswlxi" path="res://scripts/flicker.gd" id="4_tn317"]
 [ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="4_y16t7"]
 [ext_resource type="FontFile" uid="uid://duqiyll52frl1" path="res://assets/font/PixelOperator.ttf" id="5_y16t7"]
+[ext_resource type="ButtonGroup" uid="uid://boje7yj2xlh37" path="res://scenes/difficulty-button-group.tres" id="7_4ge6i"]
 
 [sub_resource type="GDScript" id="GDScript_y16t7"]
 resource_name = "start"
-script/source = "extends Node2D
+script/source = "extends CanvasLayer
+
+@export var difficulty_button_group: ButtonGroup
 
 func _on_start_button_pressed() -> void:
-	Globals.start_game()
+	var difficulty = difficulty_button_group.get_pressed_button().name
+	Globals.start_game(difficulty)
 "
 
 [sub_resource type="Theme" id="Theme_8itgj"]
@@ -172,8 +176,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Start" type="Node2D"]
+[node name="Start" type="CanvasLayer"]
 script = SubResource("GDScript_y16t7")
+difficulty_button_group = ExtResource("7_4ge6i")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(578.889, 323)
@@ -305,5 +310,32 @@ theme = ExtResource("4_y16t7")
 theme_override_fonts/font = ExtResource("5_y16t7")
 theme_override_font_sizes/font_size = 36
 text = "Start"
+
+[node name="DifficultySettings" type="HBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 120.5
+offset_bottom = 151.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="1" type="CheckBox" parent="DifficultySettings"]
+layout_mode = 2
+button_group = ExtResource("7_4ge6i")
+text = "Easy"
+
+[node name="2" type="CheckBox" parent="DifficultySettings"]
+layout_mode = 2
+button_pressed = true
+button_group = ExtResource("7_4ge6i")
+text = "Medium"
+
+[node name="3" type="CheckBox" parent="DifficultySettings"]
+layout_mode = 2
+button_group = ExtResource("7_4ge6i")
+text = "Hard"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

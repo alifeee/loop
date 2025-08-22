@@ -2081,7 +2081,6 @@ position = Vector2(567, 330)
 [node name="Portal" parent="." node_paths=PackedStringArray("lightning_bolt_container") instance=ExtResource("490_0gguc")]
 position = Vector2(577, 290.375)
 animation = &"portal"
-frame_progress = 0.0
 lightning_bolt_container = NodePath("../Lightning")
 
 [node name="Lightning" type="Node2D" parent="."]
@@ -2166,6 +2165,7 @@ flicker_time_min = 0.5
 flicker_time_max = 1.0
 
 [node name="DebugOverlay" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DebugInfo" type="Label" parent="DebugOverlay"]
 offset_right = 40.0

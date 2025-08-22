@@ -5,7 +5,8 @@ enum GAMESTATES {
 	START_SCREEN,
 	PLAYING,
 	UPGRADE_SCREEN,
-	END_SCREEN_LOSE,
+	WIN,
+	LOSE,
 }
 var gamestate = GAMESTATES.START_SCREEN
 
@@ -35,6 +36,14 @@ signal enter_portal
 # end game stuff
 signal show_score
 
+# difficulty settings
+var initial_spawn_timeout: float
+var minimum_spawn_timeout: float
+var rate_increase_timeout: float
+var rate_increase_subtract: float
+var rate_increase_multiply: float
+var ROUNDS_UNTIL_PORTAL: int
+var TIME_TO_WIN_S: float
 # global variables
 var demons: Array[Demon] = []
 var drops: Array[Drop] = []
@@ -47,8 +56,6 @@ var total_kill_count: int = 0
 var time_elapsed: float = 0
 # round counters
 var combat_round = 1
-var ROUNDS_UNTIL_PORTAL = 3
-var TIME_TO_WIN = 2
 var round_progress: float = 0
 
 func _ready():
@@ -61,7 +68,28 @@ func _process(delta: float) -> void:
 		time_elapsed += delta
 		round_progress += delta
 ## start triggered by main menu "start button"
-func start_game():
+##   difficulty is "1", "2", or "3"
+func start_game(difficulty: String):
+	# base difficulty
+	initial_spawn_timeout = 1.5
+	minimum_spawn_timeout = 0.4
+	rate_increase_timeout = 5.0
+	rate_increase_subtract = 0.0
+	rate_increase_multiply = 0.96
+	ROUNDS_UNTIL_PORTAL = 3
+	TIME_TO_WIN_S = 40.
+	if difficulty == "1": # easy
+		initial_spawn_timeout = 2.0
+		minimum_spawn_timeout = 1.0
+		TIME_TO_WIN_S = 30.
+	elif difficulty == "2": # normal
+		pass
+	elif difficulty == "3": # hard
+		initial_spawn_timeout = 1.0
+		minimum_spawn_timeout = 0.3
+		TIME_TO_WIN_S = 45.
+	# testing
+	#TIME_TO_WIN_S = 2
 	gamestate_start.emit()
 ## reset all global variables
 ## all other (local) resets should happen when scenes are reloaded
@@ -93,10 +121,14 @@ func hit_player(damage: int):
 	if player_health <= 0:
 		enable_lose()
 func enable_lose():
-	gamestate = GAMESTATES.END_SCREEN_LOSE
+	gamestate = GAMESTATES.LOSE
 	kill_runes.emit()
 	close_portal.emit()
+	for loop in loops.duplicate():
+		loop.die()
 	spawn_loads_of_enemies.emit()
+	show_score.emit()
+	round_progress = 0
 
 # round stuff
 func enable_upgrade_picker():
@@ -115,8 +147,10 @@ func enable_upgrade_picker():
 func _on_click_portal():
 	blink_portal.emit(false)
 	if combat_round > ROUNDS_UNTIL_PORTAL: # win
+		gamestate = GAMESTATES.WIN
 		kill_runes.emit()
 		enter_portal.emit()
+		hide_upgrades.emit()
 		show_score.emit()
 		await get_tree().create_timer(2).timeout
 		close_portal.emit()

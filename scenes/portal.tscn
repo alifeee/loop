@@ -200,5 +200,3 @@ radial_accel_max = 20.0
 scale_amount_min = 3.0
 scale_amount_max = 3.0
 color_initial_ramp = SubResource("Gradient_dyed0")
-
-[node name="Camera2D" type="Camera2D" parent="."]

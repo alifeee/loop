@@ -34,7 +34,6 @@ func splutter_portal():
 func summon_portal():
 	play("summon_portal")
 func open_portal():
-	print("open portal")
 	play("open_portal")
 	animation_finished.connect(after_portal_opened)
 func after_portal_opened():
@@ -79,7 +78,7 @@ func zap_demons():
 	zap(demons)
 func zap_loops():
 	var loops = Globals.loops.duplicate()
-	for loop in loops:
+	for loop in loops.duplicate():
 		loop.die()
 	zap(loops)
 func zap(zappables: Array):

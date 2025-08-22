@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 		return
 	fill = move_toward(
 		fill,
-		Globals.round_progress / float(Globals.TIME_TO_WIN),
+		Globals.round_progress / float(Globals.TIME_TO_WIN_S),
 		delta * fillspeed
 	)
 	runes.material.set_shader_parameter("fill", fill)
