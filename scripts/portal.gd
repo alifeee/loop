@@ -89,7 +89,9 @@ func zap_enemies():
 
 func _input(event: InputEvent) -> void:
 	# check if clicked (or near enough)
-	if event is InputEventMouseButton and event.is_released():
+	if ((Globals.gamestate == Globals.GAMESTATES.END_SCREEN_WIN) 
+		and event is InputEventMouseButton
+		and event.is_released()):
 		if event.position.distance_to(position) < 80:
 			click_portal()
 	if not OS.is_debug_build():

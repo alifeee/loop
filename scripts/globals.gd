@@ -4,7 +4,8 @@ extends Node2D
 enum GAMESTATES {
 	START_SCREEN,
 	PLAYING,
-	END_SCREEN,
+	END_SCREEN_LOSE,
+	END_SCREEN_WIN,
 }
 var gamestate = GAMESTATES.START_SCREEN
 
@@ -55,7 +56,6 @@ func start_game():
 	gamestate_start.emit()
 ## end triggered by losing too much health
 func end_game():
-	gamestate = GAMESTATES.END_SCREEN
 	gamestate_end.emit()
 	for loop in loops:
 		loop.queue_free()
@@ -89,11 +89,13 @@ func _on_demon_killed(demon: Demon):
 		kill_count += 1
 	demons.erase(demon) # remove from demon tracker
 func enable_lose():
+	gamestate = GAMESTATES.END_SCREEN_LOSE
 	end_game()
 	kill_runes.emit()
 	close_portal.emit()
 	spawn_loads_of_enemies.emit()
 func enable_win():
+	gamestate = GAMESTATES.END_SCREEN_WIN
 	end_game()
 	lightning_kill.emit()
 	open_portal.emit()

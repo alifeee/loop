@@ -180,6 +180,7 @@ func _input(event):
 		pass
 	# no looping unless playing ! >:(
 	if Globals.gamestate != Globals.GAMESTATES.PLAYING:
+		drop_spell()
 		return
 	# start looping!  
 	if event is InputEventMouseButton and event.is_pressed() and event.is_action_pressed("Magic"):
