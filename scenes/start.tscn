@@ -14,6 +14,9 @@ script/source = "extends CanvasLayer
 
 @export var difficulty_button_group: ButtonGroup
 
+func _ready() -> void:
+	Audio.play(Audio.Sounds.TutorialTheme)
+
 func _on_start_button_pressed() -> void:
 	var difficulty = difficulty_button_group.get_pressed_button().name
 	Globals.start_game(difficulty)

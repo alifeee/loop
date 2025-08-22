@@ -9,7 +9,7 @@ extends Node2D
 func _ready() -> void:
 	Globals.gamestate = Globals.GAMESTATES.PLAYING
 	# play tutorial theme
-	Audio.play(Audio.Sounds.TutorialTheme)
+	Audio.play(Audio.Sounds.MainGameTheme)
 
 func _process(_delta: float) -> void:
 	fill_debug_label()

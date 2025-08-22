@@ -14,6 +14,9 @@ func _ready() -> void:
 	Globals.gamestate_start.connect(load_game)
 
 func load_scene(scene: PackedScene):
+	# stop all audio
+	for audio_index in range(len(Audio.Sounds)):
+		Audio.stop(audio_index)
 	# delete existing scene…
 	for child in sceneNode.get_children():
 		child.queue_free()
