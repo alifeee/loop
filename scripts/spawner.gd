@@ -21,6 +21,7 @@ func _ready() -> void:
 	packeddemon = preload("res://scenes/demon.tscn")
 	# stop timers on game end
 	Globals.gamestate_end.connect(timer.stop)
+	Globals.spawn_loads_of_enemies.connect(spawn_loads_of_enemies)
 	
 	# rate timer - to increase spawns
 	ratetimer.wait_time = rate_every_s
@@ -32,9 +33,9 @@ func _ready() -> void:
 	# spawn one now (debugging)
 	_on_timer_timeout()
 
-func spawnenemies() -> void:
+func spawn_loads_of_enemies() -> void:
 	for i in range(100):
-		var demon = packeddemon.instantiate()
+		var demon: Demon = packeddemon.instantiate()
 		var distance = rng.randf_range(0.25, 1)
 		var spawning_angle = rng.randf_range(0.0, 2*PI)
 		demon.position = Vector2(
@@ -42,15 +43,14 @@ func spawnenemies() -> void:
 			distance * ELLIPSE_Y_RADIUS * cos(spawning_angle)
 		)
 		demon.modulate.a = 0
+		demon.do_slow_appear = true
 		if spawning_angle < PI:
-			demon.scale.x = -1
+			demon.sprite.scale.x = -1
 		else:
-			demon.scale.x = 1
-		demon.DemonDrops = DemonDrops
+			demon.sprite.scale.x = 1
 		Globals.total_demons += 1
 		Globals.demons.append(demon)
-		add_child(demon)
-		demon.slow_appear()
+		call_deferred("add_child", demon)
 
 func increase_rate() -> void:
 	var new_time = (timer.wait_time - rate_subtract_s) * rate_multiply
@@ -65,5 +65,9 @@ func _on_timer_timeout() -> void:
 	)
 	newdemon.walk_towards = Vector2(0,0)
 	Globals.demons.append(newdemon)
+	print(
+		"at spawn new demon length ", 
+		len(Globals.demons), " ", Globals.demons
+	)
 	Globals.total_demons += 1
 	add_child(newdemon)

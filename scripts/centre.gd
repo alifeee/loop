@@ -13,9 +13,11 @@ func _on_body_entered(body: Node2D) -> void:
 		# disable movement and collisions and slowly die
 		body.walk_speed = 0
 		body.collision_layer = 2
-		body.die()
-		# deal player damage
+		print("at enter centre length", len(Globals.demons), " ", Globals.demons)
 		Globals.hit_player(1)
+		print("after hit player length ", len(Globals.demons), " ", Globals.demons)
+		#body.die()
+		# deal player damage
 
 ## kill wizard N based on player health X
 func animate_wizard_death(wizard_number: int):

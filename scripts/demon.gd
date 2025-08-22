@@ -12,9 +12,11 @@ var rng = RandomNumberGenerator.new()
 # behaviour
 @export var walk_towards: Vector2
 @export var walk_speed: float = 50
+var do_slow_appear: bool = false
 # health tracking
 var health: float = 100
 var dead: bool = false
+var killed_by_player: bool = false
 
 ## Tweens
 var hittween: Tween
@@ -24,7 +26,9 @@ func _ready() -> void:
 	var num_frames = sprite.sprite_frames.get_frame_count("default")
 	sprite.frame = rng.randi_range(0, num_frames)
 	sprite.frame_progress = rng.randf_range(0, 1)
-
+	if do_slow_appear:
+		slow_appear()
+		return
 	# fade in
 	var twn = get_tree().create_tween()
 	modulate.a = 0
@@ -59,31 +63,24 @@ func hit(damage: float):
 	).from(5)
 	health -= damage
 	if health <= 0:
+		killed_by_player = true
 		die()
 	Audio.play(Audio.Sounds.WormThud)
 
 func die() -> void:
-	Globals.kill_count += 1
+	Globals.demon_killed.emit(self)
 	if hittween:
 		hittween.kill()
-	
 	dead = true
 	self.walk_speed = 0
 	self.modulate = Color("#f0ff")
 	self.collision_layer = 2
-	
+
 	Audio.play(Audio.Sounds.WormHit)
 	
 	sprite.play("death")
 	await get_tree().create_timer(1).timeout
-	sprite.stop()
-	sprite.visible = false
-	
-	var dietween = get_tree().create_tween()
-	dietween.tween_property(self, "modulate:a", 0, death_duration)
-	dietween.tween_callback(func(): self.queue_free())
-	
-	Globals.demons.erase(self) # remove from demon tracker
+	self.queue_free()
  
 ## Used at the end of the game to randomly delay appearing
 func slow_appear() -> void:

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cftjvq5s61f08"]
+
+[ext_resource type="Texture2D" uid="uid://dd4s2wk53av5f" path="res://assets/non-animations/lightning.png" id="1_k2dum"]
+
+[node name="Lightning" type="Line2D"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 149, 156, 98, 159, 277, 260, 238, 269, 417, 418)
+width = 5.0
+texture = ExtResource("1_k2dum")
+texture_mode = 1
+sharp_limit = 100.0

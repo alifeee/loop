@@ -6,7 +6,7 @@ extends CanvasLayer
 
 func _ready():
 	visible = false
-	Globals.gamestate_end.connect(show_on_end)
+	Globals.show_score.connect(show_on_end)
 
 func _process(_delta: float) -> void:
 	timerLabel.text = str(snapped(Globals.time_elapsed, 0.1))

@@ -12,8 +12,21 @@ var gamestate = GAMESTATES.START_SCREEN
 signal gamestate_start
 signal gamestate_end
 
-# signals
+# playing game stuff
 signal player_hit(lives_left: int)
+signal demon_killed(demon: Demon)
+# portal stuff
+signal lightning_kill
+# win game stuff
+signal runes_full
+signal open_portal
+signal click_portal
+# lose game stuff
+signal spawn_loads_of_enemies
+signal kill_runes
+signal close_portal
+# end game stuff
+signal show_score
 
 # global variables
 var demons: Array[Demon] = []
@@ -26,7 +39,13 @@ var kill_count: int = 0
 var motes: int = 0
 var lifetime_motes: int = 0
 var time_elapsed: float = 0
+# game variables
+var KILLS_TO_WIN = 20
 
+func _ready():
+	demon_killed.connect(_on_demon_killed)
+	click_portal.connect(_on_click_portal)
+	runes_full.connect(enable_win)
 ## track in-game time elapsed
 func _process(delta: float) -> void:
 	if Globals.gamestate == Globals.GAMESTATES.PLAYING:
@@ -38,8 +57,9 @@ func start_game():
 func end_game():
 	gamestate = GAMESTATES.END_SCREEN
 	gamestate_end.emit()
-	for demon in demons:
-		demon.die()
+	for loop in loops:
+		loop.queue_free()
+	loops.clear()
 ## reset all global variables
 ## all other (local) resets should happen when scenes are reloaded
 func reset():
@@ -61,7 +81,24 @@ func hit_player(damage: int):
 	Audio.play(Audio.Sounds.PlayerHit)
 	player_hit.emit(player_health)
 	if player_health <= 0:
-		end_game()
+		enable_lose()
+	else:
+		lightning_kill.emit()
+func _on_demon_killed(demon: Demon):
+	if demon.killed_by_player:
+		kill_count += 1
+	demons.erase(demon) # remove from demon tracker
+func enable_lose():
+	end_game()
+	kill_runes.emit()
+	close_portal.emit()
+	spawn_loads_of_enemies.emit()
+func enable_win():
+	end_game()
+	lightning_kill.emit()
+	open_portal.emit()
+func _on_click_portal():
+	show_score.emit()
 
 func calc_polygon_area(coords) -> float:
 	# coords is Array[Vector2]
