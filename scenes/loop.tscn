@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://i4s55q5iy7e6" path="res://assets/animations/loop-effect/loop-damage.png" id="3_ayrsc"]
 [ext_resource type="Texture2D" uid="uid://mfc8chm2thil" path="res://assets/non-animations/spark.png" id="5_gdvn4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fpe6o"]
-radius = 50.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
 atlas = ExtResource("3_ayrsc")
 region = Rect2(0, 0, 128, 128)
@@ -36,24 +33,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("damage_timer", "particles", "sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ayrsc"]
+radius = 50.0
+
+[node name="Loop" type="Node2D" node_paths=PackedStringArray("damage_timer", "particles", "sprite", "shapecast")]
 script = ExtResource("1_fpe6o")
 damage_timer = NodePath("DamageTimer")
 particles = NodePath("CPUParticles2D")
 sprite = NodePath("AnimatedSprite2D")
+shapecast = NodePath("ShapeCast2D")
 
 [node name="DamageTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_fpe6o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.447059)
 light_mask = 6145
 position = Vector2(0.500002, -4.12381)
-scale = Vector2(0.757813, 0.92381)
 sprite_frames = SubResource("SpriteFrames_kyqv0")
 animation = &"loop_attack"
 autoplay = "loop_attack"
@@ -75,5 +71,10 @@ damping_min = 50.0
 damping_max = 50.0
 angle_max = 360.0
 scale_amount_max = 1.5
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_ayrsc")
+target_position = Vector2(0, 0)
+collide_with_areas = true
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

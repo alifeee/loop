@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt2dghn70wpro"]
+
+[ext_resource type="PackedScene" uid="uid://c23vyokedh25j" path="res://scenes/loop.tscn" id="1_qrvdj"]
+[ext_resource type="PackedScene" uid="uid://bl2csjlnsrcy7" path="res://scenes/demon.tscn" id="2_axa5h"]
+
+[node name="Loop-hitbox" type="Node2D"]
+
+[node name="Loops" type="Node2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Node2D" parent="Loops" instance=ExtResource("1_qrvdj")]
+position = Vector2(-117, 10)
+
+[node name="Demons" type="Node2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Demon" parent="Demons" instance=ExtResource("2_axa5h")]
+position = Vector2(-119, 5)
+spawn_anim_duration = 0.0
+health = 999999.0
+
+[node name="Demon2" parent="Demons" instance=ExtResource("2_axa5h")]
+position = Vector2(-52, -21)
+scale = Vector2(-1, 1)
+spawn_anim_duration = 0.0
+health = 999999.0
+
+[node name="Demon3" parent="Demons" instance=ExtResource("2_axa5h")]
+position = Vector2(-184, 34)
+spawn_anim_duration = 0.0
+health = 999999.0
+
+[node name="Demon4" parent="Demons" instance=ExtResource("2_axa5h")]
+position = Vector2(-121, -50)
+spawn_anim_duration = 0.0
+health = 999999.0
+
+[node name="Demon5" parent="Demons" instance=ExtResource("2_axa5h")]
+position = Vector2(-181, -19)
+spawn_anim_duration = 0.0
+health = 999999.0
+
+[node name="Demon6" parent="Demons" instance=ExtResource("2_axa5h")]
+position = Vector2(-66, 52)
+scale = Vector2(-1, 1)
+spawn_anim_duration = 0.0
+health = 999999.0

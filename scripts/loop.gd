@@ -6,6 +6,7 @@ var rng = RandomNumberGenerator.new()
 @export var damage_timer: Timer
 @export var particles: CPUParticles2D
 @export var sprite: AnimatedSprite2D
+@export var shapecast: ShapeCast2D
 @export var DAMAGE_TIMER_WAIT: float = 0.15
 @export var DAMAGE_TIMER_DAMAGE: float = 34
 @export var DAMAGE_ANIMATION_TIME: float = 0.05
@@ -55,17 +56,13 @@ func die():
 
 ## do damage to all demons within range
 func _on_damage_timer_timeout() -> void:
-	# do damage
-	# hit everything within the circle once
-	# check if each item is in range and hit if it is
+	# do shapecast to find colliding bodies
+	shapecast.force_shapecast_update()
 	var dmg_done = false
-	for demon in Globals.demons:
-		if (
-			demon.global_position.distance_to(global_position) < damage_radius
-			and 
-			not demon.dead
-		):
-			demon.hit(DAMAGE_TIMER_DAMAGE)
+	for result in shapecast.collision_result:
+		var object = result.collider
+		if object is Demon and (not object.dead):
+			object.hit(DAMAGE_TIMER_DAMAGE)
 			dmg_done = true
 
 	# flash if any damage done

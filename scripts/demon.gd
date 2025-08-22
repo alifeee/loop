@@ -7,6 +7,7 @@ var rng = RandomNumberGenerator.new()
 @export var sprite: AnimatedSprite2D
 @export var collisionshape: CollisionShape2D
 # tween times
+@export var spawn_anim_duration: float = 2.
 @export var hit_anim_duration: float = 0.1
 @export var death_duration: float = 2
 # behaviour
@@ -14,7 +15,7 @@ var rng = RandomNumberGenerator.new()
 @export var walk_speed: float = 50
 var do_slow_appear: bool = false
 # health tracking
-var health: float = 100
+@export var health: float = 100
 var dead: bool = false
 var killed_by_player: bool = false
 
@@ -33,7 +34,7 @@ func _ready() -> void:
 	var twn = get_tree().create_tween()
 	modulate.a = 0
 	twn.tween_property(
-		self, "modulate:a", 1, 2
+		self, "modulate:a", 1, spawn_anim_duration
 	).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)
 	# change facing direction
 	if position.x > 0:
