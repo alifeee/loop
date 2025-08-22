@@ -36,14 +36,22 @@ signal enter_portal
 # end game stuff
 signal show_score
 
+# variables for upgrades
+var MAX_LOOPS = 3
+var LOOP_DAMAGE_PER_HIT = 34
+var LOOP_SIZE_SCALE = Vector2(1,1)
+var LOOP_MOVE_TOWARDS_CLOSEST_DEMON = false
+var LOOP_MOVE_TOWARDS_CLOSEST_DEMON_SPEED: float = 0.1
+var PORTAL_ZAP_ALL_DEMONS_ON_LIFE_LOSS = false
+var DEMON_MOVE_SPEED = 50
 # difficulty settings
-var initial_spawn_timeout: float
-var minimum_spawn_timeout: float
-var rate_increase_timeout: float
-var rate_increase_subtract: float
-var rate_increase_multiply: float
-var ROUNDS_UNTIL_PORTAL: int
-var TIME_TO_WIN_S: float
+var initial_spawn_timeout: float = 1.5
+var minimum_spawn_timeout: float = 0.4
+var rate_increase_timeout: float = 5.0
+var rate_increase_subtract: float = 0.0
+var rate_increase_multiply: float = 0.96
+var ROUNDS_UNTIL_PORTAL: int = 3
+var TIME_TO_WIN_S: float = 40.
 # global variables
 var demons: Array[Demon] = []
 var drops: Array[Drop] = []
@@ -70,14 +78,6 @@ func _process(delta: float) -> void:
 ## start triggered by main menu "start button"
 ##   difficulty is "1", "2", or "3"
 func start_game(difficulty: String):
-	# base difficulty
-	initial_spawn_timeout = 1.5
-	minimum_spawn_timeout = 0.4
-	rate_increase_timeout = 5.0
-	rate_increase_subtract = 0.0
-	rate_increase_multiply = 0.96
-	ROUNDS_UNTIL_PORTAL = 3
-	TIME_TO_WIN_S = 40.
 	if difficulty == "1": # easy
 		initial_spawn_timeout = 2.0
 		minimum_spawn_timeout = 1.0
@@ -101,6 +101,14 @@ func reset():
 	time_elapsed = 0
 	combat_round = 1
 	round_progress = 0
+	# upgrade stuff
+	MAX_LOOPS = 3
+	LOOP_DAMAGE_PER_HIT = 34
+	LOOP_SIZE_SCALE = Vector2(1,1)
+	LOOP_MOVE_TOWARDS_CLOSEST_DEMON = false
+	LOOP_MOVE_TOWARDS_CLOSEST_DEMON_SPEED = 0.1
+	PORTAL_ZAP_ALL_DEMONS_ON_LIFE_LOSS = false
+	DEMON_MOVE_SPEED = 50
 	# kill everything
 	for arr in [demons, drops, loops]:
 		for item in arr:
@@ -120,6 +128,8 @@ func hit_player(damage: int):
 	player_hit.emit(player_health)
 	if player_health <= 0:
 		enable_lose()
+	elif PORTAL_ZAP_ALL_DEMONS_ON_LIFE_LOSS:
+		lightning_kill.emit()
 func enable_lose():
 	gamestate = GAMESTATES.LOSE
 	kill_runes.emit()
@@ -174,3 +184,49 @@ func calc_polygon_area(coords) -> float:
 		var j2 = (i) % mod
 		sum2 += (coords[j1].x * coords[j2].y)
 	return (sum1 - sum2) / 2
+
+var upgrades: Array = [
+	Upgrade.newp(
+		"MORE LOOPS 1", "+1 loop",
+		func(): Globals.MAX_LOOPS += 1
+	),
+	Upgrade.newp(
+		"MORE LOOPS 2", "+1 loop",
+		func(): Globals.MAX_LOOPS += 1
+	),
+	Upgrade.newp(
+		"STRONGER LOOPS", "+ loop damage",
+		func(): Globals.LOOP_DAMAGE_PER_HIT *= 2
+	),
+	Upgrade.newp(
+		"BIGGER LOOPS 1", "+ loop size",
+		func(): Globals.LOOP_SIZE_SCALE *= 1.1
+	),
+	Upgrade.newp(
+		"BIGGER LOOPS 2", "+ loop size",
+		func(): Globals.LOOP_SIZE_SCALE *= 1.1
+	),
+	Upgrade.newp(
+		"STICKY LOOPS 1", "loops move towards nearest demon",
+		func(): Globals.LOOP_MOVE_TOWARDS_CLOSEST_DEMON = true
+	),
+	#Upgrade.newp("STICKY LOOPS 2"),
+	Upgrade.newp(
+		"TINY LOOPS", "+3 loops. --loop size", (
+		func():
+			Globals.MAX_LOOPS += 3;
+			Globals.LOOP_SIZE_SCALE *= 0.75)
+	),
+	Upgrade.newp(
+		"DEATH LIGHTNING", "wizards kill all demons on death",
+		func(): Globals.PORTAL_ZAP_ALL_DEMONS_ON_LIFE_LOSS = true
+	),
+	Upgrade.newp(
+		"SLOWING SPELL", "- demon speed",
+		func(): Globals.DEMON_MOVE_SPEED *= 0.8
+	),
+	#Upgrade.newp("QUICKER SUMMONING"),
+	#Upgrade.newp("SPARKS"),
+	#Upgrade.newp("LIGHTNING TRAP"),
+	#Upgrade.newp("NECROMANCY"),
+]

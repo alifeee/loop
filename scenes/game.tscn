@@ -2020,9 +2020,10 @@ animations = [{
 "speed": 2.6
 }]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("debuglabel", "loopcontainer", "spawner")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("debuglabel", "debuglabel2", "loopcontainer", "spawner")]
 script = ExtResource("1_7odbu")
 debuglabel = NodePath("DebugOverlay/DebugInfo")
+debuglabel2 = NodePath("DebugOverlay/DebugInfo2")
 loopcontainer = NodePath("Loops")
 spawner = NodePath("Spawner")
 
@@ -2165,11 +2166,18 @@ flicker_time_min = 0.5
 flicker_time_max = 1.0
 
 [node name="DebugOverlay" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DebugInfo" type="Label" parent="DebugOverlay"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 479.0
+offset_bottom = 643.0
+theme_override_font_sizes/font_size = 12
+
+[node name="DebugInfo2" type="Label" parent="DebugOverlay"]
+offset_left = 612.0
+offset_right = 1152.0
+offset_bottom = 612.0
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
 
 [node name="Game UI Actually" parent="." instance=ExtResource("504_og3so")]
 

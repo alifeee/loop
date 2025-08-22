@@ -129,7 +129,6 @@ func _input(event: InputEvent) -> void:
 		and
 		is_blinking
 	):
-		is_blinking
 		if event.position.distance_to(position) < 80:
 			click_portal()
 	if not OS.is_debug_build():

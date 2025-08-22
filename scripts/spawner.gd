@@ -30,7 +30,7 @@ func _ready() -> void:
 	#if OS.is_debug_build():
 		#_on_timer_timeout()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if timer.paused and Globals.gamestate == Globals.GAMESTATES.PLAYING:
 		timer.paused = false
 		ratetimer.paused = false

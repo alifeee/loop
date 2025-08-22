@@ -104,7 +104,7 @@ func do_loop_damage(pos: Vector2, radius: float) -> void:
 	add_child(loop)
 		
 	# delete loop if there are now too many loops
-	while len(Globals.loops) > 3:
+	while len(Globals.loops) > Globals.MAX_LOOPS:
 		Globals.loops[0].die()
 
 func is_big_enough_area(mouse_history) -> bool:

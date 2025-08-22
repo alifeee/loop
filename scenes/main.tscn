@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt0le1d6n2kxb"]
+[gd_scene load_steps=3 format=3 uid="uid://dt0le1d6n2kxb"]
 
 [ext_resource type="Script" uid="uid://b0gnyu756pm0v" path="res://scripts/main.gd" id="1_sugp2"]
-[ext_resource type="PackedScene" uid="uid://cbayqvweh66fc" path="res://scenes/game.tscn" id="3_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://c0wsuvtxawbo3" path="res://scenes/start.tscn" id="17_muem4"]
 
 [sub_resource type="GDScript" id="GDScript_vhmy2"]
 resource_name = "audiomute"
@@ -21,8 +19,6 @@ func _on_toggled(toggled_on: bool) -> void:
 [node name="Main" type="Node2D" node_paths=PackedStringArray("sceneNode")]
 script = ExtResource("1_sugp2")
 sceneNode = NodePath("Scene")
-splashScreen_Scene = ExtResource("17_muem4")
-game_Scene = ExtResource("3_jyhfs")
 
 [node name="Scene" type="Node2D" parent="."]
 

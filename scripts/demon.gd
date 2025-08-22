@@ -12,7 +12,7 @@ var rng = RandomNumberGenerator.new()
 @export var death_duration: float = 2
 # behaviour
 @export var walk_towards: Vector2
-@export var walk_speed: float = 50
+var walk_speed: float = 50
 var do_slow_appear: bool = false
 # health tracking
 @export var health: float = 100
@@ -22,7 +22,8 @@ var killed_by_player: bool = false
 ## Tweens
 var hittween: Tween
 
-func _ready() -> void:	
+func _ready() -> void:
+	walk_speed = Globals.DEMON_MOVE_SPEED
 	# spaw in on random animation frame
 	var num_frames = sprite.sprite_frames.get_frame_count("default")
 	sprite.frame = rng.randi_range(0, num_frames)

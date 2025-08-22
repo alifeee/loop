@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://djt3yuhgqqtc8"]
+
+[ext_resource type="Theme" uid="uid://cf1qe0rwgm7fa" path="res://themes/default_ui_theme.tres" id="1_b2g4b"]
+[ext_resource type="Script" uid="uid://bwfylagjln1qj" path="res://scripts/upgrade.gd" id="1_xsw34"]
+
+[sub_resource type="Shader" id="Shader_b2g4b"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float fade_progress = 0.;
+
+float random (vec2 uv) {
+    return fract(sin(dot(uv.xy,
+        vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	float sector_x = floor(UV.x * 15.);
+	float sector_y = floor(UV.y * 25.);
+	vec2 sector = vec2(sector_x, sector_y);
+	COLOR.a *= (
+		 1. - fade_progress + ((0.5 - abs(fade_progress - 0.5)) * random(sector))
+	);
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1npk"]
+resource_local_to_scene = true
+shader = SubResource("Shader_b2g4b")
+shader_parameter/fade_progress = 0.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_b2g4b"]
+color = Color(1, 1, 1, 1)
+grow_begin = -20.0
+grow_end = -20.0
+thickness = 3
+
+[node name="Upgrade" type="Button" node_paths=PackedStringArray("name_label", "description_label")]
+material = SubResource("ShaderMaterial_g1npk")
+custom_minimum_size = Vector2(250, 350)
+theme = ExtResource("1_b2g4b")
+script = ExtResource("1_xsw34")
+name_label = NodePath("HBoxContainer/Name")
+description_label = NodePath("HBoxContainer/Description")
+left_or_right = 0
+name_ = "MORE LOOPS 2"
+description = "This does a really spooky thing. It's bad like that."
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+use_parent_material = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_top = 15.0
+offset_right = 250.0
+offset_bottom = 202.0
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+use_parent_material = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "MORE LOOPS 2"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+use_parent_material = true
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_b2g4b")
+
+[node name="Description" type="Label" parent="HBoxContainer"]
+use_parent_material = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "This does a really spooky thing. It's bad like that.
+hehe"
+horizontal_alignment = 1
+autowrap_mode = 3

@@ -4,8 +4,8 @@ extends Node2D
 
 @export var sceneNode: Node2D
 
-@export var splashScreen_Scene: PackedScene
-@export var game_Scene: PackedScene
+const splashScreen_Scene = preload("res://scenes/start.tscn")
+const game_Scene = preload("res://scenes/game.tscn")
 
 func _ready() -> void:
 	# load splash
